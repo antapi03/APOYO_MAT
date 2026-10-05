@@ -5,7 +5,7 @@
 <!-- PLANTILLA MAESTRA PC/Moodle · Corrección formativa · marcas ✓/✗ junto a la respuesta · 14/09/2026. -->
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Prueba · 2.º ESO · Potencias y raíces de números enteros · Trilingüe ES/FR/AR</title>
+<title>233P - 2º ESO - NÚMEROS ENTEROS - POTENCIAS Y RAÍCES CON NÚMEROS ENTEROS</title>
 <style>
 :root{
   --border:#d8d8d8; --soft:#fafafa; --blue:#eef6ff; --green:#f4fbf4;
@@ -1167,9 +1167,21 @@ html[dir="rtl"] .sol-lang.fr{
   direction:ltr !important;
   text-align:left !important;
 }
-</style></head>
+</style>
+<style id="apoyo-close-styles">
+.title-row{display:flex;align-items:center;gap:14px;margin-bottom:10px;width:100%}
+.title-row h1{flex:1 1 auto;min-width:0;margin:0}
+.close-apoyo{flex:0 0 auto;margin-left:auto;white-space:nowrap;font-weight:700}
+html[dir="rtl"] .close-apoyo{margin-left:0;margin-right:auto}
+@media (max-width:700px){.title-row{align-items:flex-start;gap:8px}.close-apoyo{font-size:.88rem;padding:.48rem .62rem}}
+@media print{.close-apoyo{display:none !important}}
+</style>
+</head>
 <body data-allsol="0" data-template-master="pc-moodle-correccion-formativa-13092026">
-<h1 data-ar="📝 اختبار · قوى وجذور الأعداد الصحيحة" data-es="📝 PRUEBA · POTENCIAS Y RAÍCES DE NÚMEROS ENTEROS" data-fr="📝 ÉVALUATION · PUISSANCES ET RACINES DES NOMBRES ENTIERS" data-i18n="">📝 PRUEBA · POTENCIAS Y RAÍCES DE NÚMEROS ENTEROS</h1>
+<div class="title-row">
+<h1 data-ar="233P - السنة الثانية من التعليم الثانوي - الأعداد الصحيحة - القوى والجذور مع الأعداد الصحيحة" data-es="233P - 2º ESO - NÚMEROS ENTEROS - POTENCIAS Y RAÍCES CON NÚMEROS ENTEROS" data-fr="233P - 2e ESO - NOMBRES ENTIERS - PUISSANCES ET RACINES AVEC DES NOMBRES ENTIERS" data-i18n="">233P - 2º ESO - NÚMEROS ENTEROS - POTENCIAS Y RAÍCES CON NÚMEROS ENTEROS</h1>
+<button class="close-apoyo" data-action="back-apoyo" type="button" data-es="✕ CERRAR" data-fr="✕ FERMER" data-ar="✕ إغلاق" data-i18n="" title="Cerrar y volver a APOYO-MAT">✕ CERRAR</button>
+</div>
 <div class="toolbar">
 <div class="row">
 <strong data-ar="اللغة:" data-es="Idioma:" data-fr="Langue :" data-i18n="">Idioma:</strong>
@@ -3444,6 +3456,20 @@ const FIELD='[data-answer-key]';
     isActive: () => correctionActive
   };
 })();
+</script>
+
+<script id="apoyo-close-handler">
+document.addEventListener("click", function(ev){
+  const btn = ev.target.closest('[data-action="back-apoyo"]');
+  if(!btn) return;
+  ev.preventDefault();
+  if(window.opener && !window.opener.closed){
+    window.close();
+    setTimeout(function(){ window.location.href = "../index.html"; }, 150);
+  }else{
+    window.location.href = "../index.html";
+  }
+});
 </script>
 </body>
 </html>
