@@ -88,6 +88,23 @@ openBtn.disabled=true; clearBtn.disabled=true;
 let archivoActual = null;
 
 function uniq(arr) { return [...new Set(arr)]; }
+
+// Carpeta del servidor según el curso del catálogo.
+// Todos los cursos de Primaria comparten PRIMARIA/.
+function carpetaCurso(nombreCurso) {
+  const c = String(nombreCurso || "").trim().toUpperCase();
+  if (c.includes("PRIMARIA")) return "PRIMARIA";
+  if (/^1(?:º|\.|ER)?\s*ESO/.test(c)) return "1ESO";
+  if (/^2(?:º|\.|O)?\s*ESO/.test(c)) return "2ESO";
+  if (/^3(?:º|\.|ER)?\s*ESO/.test(c)) return "3ESO";
+  if (/^4(?:º|\.|O)?\s*ESO/.test(c)) return "4ESO";
+  return "";
+}
+
+function rutaArchivo(item) {
+  const carpeta = carpetaCurso(item.curso);
+  return carpeta ? `${carpeta}/${item.archivo}` : item.archivo;
+}
 function setOptions(sel, values, placeholder) {
   sel.innerHTML = `<option value="">${placeholder}</option>` + values.map(v=>`<option>${v}</option>`).join("");
   sel.disabled = values.length===0;
@@ -140,7 +157,7 @@ async function comprobar() {
   selectionStatus.className="status wait";
   selectionStatus.innerHTML = `<div><div class="material-name">${detalle}</div><div>Comprobando si el fichero existe en el servidor…</div></div>`;
   try {
-    const url = new URL(item.archivo, window.location.href);
+    const url = new URL(rutaArchivo(item), window.location.href);
     const r = await fetch(url, {method:"HEAD", cache:"no-store"});
     if(r.ok) {
       archivoActual=url.href; openBtn.disabled=false;
@@ -158,10 +175,10 @@ async function comprobar() {
 
 openBtn.addEventListener("click", () => {
   if(!archivoActual) return;
-  const ancho = Math.min(1400, Math.max(900, Math.round(screen.availWidth * 0.92)));
-  const alto = Math.min(950, Math.max(650, Math.round(screen.availHeight * 0.92)));
-  const izquierda = Math.max(0, Math.round((screen.availWidth - ancho) / 2));
-  const arriba = Math.max(0, Math.round((screen.availHeight - alto) / 2));
+  const ancho = screen.availWidth;
+  const alto = screen.availHeight;
+  const izquierda = 0;
+  const arriba = 0;
   const opciones = [
     `width=${ancho}`, `height=${alto}`, `left=${izquierda}`, `top=${arriba}`,
     "resizable=yes", "scrollbars=yes",
