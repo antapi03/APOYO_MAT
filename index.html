@@ -28,14 +28,14 @@ h1{font-size:clamp(22px,2.6vw,30px);margin:0 0 3px;color:var(--azul)}
 select{width:100%;padding:9px 38px 9px 11px;border:1px solid #b9cbd9;border-radius:12px;background:#fff;font-size:16px;color:var(--texto)}
 select:disabled{background:#eef3f6;color:#8a9aa7}
 .status{margin-top:10px;padding:9px 13px;border-radius:10px;background:#eef5f8;border:1px solid var(--borde);min-height:40px;display:flex;align-items:center;font-size:14px}
-.status.ok{background:#eefaf5;border-color:#9bd6bf;color:#176b4b}
+.material-name{font-weight:700;margin-bottom:4px}.status.ok{background:#eefaf5;border-color:#9bd6bf;color:#176b4b}
 .status.bad{background:#fff3f0;border-color:#efb5a8;color:#9a3826}
 .status.wait{background:#fff9e9;border-color:#eed38a;color:#7a5b00}
 .meta{margin-top:10px;color:var(--muted);font-size:14px}
 .actions{display:flex;gap:10px;margin-top:9px;flex-wrap:wrap}
 button{border:0;border-radius:10px;padding:9px 18px;font-size:14px;font-weight:850;cursor:pointer}
 #openBtn{background:var(--turquesa);color:white}
-#openBtn:disabled{background:#b7c6ce;cursor:not-allowed}
+#openBtn:disabled{background:#b7c6ce;cursor:not-allowed}#clearBtn:disabled{opacity:.45;cursor:not-allowed}
 #clearBtn{background:white;color:var(--azul);border:1px solid #b9cbd9}
 .note{margin-top:8px;font-size:11.5px;color:var(--muted);line-height:1.3}
 @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.visual{width:40%}.visual img{width:100%}}@media(max-width:560px){.grid{grid-template-columns:1fr}.panel{padding:18px}.visual{width:90%}.visual img{width:100%}} .panel{padding:18px}}
@@ -55,14 +55,14 @@ button{border:0;border-radius:10px;padding:9px 18px;font-size:14px;font-weight:8
   <div class="hero">
     <section class="panel">
       <h1>MATERIALES</h1>
+      <div id="catalogStatus" class="status">Cargando catálogo de APOYO-MAT…</div>
       <div class="grid">
         <div class="field"><label for="curso">CURSO</label><select id="curso"><option value="">Selecciona curso…</option></select></div>
         <div class="field"><label for="bloque">BLOQUE</label><select id="bloque" disabled><option value="">Selecciona bloque…</option></select></div>
         <div class="field"><label for="apartado">APARTADO</label><select id="apartado" disabled><option value="">Selecciona apartado…</option></select></div>
         <div class="field"><label for="tipo">MATERIAL</label><select id="tipo" disabled><option value="">Selecciona material…</option></select></div>
       </div>
-      <div id="status" class="status">Selecciona las opciones para localizar el material.</div>
-      <div id="meta" class="meta"></div>
+      <div id="selectionStatus" class="status" hidden></div>
 
       
 
@@ -83,7 +83,8 @@ let CATALOGO = [];
 
 const $ = id => document.getElementById(id);
 const curso=$("curso"), bloque=$("bloque"), apartado=$("apartado"), tipo=$("tipo");
-const status=$("status"), meta=$("meta"), openBtn=$("openBtn"), clearBtn=$("clearBtn");
+const catalogStatus=$("catalogStatus"), selectionStatus=$("selectionStatus"), openBtn=$("openBtn"), clearBtn=$("clearBtn");
+openBtn.disabled=true; clearBtn.disabled=true;
 let archivoActual = null;
 
 function uniq(arr) { return [...new Set(arr)].sort((a,b)=>a.localeCompare(b,"es",{numeric:true})); }
@@ -100,8 +101,11 @@ function subset() {
   );
 }
 function resetResult() {
-  archivoActual=null; openBtn.disabled=true; meta.textContent="";
-  mostrarResumenCatalogo();
+  archivoActual=null;
+  openBtn.disabled=true;
+  selectionStatus.hidden=true;
+  selectionStatus.className="status";
+  selectionStatus.textContent="";
 }
 function loadCursos() { setOptions(curso, uniq(CATALOGO.map(x=>x.curso)), "Selecciona curso…"); }
 
@@ -123,27 +127,32 @@ async function comprobar() {
   if(!curso.value || !bloque.value || !apartado.value || !tipo.value) return;
   const matches=subset();
   if(matches.length!==1) {
-    status.className="status bad";
-    status.textContent = matches.length===0 ? "No hay ningún material registrado con esta combinación." : "Hay más de un material registrado con esta combinación.";
+    selectionStatus.hidden=false;
+    selectionStatus.className="status bad";
+    selectionStatus.innerHTML = matches.length===0
+      ? "No hay ningún material registrado con esta combinación."
+      : "Hay más de un material registrado con esta combinación.";
     return;
   }
   const item=matches[0];
-  status.className="status wait"; status.textContent="Comprobando si el fichero existe en el servidor…";
-  meta.textContent = `${item.nombre}` + (item.preguntas ? ` · ${item.preguntas} preguntas` : "");
+  const detalle = `${item.nombre}` + (item.preguntas ? ` · ${item.preguntas} preguntas` : "");
+  selectionStatus.hidden=false;
+  selectionStatus.className="status wait";
+  selectionStatus.innerHTML = `<div><div class="material-name">${detalle}</div><div>Comprobando si el fichero existe en el servidor…</div></div>`;
   try {
     const url = new URL(item.archivo, window.location.href);
     const r = await fetch(url, {method:"HEAD", cache:"no-store"});
     if(r.ok) {
       archivoActual=url.href; openBtn.disabled=false;
-      status.className="status ok";
-      status.textContent="Material disponible. Puedes abrirlo.";
+      selectionStatus.className="status ok";
+      selectionStatus.innerHTML = `<div><div class="material-name">${detalle}</div><div>Material disponible. Puedes abrirlo.</div></div>`;
     } else {
-      status.className="status bad";
-      status.textContent="Este material está registrado, pero el fichero todavía no existe en el servidor.";
+      selectionStatus.className="status bad";
+      selectionStatus.innerHTML = `<div><div class="material-name">${detalle}</div><div>Este material está registrado, pero el fichero todavía no existe en el servidor.</div></div>`;
     }
   } catch(e) {
-    status.className="status bad";
-    status.textContent="No se ha podido comprobar el fichero. Abre este índice desde el servidor de GitHub Pages.";
+    selectionStatus.className="status bad";
+    selectionStatus.innerHTML = `<div><div class="material-name">${detalle}</div><div>No se ha podido comprobar el fichero. Abre este índice desde el servidor de GitHub Pages.</div></div>`;
   }
 }
 
@@ -170,14 +179,14 @@ function mostrarResumenCatalogo() {
                      (conteo[t] === 1 ? t : t + "S");
     return `${conteo[t]} ${etiqueta}`;
   });
-  status.className = "status";
-  status.textContent = "Catálogo cargado: " + partes.join("    ·    ");
+  catalogStatus.className = "status";
+  catalogStatus.textContent = "Catálogo cargado: " + partes.join("    ·    ");
 }
 
 async function cargarCatalogoDesdeExcel() {
   const excel = "APOYO_MAT_LISTADO_FICHAS_PRUEBAS.xlsx";
-  status.className = "status wait";
-  status.textContent = "Cargando catálogo de APOYO-MAT…";
+  catalogStatus.className = "status wait";
+  catalogStatus.textContent = "Cargando catálogo de APOYO-MAT…";
   try {
     const r = await fetch(excel, {cache:"no-store"});
     if (!r.ok) throw new Error("No se encuentra el Excel");
@@ -206,14 +215,15 @@ async function cargarCatalogoDesdeExcel() {
       .filter(x => x.tipo);
 
     if (!CATALOGO.length) throw new Error("El Excel no contiene materiales válidos");
+    clearBtn.disabled=false;
     loadCursos();
     mostrarResumenCatalogo();
   } catch (e) {
     curso.disabled = bloque.disabled = apartado.disabled = tipo.disabled = true;
-    openBtn.disabled = true;
-    status.className = "status bad";
-    status.textContent = "No se ha podido cargar APOYO_MAT_LISTADO_FICHAS_PRUEBAS.xlsx desde el servidor.";
-    meta.textContent = "Comprueba que el Excel está en la misma carpeta que index.html.";
+    openBtn.disabled = true; clearBtn.disabled = true;
+    catalogStatus.className = "status bad";
+    catalogStatus.textContent = "No se ha podido cargar APOYO_MAT_LISTADO_FICHAS_PRUEBAS.xlsx desde el servidor.";
+    catalogStatus.textContent += " Comprueba que el Excel está en la misma carpeta que index.html.";
   }
 }
 cargarCatalogoDesdeExcel();
