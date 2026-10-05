@@ -1104,6 +1104,7 @@ body:not(.correction-active) #btn-all{
 <div class="toolbar">
 <div class="row">
 <strong data-ar="اللغة:" data-es="Idioma:" data-fr="Langue :" data-i18n="">Idioma:</strong>
+<button class="back-apoyo" data-action="back-apoyo" type="button" title="Volver a APOYO-MAT">← APOYO-MAT</button>
 <button aria-pressed="true" class="global-lang active" data-action="global-lang" data-lang="es" type="button">🇪🇸 Castellano</button>
 <button aria-pressed="false" class="global-lang" data-action="global-lang" data-lang="fr" type="button">🇫🇷 Français</button>
 <button aria-pressed="false" class="global-lang" data-action="global-lang" data-lang="ar" type="button">🇲🇦 العربية</button>
@@ -2616,6 +2617,21 @@ const FIELD='[data-answer-key]';
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',splitLongDivisionChains);
   else splitLongDivisionChains();
+})();
+</script>
+
+<script>
+(function(){
+  const btn = document.querySelector('[data-action="back-apoyo"]');
+  if(!btn) return;
+  btn.addEventListener('click', function(){
+    const standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+    if(!standalone && window.opener && !window.opener.closed){
+      window.close();
+      return;
+    }
+    window.location.href = '../index.html';
+  });
 })();
 </script>
 </body>
