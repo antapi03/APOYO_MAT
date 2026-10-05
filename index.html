@@ -133,16 +133,22 @@ function resetResult() {
 function loadCursos() { setOptions(curso, uniq(CATALOGO.map(x=>x.curso)), "Selecciona curso…"); }
 
 curso.addEventListener("change", () => {
+  bloque.value=""; apartado.value=""; tipo.value="";
   setOptions(bloque, uniq(subset().map(x=>x.bloque)), "Selecciona bloque…");
   setOptions(apartado, [], "Selecciona apartado…"); setOptions(tipo, [], "Selecciona material…"); resetResult();
 });
+
 bloque.addEventListener("change", () => {
+  apartado.value=""; tipo.value="";
   setOptions(apartado, uniq(subset().map(x=>x.apartado)), "Selecciona apartado…");
   setOptions(tipo, [], "Selecciona material…"); resetResult();
 });
+
 apartado.addEventListener("change", () => {
+  tipo.value="";
   setOptions(tipo, uniq(subset().map(x=>x.tipo)), "Selecciona material…"); resetResult();
 });
+
 tipo.addEventListener("change", comprobar);
 
 async function comprobar() {
