@@ -87,7 +87,7 @@ const catalogStatus=$("catalogStatus"), selectionStatus=$("selectionStatus"), op
 openBtn.disabled=true; clearBtn.disabled=true;
 let archivoActual = null;
 
-function uniq(arr) { return [...new Set(arr)].sort((a,b)=>a.localeCompare(b,"es",{numeric:true})); }
+function uniq(arr) { return [...new Set(arr)]; }
 function setOptions(sel, values, placeholder) {
   sel.innerHTML = `<option value="">${placeholder}</option>` + values.map(v=>`<option>${v}</option>`).join("");
   sel.disabled = values.length===0;
@@ -145,7 +145,7 @@ async function comprobar() {
     if(r.ok) {
       archivoActual=url.href; openBtn.disabled=false;
       selectionStatus.className="status ok";
-      selectionStatus.innerHTML = `<div><div class="material-name">${detalle}</div><div>Material disponible. Puedes abrirlo.</div></div>`;
+      selectionStatus.innerHTML = `<div><div class="material-name">${detalle}</div></div>`;
     } else {
       selectionStatus.className="status bad";
       selectionStatus.innerHTML = `<div><div class="material-name">${detalle}</div><div>Este material está registrado, pero el fichero todavía no existe en el servidor.</div></div>`;
@@ -156,7 +156,26 @@ async function comprobar() {
   }
 }
 
-openBtn.addEventListener("click", () => { if(archivoActual) window.location.href=archivoActual; });
+openBtn.addEventListener("click", () => {
+  if(!archivoActual) return;
+  const ancho = Math.min(1400, Math.max(900, Math.round(screen.availWidth * 0.92)));
+  const alto = Math.min(950, Math.max(650, Math.round(screen.availHeight * 0.92)));
+  const izquierda = Math.max(0, Math.round((screen.availWidth - ancho) / 2));
+  const arriba = Math.max(0, Math.round((screen.availHeight - alto) / 2));
+  const opciones = [
+    `width=${ancho}`, `height=${alto}`, `left=${izquierda}`, `top=${arriba}`,
+    "resizable=yes", "scrollbars=yes",
+    "menubar=no", "toolbar=no", "location=no", "status=no"
+  ].join(",");
+  const ventana = window.open(archivoActual, "_blank", opciones);
+  if(!ventana) {
+    selectionStatus.hidden=false;
+    selectionStatus.className="status bad";
+    selectionStatus.innerHTML = "<div>El navegador ha bloqueado la ventana emergente. Permite las ventanas emergentes para este sitio y vuelve a pulsar ABRIR.</div>";
+  } else {
+    ventana.focus();
+  }
+});
 clearBtn.addEventListener("click", () => {
   curso.value=""; setOptions(bloque, [], "Selecciona bloque…"); setOptions(apartado, [], "Selecciona apartado…"); setOptions(tipo, [], "Selecciona material…"); resetResult();
 });
@@ -212,7 +231,8 @@ async function cargarCatalogoDesdeExcel() {
           archivo: nombre + ".html"
         };
       })
-      .filter(x => x.tipo);
+      .filter(x => x.tipo)
+      .sort((a,b) => a.codigo.localeCompare(b.codigo, "es", {numeric:true, sensitivity:"base"}));
 
     if (!CATALOGO.length) throw new Error("El Excel no contiene materiales válidos");
     clearBtn.disabled=false;
