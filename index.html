@@ -79,8 +79,9 @@ button{border:0;border-radius:12px;padding:13px 22px;font-size:16px;font-weight:
   </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
-const CATALOGO = [{"codigo": "211P", "curso": "2º ESO", "bloque": "NÚMEROS NATURALES", "apartado": "SISTEMA BINARIO", "tipo": "PRUEBA", "preguntas": "", "archivo": "211P - 2º ESO - NÚMEROS NATURALES - SISTEMA BINARIO.html", "nombre": "211P - 2º ESO - NÚMEROS NATURALES - SISTEMA BINARIO"}, {"codigo": "212P", "curso": "2º ESO", "bloque": "NÚMEROS NATURALES", "apartado": "SISTEMA SEXAGESIMAL", "tipo": "PRUEBA", "preguntas": "", "archivo": "212P - 2º ESO - NÚMEROS NATURALES - SISTEMA SEXAGESIMAL.html", "nombre": "212P - 2º ESO - NÚMEROS NATURALES - SISTEMA SEXAGESIMAL"}, {"codigo": "213P", "curso": "2º ESO", "bloque": "NÚMEROS NATURALES", "apartado": "OPERACIONES COMBINADAS CON NÚMEROS NATURALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "213P - 2º ESO - NÚMEROS NATURALES - OPERACIONES COMBINADAS CON NÚMEROS NATURALES.html", "nombre": "213P - 2º ESO - NÚMEROS NATURALES - OPERACIONES COMBINADAS CON NÚMEROS NATURALES"}, {"codigo": "219P", "curso": "2º ESO", "bloque": "NÚMEROS NATURALES", "apartado": "GLOBAL NÚMEROS NATURALES SIN DIVISIBILIDAD", "tipo": "PRUEBA", "preguntas": "", "archivo": "219P - 2º ESO - NÚMEROS NATURALES - GLOBAL NÚMEROS NATURALES SIN DIVISIBILIDAD.html", "nombre": "219P - 2º ESO - NÚMEROS NATURALES - GLOBAL NÚMEROS NATURALES SIN DIVISIBILIDAD"}, {"codigo": "221P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "MÚLTIPLOS Y DIVISORES: RECONOCIMIENTO", "tipo": "PRUEBA", "preguntas": "", "archivo": "221P - 2º ESO - DIVISIBILIDAD - MÚLTIPLOS Y DIVISORES: RECONOCIMIENTO.html", "nombre": "221P - 2º ESO - DIVISIBILIDAD - MÚLTIPLOS Y DIVISORES: RECONOCIMIENTO"}, {"codigo": "222P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "MÚLTIPLOS DE UN NÚMERO", "tipo": "PRUEBA", "preguntas": "", "archivo": "222P - 2º ESO - DIVISIBILIDAD - MÚLTIPLOS DE UN NÚMERO.html", "nombre": "222P - 2º ESO - DIVISIBILIDAD - MÚLTIPLOS DE UN NÚMERO"}, {"codigo": "223P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "DIVISORES DE UN NÚMERO", "tipo": "PRUEBA", "preguntas": "", "archivo": "223P - 2º ESO - DIVISIBILIDAD - DIVISORES DE UN NÚMERO.html", "nombre": "223P - 2º ESO - DIVISIBILIDAD - DIVISORES DE UN NÚMERO"}, {"codigo": "224P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "CRITERIOS DE DIVISIBILIDAD", "tipo": "PRUEBA", "preguntas": "", "archivo": "224P - 2º ESO - DIVISIBILIDAD - CRITERIOS DE DIVISIBILIDAD.html", "nombre": "224P - 2º ESO - DIVISIBILIDAD - CRITERIOS DE DIVISIBILIDAD"}, {"codigo": "225P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "DESCOMPOSICIÓN EN FACTORES PRIMOS", "tipo": "PRUEBA", "preguntas": "", "archivo": "225P - 2º ESO - DIVISIBILIDAD - DESCOMPOSICIÓN EN FACTORES PRIMOS.html", "nombre": "225P - 2º ESO - DIVISIBILIDAD - DESCOMPOSICIÓN EN FACTORES PRIMOS"}, {"codigo": "226P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "CÁLCULO DEL M.C.M. Y M.C.D.", "tipo": "PRUEBA", "preguntas": "", "archivo": "226P - 2º ESO - DIVISIBILIDAD - CÁLCULO DEL M.C.M. Y M.C.D..html", "nombre": "226P - 2º ESO - DIVISIBILIDAD - CÁLCULO DEL M.C.M. Y M.C.D."}, {"codigo": "227P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "PROBLEMAS DE M.C.D. Y M.C.M.", "tipo": "PRUEBA", "preguntas": "", "archivo": "227P - 2º ESO - DIVISIBILIDAD - PROBLEMAS DE M.C.D. Y M.C.M..html", "nombre": "227P - 2º ESO - DIVISIBILIDAD - PROBLEMAS DE M.C.D. Y M.C.M."}, {"codigo": "229P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "GLOBAL DIVISIBILIDAD", "tipo": "PRUEBA", "preguntas": 20, "archivo": "229P - 2º ESO - DIVISIBILIDAD - GLOBAL DIVISIBILIDAD.html", "nombre": "229P - 2º ESO - DIVISIBILIDAD - GLOBAL DIVISIBILIDAD"}, {"codigo": "231P", "curso": "2º ESO", "bloque": "NÚMEROS ENTEROS", "apartado": "NÚMEROS ENTEROS", "tipo": "PRUEBA", "preguntas": "", "archivo": "231P - 2º ESO - NÚMEROS ENTEROS - NÚMEROS ENTEROS.html", "nombre": "231P - 2º ESO - NÚMEROS ENTEROS - NÚMEROS ENTEROS"}, {"codigo": "232P", "curso": "2º ESO", "bloque": "NÚMEROS ENTEROS", "apartado": "OPERACIONES CON NÚMEROS ENTEROS", "tipo": "PRUEBA", "preguntas": "", "archivo": "232P - 2º ESO - NÚMEROS ENTEROS - OPERACIONES CON NÚMEROS ENTEROS.html", "nombre": "232P - 2º ESO - NÚMEROS ENTEROS - OPERACIONES CON NÚMEROS ENTEROS"}, {"codigo": "233P", "curso": "2º ESO", "bloque": "NÚMEROS ENTEROS", "apartado": "POTENCIAS Y RAÍCES CON NÚMEROS ENTEROS", "tipo": "PRUEBA", "preguntas": "", "archivo": "233P - 2º ESO - NÚMEROS ENTEROS - POTENCIAS Y RAÍCES CON NÚMEROS ENTEROS.html", "nombre": "233P - 2º ESO - NÚMEROS ENTEROS - POTENCIAS Y RAÍCES CON NÚMEROS ENTEROS"}, {"codigo": "234P", "curso": "2º ESO", "bloque": "NÚMEROS ENTEROS", "apartado": "PROBLEMAS CON NÚMEROS ENTEROS", "tipo": "PRUEBA", "preguntas": "", "archivo": "234P - 2º ESO - NÚMEROS ENTEROS - PROBLEMAS CON NÚMEROS ENTEROS.html", "nombre": "234P - 2º ESO - NÚMEROS ENTEROS - PROBLEMAS CON NÚMEROS ENTEROS"}, {"codigo": "239P", "curso": "2º ESO", "bloque": "NÚMEROS ENTEROS", "apartado": "GLOBAL NÚMEROS ENTEROS", "tipo": "PRUEBA", "preguntas": 19, "archivo": "239P - 2º ESO - NÚMEROS ENTEROS - GLOBAL NÚMEROS ENTEROS.html", "nombre": "239P - 2º ESO - NÚMEROS ENTEROS - GLOBAL NÚMEROS ENTEROS"}, {"codigo": "241P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "ÓRDENES Y UNIDADES DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "241P - 2º ESO - NÚMEROS DECIMALES - ÓRDENES Y UNIDADES DECIMALES.html", "nombre": "241P - 2º ESO - NÚMEROS DECIMALES - ÓRDENES Y UNIDADES DECIMALES"}, {"codigo": "242P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "REPRESENTACIÓN Y ORDENACIÓN DE NÚMEROS DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "242P - 2º ESO - NÚMEROS DECIMALES - REPRESENTACIÓN Y ORDENACIÓN DE NÚMEROS DECIMALES.html", "nombre": "242P - 2º ESO - NÚMEROS DECIMALES - REPRESENTACIÓN Y ORDENACIÓN DE NÚMEROS DECIMALES"}, {"codigo": "243P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "OPERACIONES CON NÚMEROS DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "243P - 2º ESO - NÚMEROS DECIMALES - OPERACIONES CON NÚMEROS DECIMALES.html", "nombre": "243P - 2º ESO - NÚMEROS DECIMALES - OPERACIONES CON NÚMEROS DECIMALES"}, {"codigo": "244P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "RAÍZ CUADRADA CON NÚMEROS DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "244P - 2º ESO - NÚMEROS DECIMALES - RAÍZ CUADRADA CON NÚMEROS DECIMALES.html", "nombre": "244P - 2º ESO - NÚMEROS DECIMALES - RAÍZ CUADRADA CON NÚMEROS DECIMALES"}, {"codigo": "245P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "RESOLUCIÓN DE PROBLEMAS CON NÚMEROS DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "245P - 2º ESO - NÚMEROS DECIMALES - RESOLUCIÓN DE PROBLEMAS CON NÚMEROS DECIMALES.html", "nombre": "245P - 2º ESO - NÚMEROS DECIMALES - RESOLUCIÓN DE PROBLEMAS CON NÚMEROS DECIMALES"}, {"codigo": "249P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "GLOBAL NÚMEROS DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "249P - 2º ESO - NÚMEROS DECIMALES - GLOBAL NÚMEROS DECIMALES.html", "nombre": "249P - 2º ESO - NÚMEROS DECIMALES - GLOBAL NÚMEROS DECIMALES"}, {"codigo": "251P", "curso": "2º ESO", "bloque": "FRACCIONES", "apartado": "CONCEPTO, REPRESENTACIÓN VISUAL Y RECTA NUMÉRICA", "tipo": "PRUEBA", "preguntas": 15, "archivo": "251P - 2º ESO - FRACCIONES - CONCEPTO, REPRESENTACIÓN VISUAL Y RECTA NUMÉRICA.html", "nombre": "251P - 2º ESO - FRACCIONES - CONCEPTO, REPRESENTACIÓN VISUAL Y RECTA NUMÉRICA"}, {"codigo": "252P", "curso": "2º ESO", "bloque": "FRACCIONES", "apartado": "EQUIVALENCIA, SIMPLIFICACIÓN Y NÚMEROS RACIONALES", "tipo": "PRUEBA", "preguntas": 15, "archivo": "252P - 2º ESO - FRACCIONES - EQUIVALENCIA, SIMPLIFICACIÓN Y NÚMEROS RACIONALES.html", "nombre": "252P - 2º ESO - FRACCIONES - EQUIVALENCIA, SIMPLIFICACIÓN Y NÚMEROS RACIONALES"}, {"codigo": "253P", "curso": "2º ESO", "bloque": "FRACCIONES", "apartado": "OPERACIONES CON FRACCIONES", "tipo": "PRUEBA", "preguntas": 14, "archivo": "253P - 2º ESO - FRACCIONES - OPERACIONES CON FRACCIONES.html", "nombre": "253P - 2º ESO - FRACCIONES - OPERACIONES CON FRACCIONES"}, {"codigo": "254P", "curso": "2º ESO", "bloque": "FRACCIONES", "apartado": "RESOLUCIÓN DE PROBLEMAS CON FRACCIONES", "tipo": "PRUEBA", "preguntas": 20, "archivo": "254P - 2º ESO - FRACCIONES - RESOLUCIÓN DE PROBLEMAS CON FRACCIONES.html", "nombre": "254P - 2º ESO - FRACCIONES - RESOLUCIÓN DE PROBLEMAS CON FRACCIONES"}];
+let CATALOGO = [];
 
 const $ = id => document.getElementById(id);
 const curso=$("curso"), bloque=$("bloque"), apartado=$("apartado"), tipo=$("tipo");
@@ -152,7 +153,53 @@ openBtn.addEventListener("click", () => { if(archivoActual) window.location.href
 clearBtn.addEventListener("click", () => {
   curso.value=""; setOptions(bloque, [], "Selecciona bloque…"); setOptions(apartado, [], "Selecciona apartado…"); setOptions(tipo, [], "Selecciona tipo…"); resetResult();
 });
-loadCursos();
+
+async function cargarCatalogoDesdeExcel() {
+  const excel = "APOYO_MAT_LISTADO_FICHAS_PRUEBAS.xlsx";
+  status.className = "status wait";
+  status.textContent = "Cargando catálogo de APOYO-MAT…";
+  try {
+    const r = await fetch(excel, {cache:"no-store"});
+    if (!r.ok) throw new Error("No se encuentra el Excel");
+    const data = await r.arrayBuffer();
+    const libro = XLSX.read(data, {type:"array"});
+    const hoja = libro.Sheets[libro.SheetNames[0]];
+    const filas = XLSX.utils.sheet_to_json(hoja, {defval:""});
+
+    CATALOGO = filas
+      .filter(f => f.CODIGO && f.CURSO && f.BLOQUE && f.APARTADO)
+      .map(f => {
+        const codigo = String(f.CODIGO).trim();
+        const curso = String(f.CURSO).trim();
+        const bloque = String(f.BLOQUE).trim();
+        const apartado = String(f.APARTADO).trim();
+        const tipo = codigo.toUpperCase().endsWith("P") ? "PRUEBA" :
+                     codigo.toUpperCase().endsWith("F") ? "FICHA" : "";
+        const nombreExcel = String(f.NOMBRE || "").trim();
+        const nombre = nombreExcel || `${codigo} - ${curso} - ${bloque} - ${apartado}`;
+        return {
+          codigo, curso, bloque, apartado, tipo,
+          preguntas: f["Nº PREGUNTAS"] || "",
+          nombre,
+          archivo: nombre + ".html"
+        };
+      })
+      .filter(x => x.tipo);
+
+    if (!CATALOGO.length) throw new Error("El Excel no contiene materiales válidos");
+    loadCursos();
+    status.className = "status";
+    status.textContent = `Catálogo cargado: ${CATALOGO.length} materiales. Selecciona las cuatro opciones.`;
+  } catch (e) {
+    curso.disabled = bloque.disabled = apartado.disabled = tipo.disabled = true;
+    openBtn.disabled = true;
+    status.className = "status bad";
+    status.textContent = "No se ha podido cargar APOYO_MAT_LISTADO_FICHAS_PRUEBAS.xlsx desde el servidor.";
+    meta.textContent = "Comprueba que el Excel está en la misma carpeta que index.html.";
+  }
+}
+cargarCatalogoDesdeExcel();
+
 </script>
 </body>
 </html>
