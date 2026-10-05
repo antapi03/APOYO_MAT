@@ -18,9 +18,9 @@ header{background:white;border-bottom:1px solid var(--borde);padding:10px 20px}
 .sub{color:var(--muted);margin-top:3px}
 main{max-width:1180px;margin:12px auto;padding:0 18px 14px}
 .hero{display:flex;flex-direction:column;gap:12px}
-.panel,.visual{background:white;border:1px solid var(--borde);border-radius:18px;box-shadow:0 6px 20px rgba(7,55,99,.07);overflow:hidden}.visual{order:-1;padding:0;display:flex;justify-content:center;align-items:center;background:#fff}
+.panel{background:white;border:1px solid var(--borde);border-radius:18px;box-shadow:0 6px 20px rgba(7,55,99,.07);overflow:hidden}.visual{order:-1;width:40%;margin:0 auto;background:white;border:1px solid var(--borde);border-radius:18px;box-shadow:0 6px 20px rgba(7,55,99,.07);overflow:hidden;display:flex;justify-content:center;align-items:center}
 .panel{padding:14px 20px}
-.visual img{width:50%;height:auto;max-height:none;display:block;object-fit:contain;object-position:center;background:#fff}
+.visual img{width:100%;height:auto;display:block;object-fit:contain;object-position:center}
 h1{font-size:clamp(22px,2.6vw,30px);margin:0 0 3px;color:var(--azul)}
 .lead{margin:0 0 10px;color:var(--muted);line-height:1.35;font-size:14px}
 .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
@@ -38,7 +38,7 @@ button{border:0;border-radius:10px;padding:9px 18px;font-size:14px;font-weight:8
 #openBtn:disabled{background:#b7c6ce;cursor:not-allowed}
 #clearBtn{background:white;color:var(--azul);border:1px solid #b9cbd9}
 .note{margin-top:8px;font-size:11.5px;color:var(--muted);line-height:1.3}
-@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.visual img{width:75%}}@media(max-width:560px){.grid{grid-template-columns:1fr}.panel{padding:18px}.visual img{width:100%}} .panel{padding:18px}}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.visual{width:40%}.visual img{width:100%}}@media(max-width:560px){.grid{grid-template-columns:1fr}.panel{padding:18px}.visual{width:90%}.visual img{width:100%}} .panel{padding:18px}}
 </style>
 </head>
 <body>
@@ -55,19 +55,19 @@ button{border:0;border-radius:10px;padding:9px 18px;font-size:14px;font-weight:8
   <div class="hero">
     <section class="panel">
       <h1>MATERIALES</h1>
-      <div id="status" class="status">Selecciona las opciones para localizar el material.</div>
-      <div id="meta" class="meta"></div>
       <div class="grid">
         <div class="field"><label for="curso">CURSO</label><select id="curso"><option value="">Selecciona curso…</option></select></div>
         <div class="field"><label for="bloque">BLOQUE</label><select id="bloque" disabled><option value="">Selecciona bloque…</option></select></div>
         <div class="field"><label for="apartado">APARTADO</label><select id="apartado" disabled><option value="">Selecciona apartado…</option></select></div>
         <div class="field"><label for="tipo">MATERIAL</label><select id="tipo" disabled><option value="">Selecciona material…</option></select></div>
       </div>
+      <div id="status" class="status">Selecciona las opciones para localizar el material.</div>
+      <div id="meta" class="meta"></div>
 
       
 
       <div class="actions">
-        <button id="openBtn" type="button" disabled>ABRIR / ACCEDER</button>
+        <button id="openBtn" type="button" disabled>ABRIR</button>
         <button id="clearBtn" type="button">LIMPIAR</button>
       </div>
 
