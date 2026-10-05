@@ -1,0 +1,18 @@
+{
+  "name": "APOYO-MAT · Refuerzo matemático",
+  "short_name": "APOYO-MAT",
+  "description": "Portal de materiales de refuerzo matemático.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f8fb",
+  "theme_color": "#073763",
+  "icons": [
+    {
+      "src": "apoyo-mat.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
