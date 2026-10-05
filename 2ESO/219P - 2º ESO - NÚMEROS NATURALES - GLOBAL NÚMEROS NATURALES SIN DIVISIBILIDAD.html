@@ -1782,9 +1782,24 @@ button.solution-on{background:#eef8ee;border-color:#8bbd8b}
   display:inline-block;
   white-space:nowrap;
 }
-</style></head>
+</style><style>
+/* ===== APOYO-MAT · título + botón CERRAR ===== */
+.title-row{display:flex;align-items:center;gap:14px;margin-bottom:10px;width:100%}
+.title-row h1{flex:1 1 auto;min-width:0;margin:0}
+.close-apoyo{flex:0 0 auto;margin-left:auto;white-space:nowrap;font-weight:700}
+html[dir="rtl"] .close-apoyo{margin-left:0;margin-right:auto}
+@media (max-width:700px){
+  .title-row{align-items:flex-start;gap:8px}
+  .close-apoyo{font-size:.88rem;padding:.48rem .62rem}
+}
+@media print{.close-apoyo{display:none !important}}
+</style>
+</head>
 <body data-allsol="0" data-template-master="pc-moodle-correccion-formativa-13092026">
+<div class="title-row">
 <h1 data-ar="219P - السنة الثانية من التعليم الثانوي - الأعداد الطبيعية - اختبار شامل في الأعداد الطبيعية دون القابلية للقسمة" data-es="219P - 2º ESO - NÚMEROS NATURALES - GLOBAL NÚMEROS NATURALES SIN DIVISIBILIDAD" data-fr="219P - 2e ESO - NOMBRES NATURELS - ÉVALUATION GLOBALE DES NOMBRES NATURELS SANS DIVISIBILITÉ" data-i18n="">219P - 2º ESO - NÚMEROS NATURALES - GLOBAL NÚMEROS NATURALES SIN DIVISIBILIDAD</h1>
+<button class="close-apoyo" data-action="back-apoyo" type="button" data-es="✕ CERRAR" data-fr="✕ FERMER" data-ar="✕ إغلاق" data-i18n="" title="Cerrar y volver a APOYO-MAT">✕ CERRAR</button>
+</div>
 <div class="toolbar">
 <div class="row">
 <strong data-ar="اللغة:" data-es="Idioma:" data-fr="Langue :" data-i18n="">Idioma:</strong>
@@ -3616,5 +3631,21 @@ const FIELD='[data-answer-key]';
   };
 })();
 </script>
+
+<script>
+/* APOYO-MAT · salida de la prueba. */
+document.addEventListener("click", function(ev){
+  const btn = ev.target.closest('[data-action="back-apoyo"]');
+  if(!btn) return;
+  ev.preventDefault();
+  if(window.opener && !window.opener.closed){
+    window.close();
+    setTimeout(function(){ window.location.href = "../index.html"; }, 150);
+  }else{
+    window.location.href = "../index.html";
+  }
+});
+</script>
+
 </body>
 </html>
