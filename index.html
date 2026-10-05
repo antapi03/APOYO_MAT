@@ -1,6 +1,163 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>APOYO-MAT · Pruebas 2.º ESO</title><style>:root{font-family:Arial,Helvetica,sans-serif;color:#1f2937;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}main{max-width:900px;margin:auto;padding:28px 18px 48px}header{background:#fff;border:1px solid #dfe4ea;border-radius:18px;padding:22px;margin-bottom:18px}h1{margin:0 0 7px;font-size:clamp(1.55rem,5vw,2.25rem)}p{margin:.35rem 0;color:#59636e;line-height:1.45}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.card{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #dfe4ea;border-radius:16px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.04)}.card:active{transform:scale(.99)}.num{font-weight:800;font-size:.9rem;color:#5c6f82;margin-bottom:7px}.title{font-weight:800;font-size:1.12rem;line-height:1.3}.desc{font-size:.94rem;margin-top:7px;color:#687480}.open{margin-top:15px;font-weight:800;color:#245fa6}footer{margin-top:20px;color:#6b7280;font-size:.88rem;text-align:center}</style></head><body><main><header><h1>APOYO-MAT · 2.º ESO</h1><p><strong>Fracciones · pruebas para iPad</strong></p><p>Selecciona una prueba. Cada cuestionario se abre como una página independiente.</p></header><section class="grid">
-<a class="card" href="PRUEBA_PARCIAL_2ESO_FRACCIONES_01_CONCEPTO_VISUAL_RECTA_TRILINGUE_PC_MOODLE_V17_21092026.html"><div class="num">PRUEBA 1</div><div class="title">Concepto de fracción</div><div class="desc">Concepto, representación visual, recta y fracción de una cantidad.</div><div class="open">Abrir prueba →</div></a>
-<a class="card" href="PRUEBA_PARCIAL_2ESO_FRACCIONES_02_EQUIVALENCIA_SIMPLIFICACION_RACIONALES_TRILINGUE_PC_MOODLE_V27_21092026.html"><div class="num">PRUEBA 2</div><div class="title">Equivalencia y simplificación</div><div class="desc">Fracciones equivalentes, simplificación y números racionales.</div><div class="open">Abrir prueba →</div></a>
-<a class="card" href="PRUEBA_PARCIAL_2ESO_FRACCIONES_03_OPERACIONES_TRILINGUE_PC_MOODLE_V56.html"><div class="num">PRUEBA 3</div><div class="title">Operaciones con fracciones</div><div class="desc">Operaciones y procedimientos con fracciones.</div><div class="open">Abrir prueba →</div></a>
-<a class="card" href="PRUEBA_2ESO_PROBLEMAS_FRACCIONES_TRILINGUE_PC_MOODLE_V01_04102026.html"><div class="num">PRUEBA 4</div><div class="title">Resolución de problemas</div><div class="desc">Problemas con fracciones y situaciones encadenadas.</div><div class="open">Abrir prueba →</div></a>
-</section><footer>APOYO-MAT · Portada de pruebas</footer></main></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>APOYO-MAT · Materiales</title>
+<style>
+:root {
+  --azul:#073763; --turquesa:#0794a5; --naranja:#f59a00;
+  --fondo:#f4f8fb; --borde:#d7e3ec; --texto:#17324d; --muted:#62778a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--fondo);color:var(--texto)}
+header{background:white;border-bottom:1px solid var(--borde);padding:18px 20px}
+.header-inner{max-width:1180px;margin:auto;display:flex;align-items:center;gap:16px}
+.brand{font-weight:900;font-size:clamp(24px,4vw,38px);color:var(--azul)}
+.brand span{color:var(--turquesa)}
+.sub{color:var(--muted);margin-top:3px}
+main{max-width:1180px;margin:24px auto;padding:0 18px 30px}
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:22px;align-items:stretch}
+.panel,.visual{background:white;border:1px solid var(--borde);border-radius:20px;box-shadow:0 8px 28px rgba(7,55,99,.08);overflow:hidden}
+.panel{padding:24px}
+.visual img{width:100%;height:100%;min-height:390px;object-fit:cover;display:block}
+h1{font-size:clamp(24px,3.5vw,38px);margin:0 0 8px;color:var(--azul)}
+.lead{margin:0 0 22px;color:var(--muted);line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field label{display:block;font-weight:800;margin:0 0 7px;color:var(--azul)}
+select{width:100%;padding:13px 42px 13px 13px;border:1px solid #b9cbd9;border-radius:12px;background:#fff;font-size:16px;color:var(--texto)}
+select:disabled{background:#eef3f6;color:#8a9aa7}
+.status{margin-top:18px;padding:14px 16px;border-radius:12px;background:#eef5f8;border:1px solid var(--borde);min-height:54px;display:flex;align-items:center}
+.status.ok{background:#eefaf5;border-color:#9bd6bf;color:#176b4b}
+.status.bad{background:#fff3f0;border-color:#efb5a8;color:#9a3826}
+.status.wait{background:#fff9e9;border-color:#eed38a;color:#7a5b00}
+.meta{margin-top:10px;color:var(--muted);font-size:14px}
+.actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+button{border:0;border-radius:12px;padding:13px 22px;font-size:16px;font-weight:850;cursor:pointer}
+#openBtn{background:var(--turquesa);color:white}
+#openBtn:disabled{background:#b7c6ce;cursor:not-allowed}
+#clearBtn{background:white;color:var(--azul);border:1px solid #b9cbd9}
+.note{margin-top:18px;font-size:13px;color:var(--muted);line-height:1.45}
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .visual{order:-1}
+  .visual img{min-height:0;aspect-ratio:16/9}
+}
+@media(max-width:560px){.grid{grid-template-columns:1fr} .panel{padding:18px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand">APOYO-<span>MAT</span></div>
+      <div class="sub">Refuerzo matemático · 6.º Primaria · 1.º–4.º ESO</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <section class="panel">
+      <h1>Fichas y pruebas</h1>
+      <p class="lead">Selecciona curso, bloque, apartado y tipo. Cada elección limita automáticamente las opciones siguientes.</p>
+
+      <div class="grid">
+        <div class="field"><label for="curso">CURSO</label><select id="curso"><option value="">Selecciona curso…</option></select></div>
+        <div class="field"><label for="bloque">BLOQUE</label><select id="bloque" disabled><option value="">Selecciona bloque…</option></select></div>
+        <div class="field"><label for="apartado">APARTADO</label><select id="apartado" disabled><option value="">Selecciona apartado…</option></select></div>
+        <div class="field"><label for="tipo">TIPO</label><select id="tipo" disabled><option value="">Selecciona tipo…</option></select></div>
+      </div>
+
+      <div id="status" class="status">Selecciona las cuatro opciones para localizar el material.</div>
+      <div id="meta" class="meta"></div>
+
+      <div class="actions">
+        <button id="openBtn" type="button" disabled>ABRIR / ACCEDER</button>
+        <button id="clearBtn" type="button">LIMPIAR</button>
+      </div>
+
+      <div class="note">El botón solo se activa cuando el fichero correspondiente existe realmente en el servidor. El catálogo de materiales se genera a partir del listado de APOYO-MAT.</div>
+    </section>
+
+    <aside class="visual"><img src="apoyo-mat.png" alt="APOYO-MAT · Refuerzo matemático"></aside>
+  </div>
+</main>
+
+<script>
+const CATALOGO = [{"codigo": "211P", "curso": "2º ESO", "bloque": "NÚMEROS NATURALES", "apartado": "SISTEMA BINARIO", "tipo": "PRUEBA", "preguntas": "", "archivo": "211P - 2º ESO - NÚMEROS NATURALES - SISTEMA BINARIO.html", "nombre": "211P - 2º ESO - NÚMEROS NATURALES - SISTEMA BINARIO"}, {"codigo": "212P", "curso": "2º ESO", "bloque": "NÚMEROS NATURALES", "apartado": "SISTEMA SEXAGESIMAL", "tipo": "PRUEBA", "preguntas": "", "archivo": "212P - 2º ESO - NÚMEROS NATURALES - SISTEMA SEXAGESIMAL.html", "nombre": "212P - 2º ESO - NÚMEROS NATURALES - SISTEMA SEXAGESIMAL"}, {"codigo": "213P", "curso": "2º ESO", "bloque": "NÚMEROS NATURALES", "apartado": "OPERACIONES COMBINADAS CON NÚMEROS NATURALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "213P - 2º ESO - NÚMEROS NATURALES - OPERACIONES COMBINADAS CON NÚMEROS NATURALES.html", "nombre": "213P - 2º ESO - NÚMEROS NATURALES - OPERACIONES COMBINADAS CON NÚMEROS NATURALES"}, {"codigo": "219P", "curso": "2º ESO", "bloque": "NÚMEROS NATURALES", "apartado": "GLOBAL NÚMEROS NATURALES SIN DIVISIBILIDAD", "tipo": "PRUEBA", "preguntas": "", "archivo": "219P - 2º ESO - NÚMEROS NATURALES - GLOBAL NÚMEROS NATURALES SIN DIVISIBILIDAD.html", "nombre": "219P - 2º ESO - NÚMEROS NATURALES - GLOBAL NÚMEROS NATURALES SIN DIVISIBILIDAD"}, {"codigo": "221P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "MÚLTIPLOS Y DIVISORES: RECONOCIMIENTO", "tipo": "PRUEBA", "preguntas": "", "archivo": "221P - 2º ESO - DIVISIBILIDAD - MÚLTIPLOS Y DIVISORES: RECONOCIMIENTO.html", "nombre": "221P - 2º ESO - DIVISIBILIDAD - MÚLTIPLOS Y DIVISORES: RECONOCIMIENTO"}, {"codigo": "222P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "MÚLTIPLOS DE UN NÚMERO", "tipo": "PRUEBA", "preguntas": "", "archivo": "222P - 2º ESO - DIVISIBILIDAD - MÚLTIPLOS DE UN NÚMERO.html", "nombre": "222P - 2º ESO - DIVISIBILIDAD - MÚLTIPLOS DE UN NÚMERO"}, {"codigo": "223P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "DIVISORES DE UN NÚMERO", "tipo": "PRUEBA", "preguntas": "", "archivo": "223P - 2º ESO - DIVISIBILIDAD - DIVISORES DE UN NÚMERO.html", "nombre": "223P - 2º ESO - DIVISIBILIDAD - DIVISORES DE UN NÚMERO"}, {"codigo": "224P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "CRITERIOS DE DIVISIBILIDAD", "tipo": "PRUEBA", "preguntas": "", "archivo": "224P - 2º ESO - DIVISIBILIDAD - CRITERIOS DE DIVISIBILIDAD.html", "nombre": "224P - 2º ESO - DIVISIBILIDAD - CRITERIOS DE DIVISIBILIDAD"}, {"codigo": "225P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "DESCOMPOSICIÓN EN FACTORES PRIMOS", "tipo": "PRUEBA", "preguntas": "", "archivo": "225P - 2º ESO - DIVISIBILIDAD - DESCOMPOSICIÓN EN FACTORES PRIMOS.html", "nombre": "225P - 2º ESO - DIVISIBILIDAD - DESCOMPOSICIÓN EN FACTORES PRIMOS"}, {"codigo": "226P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "CÁLCULO DEL M.C.M. Y M.C.D.", "tipo": "PRUEBA", "preguntas": "", "archivo": "226P - 2º ESO - DIVISIBILIDAD - CÁLCULO DEL M.C.M. Y M.C.D..html", "nombre": "226P - 2º ESO - DIVISIBILIDAD - CÁLCULO DEL M.C.M. Y M.C.D."}, {"codigo": "227P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "PROBLEMAS DE M.C.D. Y M.C.M.", "tipo": "PRUEBA", "preguntas": "", "archivo": "227P - 2º ESO - DIVISIBILIDAD - PROBLEMAS DE M.C.D. Y M.C.M..html", "nombre": "227P - 2º ESO - DIVISIBILIDAD - PROBLEMAS DE M.C.D. Y M.C.M."}, {"codigo": "229P", "curso": "2º ESO", "bloque": "DIVISIBILIDAD", "apartado": "GLOBAL DIVISIBILIDAD", "tipo": "PRUEBA", "preguntas": 20, "archivo": "229P - 2º ESO - DIVISIBILIDAD - GLOBAL DIVISIBILIDAD.html", "nombre": "229P - 2º ESO - DIVISIBILIDAD - GLOBAL DIVISIBILIDAD"}, {"codigo": "231P", "curso": "2º ESO", "bloque": "NÚMEROS ENTEROS", "apartado": "NÚMEROS ENTEROS", "tipo": "PRUEBA", "preguntas": "", "archivo": "231P - 2º ESO - NÚMEROS ENTEROS - NÚMEROS ENTEROS.html", "nombre": "231P - 2º ESO - NÚMEROS ENTEROS - NÚMEROS ENTEROS"}, {"codigo": "232P", "curso": "2º ESO", "bloque": "NÚMEROS ENTEROS", "apartado": "OPERACIONES CON NÚMEROS ENTEROS", "tipo": "PRUEBA", "preguntas": "", "archivo": "232P - 2º ESO - NÚMEROS ENTEROS - OPERACIONES CON NÚMEROS ENTEROS.html", "nombre": "232P - 2º ESO - NÚMEROS ENTEROS - OPERACIONES CON NÚMEROS ENTEROS"}, {"codigo": "233P", "curso": "2º ESO", "bloque": "NÚMEROS ENTEROS", "apartado": "POTENCIAS Y RAÍCES CON NÚMEROS ENTEROS", "tipo": "PRUEBA", "preguntas": "", "archivo": "233P - 2º ESO - NÚMEROS ENTEROS - POTENCIAS Y RAÍCES CON NÚMEROS ENTEROS.html", "nombre": "233P - 2º ESO - NÚMEROS ENTEROS - POTENCIAS Y RAÍCES CON NÚMEROS ENTEROS"}, {"codigo": "234P", "curso": "2º ESO", "bloque": "NÚMEROS ENTEROS", "apartado": "PROBLEMAS CON NÚMEROS ENTEROS", "tipo": "PRUEBA", "preguntas": "", "archivo": "234P - 2º ESO - NÚMEROS ENTEROS - PROBLEMAS CON NÚMEROS ENTEROS.html", "nombre": "234P - 2º ESO - NÚMEROS ENTEROS - PROBLEMAS CON NÚMEROS ENTEROS"}, {"codigo": "239P", "curso": "2º ESO", "bloque": "NÚMEROS ENTEROS", "apartado": "GLOBAL NÚMEROS ENTEROS", "tipo": "PRUEBA", "preguntas": 19, "archivo": "239P - 2º ESO - NÚMEROS ENTEROS - GLOBAL NÚMEROS ENTEROS.html", "nombre": "239P - 2º ESO - NÚMEROS ENTEROS - GLOBAL NÚMEROS ENTEROS"}, {"codigo": "241P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "ÓRDENES Y UNIDADES DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "241P - 2º ESO - NÚMEROS DECIMALES - ÓRDENES Y UNIDADES DECIMALES.html", "nombre": "241P - 2º ESO - NÚMEROS DECIMALES - ÓRDENES Y UNIDADES DECIMALES"}, {"codigo": "242P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "REPRESENTACIÓN Y ORDENACIÓN DE NÚMEROS DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "242P - 2º ESO - NÚMEROS DECIMALES - REPRESENTACIÓN Y ORDENACIÓN DE NÚMEROS DECIMALES.html", "nombre": "242P - 2º ESO - NÚMEROS DECIMALES - REPRESENTACIÓN Y ORDENACIÓN DE NÚMEROS DECIMALES"}, {"codigo": "243P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "OPERACIONES CON NÚMEROS DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "243P - 2º ESO - NÚMEROS DECIMALES - OPERACIONES CON NÚMEROS DECIMALES.html", "nombre": "243P - 2º ESO - NÚMEROS DECIMALES - OPERACIONES CON NÚMEROS DECIMALES"}, {"codigo": "244P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "RAÍZ CUADRADA CON NÚMEROS DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "244P - 2º ESO - NÚMEROS DECIMALES - RAÍZ CUADRADA CON NÚMEROS DECIMALES.html", "nombre": "244P - 2º ESO - NÚMEROS DECIMALES - RAÍZ CUADRADA CON NÚMEROS DECIMALES"}, {"codigo": "245P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "RESOLUCIÓN DE PROBLEMAS CON NÚMEROS DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "245P - 2º ESO - NÚMEROS DECIMALES - RESOLUCIÓN DE PROBLEMAS CON NÚMEROS DECIMALES.html", "nombre": "245P - 2º ESO - NÚMEROS DECIMALES - RESOLUCIÓN DE PROBLEMAS CON NÚMEROS DECIMALES"}, {"codigo": "249P", "curso": "2º ESO", "bloque": "NÚMEROS DECIMALES", "apartado": "GLOBAL NÚMEROS DECIMALES", "tipo": "PRUEBA", "preguntas": "", "archivo": "249P - 2º ESO - NÚMEROS DECIMALES - GLOBAL NÚMEROS DECIMALES.html", "nombre": "249P - 2º ESO - NÚMEROS DECIMALES - GLOBAL NÚMEROS DECIMALES"}, {"codigo": "251P", "curso": "2º ESO", "bloque": "FRACCIONES", "apartado": "CONCEPTO, REPRESENTACIÓN VISUAL Y RECTA NUMÉRICA", "tipo": "PRUEBA", "preguntas": 15, "archivo": "251P - 2º ESO - FRACCIONES - CONCEPTO, REPRESENTACIÓN VISUAL Y RECTA NUMÉRICA.html", "nombre": "251P - 2º ESO - FRACCIONES - CONCEPTO, REPRESENTACIÓN VISUAL Y RECTA NUMÉRICA"}, {"codigo": "252P", "curso": "2º ESO", "bloque": "FRACCIONES", "apartado": "EQUIVALENCIA, SIMPLIFICACIÓN Y NÚMEROS RACIONALES", "tipo": "PRUEBA", "preguntas": 15, "archivo": "252P - 2º ESO - FRACCIONES - EQUIVALENCIA, SIMPLIFICACIÓN Y NÚMEROS RACIONALES.html", "nombre": "252P - 2º ESO - FRACCIONES - EQUIVALENCIA, SIMPLIFICACIÓN Y NÚMEROS RACIONALES"}, {"codigo": "253P", "curso": "2º ESO", "bloque": "FRACCIONES", "apartado": "OPERACIONES CON FRACCIONES", "tipo": "PRUEBA", "preguntas": 14, "archivo": "253P - 2º ESO - FRACCIONES - OPERACIONES CON FRACCIONES.html", "nombre": "253P - 2º ESO - FRACCIONES - OPERACIONES CON FRACCIONES"}, {"codigo": "254P", "curso": "2º ESO", "bloque": "FRACCIONES", "apartado": "RESOLUCIÓN DE PROBLEMAS CON FRACCIONES", "tipo": "PRUEBA", "preguntas": 20, "archivo": "254P - 2º ESO - FRACCIONES - RESOLUCIÓN DE PROBLEMAS CON FRACCIONES.html", "nombre": "254P - 2º ESO - FRACCIONES - RESOLUCIÓN DE PROBLEMAS CON FRACCIONES"}];
+
+const $ = id => document.getElementById(id);
+const curso=$("curso"), bloque=$("bloque"), apartado=$("apartado"), tipo=$("tipo");
+const status=$("status"), meta=$("meta"), openBtn=$("openBtn"), clearBtn=$("clearBtn");
+let archivoActual = null;
+
+function uniq(arr) { return [...new Set(arr)].sort((a,b)=>a.localeCompare(b,"es",{numeric:true})); }
+function setOptions(sel, values, placeholder) {
+  sel.innerHTML = `<option value="">${placeholder}</option>` + values.map(v=>`<option>${v}</option>`).join("");
+  sel.disabled = values.length===0;
+}
+function subset() {
+  return CATALOGO.filter(x =>
+    (!curso.value || x.curso===curso.value) &&
+    (!bloque.value || x.bloque===bloque.value) &&
+    (!apartado.value || x.apartado===apartado.value) &&
+    (!tipo.value || x.tipo===tipo.value)
+  );
+}
+function resetResult() {
+  archivoActual=null; openBtn.disabled=true; meta.textContent="";
+  status.className="status"; status.textContent="Selecciona las cuatro opciones para localizar el material.";
+}
+function loadCursos() { setOptions(curso, uniq(CATALOGO.map(x=>x.curso)), "Selecciona curso…"); }
+
+curso.addEventListener("change", () => {
+  setOptions(bloque, uniq(subset().map(x=>x.bloque)), "Selecciona bloque…");
+  setOptions(apartado, [], "Selecciona apartado…"); setOptions(tipo, [], "Selecciona tipo…"); resetResult();
+});
+bloque.addEventListener("change", () => {
+  setOptions(apartado, uniq(subset().map(x=>x.apartado)), "Selecciona apartado…");
+  setOptions(tipo, [], "Selecciona tipo…"); resetResult();
+});
+apartado.addEventListener("change", () => {
+  setOptions(tipo, uniq(subset().map(x=>x.tipo)), "Selecciona tipo…"); resetResult();
+});
+tipo.addEventListener("change", comprobar);
+
+async function comprobar() {
+  resetResult();
+  if(!curso.value || !bloque.value || !apartado.value || !tipo.value) return;
+  const matches=subset();
+  if(matches.length!==1) {
+    status.className="status bad";
+    status.textContent = matches.length===0 ? "No hay ningún material registrado con esta combinación." : "Hay más de un material registrado con esta combinación.";
+    return;
+  }
+  const item=matches[0];
+  status.className="status wait"; status.textContent="Comprobando si el fichero existe en el servidor…";
+  meta.textContent = `${item.codigo} · ${item.nombre}` + (item.preguntas ? ` · ${item.preguntas} preguntas` : "");
+  try {
+    const url = new URL(item.archivo, window.location.href);
+    const r = await fetch(url, {method:"HEAD", cache:"no-store"});
+    if(r.ok) {
+      archivoActual=url.href; openBtn.disabled=false;
+      status.className="status ok";
+      status.textContent="Material disponible. Puedes abrirlo.";
+    } else {
+      status.className="status bad";
+      status.textContent="Este material está registrado, pero el fichero todavía no existe en el servidor.";
+    }
+  } catch(e) {
+    status.className="status bad";
+    status.textContent="No se ha podido comprobar el fichero. Abre este índice desde el servidor de GitHub Pages.";
+  }
+}
+
+openBtn.addEventListener("click", () => { if(archivoActual) window.location.href=archivoActual; });
+clearBtn.addEventListener("click", () => {
+  curso.value=""; setOptions(bloque, [], "Selecciona bloque…"); setOptions(apartado, [], "Selecciona apartado…"); setOptions(tipo, [], "Selecciona tipo…"); resetResult();
+});
+loadCursos();
+</script>
+</body>
+</html>
