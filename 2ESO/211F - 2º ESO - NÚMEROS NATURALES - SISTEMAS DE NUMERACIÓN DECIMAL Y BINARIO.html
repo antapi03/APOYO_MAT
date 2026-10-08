@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<!-- PLANTILLA MAESTRA V6: MOTOR GENERAL CONGELADO.
+NO contiene contenido de ninguna ficha concreta.
+Para generar una ficha, sustituir EXCLUSIVAMENTE las zonas CONTENT_* delimitadas.
+No modificar CSS, JavaScript, controles, estructura de bloques ni comportamiento. -->
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>211F · SISTEMAS DE NUMERACIÓN: DECIMAL Y BINARIO</title>
+<style>
+:root{--ink:#24323d;--muted:#61717c;--line:#d6dee3;--soft:#f7fafb;--learn:#eef6ff;--help:#f4f9ff;--sol:#f1faf2;--warn:#fff8e8;--accent:#1f638d}
+*{box-sizing:border-box} body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);max-width:1050px;margin:0 auto;padding:20px;line-height:1.5;background:#fff}
+header{border-bottom:3px solid var(--accent);padding-bottom:14px;margin-bottom:18px}.top{display:flex;gap:12px;align-items:flex-start}.top h1{margin:0;flex:1;font-size:1.65rem}.sub{font-weight:700;color:var(--muted);margin:.25rem 0}.goal{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px 12px}.goal-top-line{border-top:3px solid var(--accent);margin:16px 0 16px}
+.langbar{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.langbar button,.actions button,#checkBtn,#resetBtn{border:1px solid #9aabb5;background:#fff;border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer}.langbar button.active{background:#e6f2fa;border-color:#5f94b4}
+section{margin:24px 0}.section-title{font-size:1.28rem;border-bottom:2px solid var(--line);padding-bottom:5px}.learnbox{background:var(--learn);border:1px solid #bdd5e5;border-radius:12px;padding:14px;margin:12px 0}.card{border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0;background:#fff}.level{font-size:.84rem;font-weight:800;color:var(--accent);margin-bottom:5px}.math{direction:ltr;unicode-bidi:isolate;display:inline-block}.mathline{direction:ltr;unicode-bidi:isolate;margin:7px 0;font-family:Arial,sans-serif}.pos{border-collapse:collapse;margin:10px 0;direction:ltr}.pos th,.pos td{border:1px solid #aab8c0;padding:6px 11px;text-align:center}.pos th{background:#f4f7f8}.pos-labelled th:first-child{white-space:nowrap;text-align:left;background:#e8f1f7}.pos-labelled td{min-width:78px}
+.warning{background:var(--warn);border:1px solid #e3c985;border-radius:9px;padding:10px 12px;font-weight:700}.work{width:100%;min-height:78px;border:1.5px solid #aab4ba;border-radius:8px;padding:8px;font:inherit;direction:ltr;resize:vertical}.actions{display:flex;gap:8px;margin-top:8px}.toggle{margin-top:9px;padding:11px 12px;border-radius:9px}.help{background:var(--help);border:1px solid #bdd5e5}.sol{background:var(--sol);border:1px solid #b9d9bd}.challenge{border-left:5px solid #8b6aaf}.check-card{background:#fbfcfd}.answer{width:100%;padding:8px;border:1.5px solid #9aa8b0;border-radius:7px;font:inherit;direction:ltr}.feedback{margin-top:12px;padding:12px;border-radius:9px;font-weight:700}.ok{background:#eef8ee;border:1px solid #9ac39d}.bad{background:#fff0f2;border:1px solid #d9a2aa}
+.i18n{display:none}.i18n.es{display:inline}.i18n.ar{direction:rtl;text-align:right}.i18n.ar p,.i18n.ar h2,.i18n.ar h3{direction:rtl;text-align:right}.toggle .i18n{display:none}.toggle .i18n.activeblock{display:block}
+body[data-lang="fr"] .i18n.fr,body[data-lang="ar"] .i18n.ar,body[data-lang="es"] .i18n.es{display:inline}
+body[data-lang="fr"] .toggle .i18n.fr,body[data-lang="ar"] .toggle .i18n.ar,body[data-lang="es"] .toggle .i18n.es{display:block}
+body[data-lang="fr"] .i18n.es,body[data-lang="fr"] .i18n.ar,body[data-lang="ar"] .i18n.es,body[data-lang="ar"] .i18n.fr,body[data-lang="es"] .i18n.fr,body[data-lang="es"] .i18n.ar{display:none}
+.divchain{display:flex;gap:10px;flex-wrap:wrap;direction:ltr;margin:10px 0}.division{border:1px solid #aab8c0;border-radius:8px;padding:6px 9px;min-width:95px;text-align:center;background:#fff}.division .r{font-weight:700}
+
+.school-chain{display:flex;align-items:center;gap:10px;flex-wrap:wrap;direction:ltr;margin:16px 0 12px}
+.school-div{display:grid;grid-template-columns:58px 45px;grid-template-rows:auto auto auto;font-family:"Courier New",monospace;font-size:1.08rem;line-height:1.25}
+.school-div .dividend{grid-column:1;grid-row:1;padding:4px 8px;text-align:right}
+.school-div .divisor{grid-column:2;grid-row:1;padding:4px 8px;text-align:center;border-left:2px solid #263746;border-bottom:2px solid #263746;font-weight:700}
+.school-div .partial{grid-column:1;grid-row:2;padding:3px 8px;text-align:right;border-bottom:1px solid #263746}
+.school-div .quotient{grid-column:2;grid-row:2;padding:3px 8px;text-align:center;border-left:2px solid #263746;font-weight:700}
+.school-div .remainder{grid-column:1;grid-row:3;padding:3px 8px;text-align:right;font-weight:800}
+.chain-arrow{font-weight:800;color:#667984}
+.reading-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;direction:ltr;margin:6px 0 10px}
+.read-label{font-weight:700}.rest-seq{font-family:"Courier New",monospace;font-weight:800;letter-spacing:.08em}.read-arrow{font-weight:700}
+
+
+.stair-wrap{direction:ltr;margin:14px 0}.stair-title{margin-bottom:8px}
+
+.single-chain{position:relative;height:215px;min-width:370px;max-width:500px;font-family:"Courier New",monospace;font-size:1.08rem;font-weight:700}
+.single-chain span{position:absolute;left:var(--x);top:var(--y);display:block}
+.single-chain .sn,.single-chain .sr{width:28px;text-align:right}
+.single-chain .sd{width:46px;text-align:center;border-left:2px solid #263746;border-bottom:2px solid #263746;padding:0 5px 4px}
+.single-chain .sq{width:38px;text-align:center}
+.single-chain .nextn{font-weight:700}
+
+.stair{position:relative;height:225px;min-width:390px;max-width:520px;font-family:"Courier New",monospace;font-size:1.05rem;font-weight:700}
+.step{position:absolute;left:var(--x);top:calc(var(--x) * .55);width:105px;height:72px}
+.step .n{position:absolute;left:0;top:8px;width:38px;text-align:right}
+.step .d{position:absolute;left:52px;top:8px;width:38px;text-align:center;border-left:2px solid #263746;border-bottom:2px solid #263746;padding:0 6px 4px}
+.step .r{position:absolute;left:16px;top:40px;width:22px;text-align:right}
+.step .q{position:absolute;left:52px;top:39px;width:38px;text-align:center;border-left:2px solid #263746;padding:0 6px}
+.division-table{border-collapse:collapse;margin:8px 0 10px;font-size:1rem}.division-table th,.division-table td{border:1px solid #aab3b8;padding:7px 14px;text-align:center}.division-table th{background:#f5f6f7}
+.read-result{border-left:4px solid #83afe7;padding-left:10px;font-weight:700;margin-top:8px}
+
+
+.mini-stair{position:relative;height:230px;min-width:390px;max-width:500px;margin:10px 0 4px;direction:ltr;font-family:"Courier New",monospace;font-size:1rem;font-weight:700}
+.mini-stair span{position:absolute;left:var(--x);top:var(--y);display:block}
+.mini-stair .msn,.mini-stair .msr{width:28px;text-align:right}
+.mini-stair .msd{width:46px;text-align:center;border-left:2px solid #263746;border-bottom:2px solid #263746;padding:0 5px 4px}
+.mini-stair .msq{width:38px;text-align:center}
+.mini-read{direction:ltr;border-left:3px solid #83afe7;padding-left:8px;margin:4px 0 8px;font-weight:700}
+
+@media(max-width:650px){body{padding:12px}.top{display:block}.pos{font-size:.9rem}.pos th,.pos td{padding:5px}.actions{flex-wrap:wrap}}
+@media print{.langbar,.actions,#checkBtn,#resetBtn{display:none!important}.work,.answer{border:1px solid #aaa}.toggle[hidden]{display:none}.card,.learnbox{break-inside:avoid-page}}
+
+/* APOYO-MAT · controles globales según modelo 211P */
+.title-row{display:flex;align-items:center;gap:14px}
+.title-row .title-block{flex:1;min-width:0}
+.close-apoyo{flex:0 0 auto;white-space:nowrap;font-weight:700}
+.masterbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.masterbar button{font-weight:700}
+.masterbar .print{margin-left:auto}
+@media(max-width:700px){
+  .title-row{gap:8px}
+  .close-apoyo{font-size:.88rem;padding:.48rem .62rem}
+  .masterbar .print{margin-left:0}
+}
+@media print{
+  .close-apoyo,.masterbar,.langbar,.actions,#checkBtn,#resetBtn{display:none!important}
+}
+
+
+/* V14 · panel global recuadrado como en las pruebas PC/Moodle */
+.global-control-panel{border:1px solid #d5dadd;border-radius:14px;padding:12px 16px 14px;margin:12px 0;background:#fbfbfb}
+.global-control-panel .langbar{margin:0 0 8px}
+.global-control-panel .masterbar{margin-top:0}
+@media print{.global-control-panel{display:none!important}}
+
+/* V11 · controles individuales según prueba modelo */
+.master-check-control,.item-check-control{display:inline-flex;align-items:center;gap:5px;border:1px solid #9aabb5;background:#fff;border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer;white-space:nowrap}
+.master-check-control input,.item-check-control input{width:17px;height:17px;margin:0;accent-color:#1f638d;cursor:pointer}
+.question-controls{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid #e2e8ec}
+.question-langs{display:flex;gap:4px;margin-right:auto}
+.question-langs button{border:1px solid #9aabb5;background:#fff;border-radius:7px;padding:5px 8px;cursor:pointer}
+.question-langs button.active{background:#e6f2fa;border-color:#5f94b4}
+.card .actions{display:none!important}
+/* El idioma individual gobierna enunciado, ayuda y solución de esa actividad. */
+.card[data-card-lang="es"] .i18n.es{display:inline!important}.card[data-card-lang="es"] .i18n.fr,.card[data-card-lang="es"] .i18n.ar{display:none!important}
+.card[data-card-lang="fr"] .i18n.fr{display:inline!important}.card[data-card-lang="fr"] .i18n.es,.card[data-card-lang="fr"] .i18n.ar{display:none!important}
+.card[data-card-lang="ar"] .i18n.ar{display:inline!important}.card[data-card-lang="ar"] .i18n.es,.card[data-card-lang="ar"] .i18n.fr{display:none!important}
+.card[data-card-lang="es"] .toggle .i18n.es,.card[data-card-lang="fr"] .toggle .i18n.fr,.card[data-card-lang="ar"] .toggle .i18n.ar{display:block!important}
+@media print{.question-controls,.master-check-control{display:none!important}}
+
+
+/* V12 · IMPRESIÓN · criterios APOYO-MAT: aprovechar página sin romper unidades matemáticas compactas */
+@media print {
+  /* Las tarjetas y bloques largos PUEDEN continuar en la página siguiente. */
+  section,
+  .card,
+  .practice-card,
+  .check-card,
+  .challenge,
+  .learnbox,
+  .toggle,
+  .help,
+  .sol,
+  .stair-wrap {
+    break-inside:auto !important;
+    page-break-inside:auto !important;
+  }
+
+  /* Evitar títulos huérfanos: el título debe viajar con el comienzo del contenido. */
+  h1,h2,h3,h4,
+  .section-title,
+  .level {
+    break-after:avoid-page !important;
+    page-break-after:avoid !important;
+  }
+
+  /* No separar controles/respuesta breve ni pasos matemáticos compactos. */
+  .mathline,
+  .warning,
+  .reading-row,
+  .read-result,
+  .mini-read,
+  .single-chain,
+  .mini-stair,
+  .school-div,
+  .division-table,
+  table.pos {
+    break-inside:avoid-page !important;
+    page-break-inside:avoid !important;
+  }
+
+  /* Una solución o ayuda larga puede partirse entre pasos; sus párrafos individuales no. */
+  .toggle p,
+  .help p,
+  .sol p {
+    break-inside:avoid-page;
+    page-break-inside:avoid;
+  }
+
+  /* Mantener el aspecto de la tarjeta cuando atraviesa dos páginas, sin reservarla entera. */
+  .card,.learnbox,.toggle {
+    -webkit-box-decoration-break:clone;
+    box-decoration-break:clone;
+  }
+
+  /* Controles sin utilidad en papel. */
+  .close-apoyo,.masterbar,.langbar,.actions,.question-controls,.master-check-control,
+  #checkBtn,#resetBtn,#printBtn {
+    display:none!important;
+  }
+}
+
+
+/* V17 · COMPRUEBA LO APRENDIDO · formato tipo test según ficha de referencia */
+#check{border:1px solid #e1c979;border-radius:14px;background:#fffdf4;padding:16px 20px;margin-top:24px}
+#check .check-head{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+#check .check-head .section-title{flex:1;min-width:280px;border:0;margin:0;padding:4px 0}
+#check .check-controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-left:auto}
+#check .check-controls button{border:1px solid #c5c9cc;background:#fff;border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+#check .check-controls .check-lang.active,#check .check-controls .mode-btn.active{background:#e7f2ff;border:2px solid #5fa8eb}
+#check .check-controls button:disabled{cursor:default;color:#7c858b;background:#f3f3f3}
+#check .check-card{background:#fff;border:1px solid #cfd4d8;border-radius:13px;padding:16px 20px;margin:14px 0}
+#check .check-card h3{font-size:1.04rem;margin:0;font-weight:500}
+#check .qnum{font-weight:800;margin-right:5px}
+#check .test-options{display:none;margin-top:13px;padding-top:10px;border-top:1px solid #e5e8ea}
+#check .test-options.visible{display:grid;gap:7px}
+#check .test-option{display:block;padding:6px 8px;border-radius:7px;cursor:pointer}
+#check .test-option:hover{background:#f6f8f9}
+#check .test-option input{margin-right:7px}
+#check .test-options.locked .test-option{cursor:default}
+#check .test-option.correcta-alumno{background:#eef8ee;border:1px solid #9ac39d;font-weight:700}
+#check .test-option.incorrecta-alumno{background:#fff0f2;border:1px solid #d9a2aa;font-weight:700}
+#check .test-solution{display:none;background:var(--sol);border:1px solid #b9d9bd;border-radius:9px;padding:12px 14px;margin-top:12px}
+#check .test-solution.visible{display:block}
+#check .eval-result{display:none;min-width:165px;text-align:right;background:#fff;border:1px solid #cfd4d8;border-radius:10px;padding:8px 12px;font-weight:700;line-height:1.45}
+#check .eval-result.visible{display:block}
+#check .ci18n{display:none}
+body[data-lang="es"] #check .ci18n.es,body[data-lang="fr"] #check .ci18n.fr,body[data-lang="ar"] #check .ci18n.ar{display:inline}
+body[data-lang="ar"] #check .check-card,body[data-lang="ar"] #check .test-solution{direction:rtl;text-align:right}
+body[data-lang="ar"] #check .math,body[data-lang="ar"] #check .mini-stair,body[data-lang="ar"] #check .mini-read{direction:ltr;unicode-bidi:isolate}
+@media print{#check .check-controls{display:none!important}#check .test-options.visible,#check .test-solution.visible,#check .eval-result.visible{display:block!important}}
+
+
+/* V19 · bloques principales contraíbles */
+.collapsible-title{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.collapsible-title:focus{outline:2px solid #83afe7;outline-offset:3px;border-radius:4px}
+.collapse-indicator{margin-left:auto;font-size:1rem;color:var(--muted);font-weight:800}
+/* V21 · Numeración y color diferenciado para las cuatro cabeceras principales */
+.major-section > .section-title,.major-section > .check-head > .section-title{border:1px solid transparent;border-bottom-width:2px;border-radius:11px;padding:10px 12px;margin-bottom:10px}
+.major-section:nth-of-type(1) > .section-title{background:#e8f3ff;border-color:#83b9e8}
+.major-section:nth-of-type(2) > .section-title{background:#e9f7ee;border-color:#84c99b}
+.major-section:nth-of-type(3) > .section-title{background:#fff2df;border-color:#e3b467}
+#check > .check-head > .section-title{background:#f2eafa;border-color:#b99ad9}
+/* V22 · El bloque 4 usa exactamente la misma estructura visual de cabecera que los bloques 1–3. */
+#check{border:0;background:transparent;padding:0;margin-top:24px;border-radius:0}
+#check .check-head{display:flex;flex-direction:column;align-items:stretch;gap:0;margin-bottom:12px}
+#check .check-head .section-title{width:100%;box-sizing:border-box;flex:none;min-width:0;margin:0 0 10px 0;padding:10px 12px}
+#check .check-controls{align-self:flex-end;margin-left:0}
+#check .collapsible-title .collapse-indicator{margin-left:auto;margin-right:0;flex:0 0 auto}
+.major-num{font-weight:900;color:#18364b;margin-right:2px}
+.major-section.collapsed > :not(.section-title):not(.check-head){display:none!important}
+.major-section.collapsed > .check-head > :not(.section-title){display:none!important}
+.content-slot{display:block}
+@media print{.collapse-indicator{display:none!important}/* Se respeta el estado actual: un bloque contraído permanece contraído al imprimir. */}
+
+/* V6 · Refuerzo visual uniforme de cabeceras y controles maestros activos */
+.major-section > .section-title,
+.major-section > .check-head > .section-title,
+#check > .check-head > .section-title{
+  border-style:solid;
+  border-width:2px;
+}
+.major-section:nth-of-type(1) > .section-title{border-color:#4f93ca}
+.major-section:nth-of-type(2) > .section-title{border-color:#4eaa70}
+.major-section:nth-of-type(3) > .section-title{border-color:#c98a2e}
+#check > .check-head > .section-title{border-color:#8f67ba}
+.master-check-control:has(input:checked){
+  background:#e7f2ff;
+  border:2px solid #5fa8eb;
+  padding:6px 9px;
+}
+.master-check-control:has(input:focus-visible){outline:2px solid #83afe7;outline-offset:2px}
+
+
+/* APOYO-MAT · selectores locales de idioma */
+.local-lang-buttons{display:flex;gap:4px;margin-right:auto}
+.local-lang-buttons button,.check-lang{border:1px solid #9aabb5;background:#fff;border-radius:7px;padding:5px 8px;cursor:pointer;font-weight:700}
+.local-lang-buttons button.active,.check-lang.active{background:#e6f2fa;border:2px solid #5fa8eb;padding:4px 7px}
+#check[data-check-lang="es"] .ci18n.es{display:inline!important}
+#check[data-check-lang="es"] .ci18n.fr,#check[data-check-lang="es"] .ci18n.ar{display:none!important}
+#check[data-check-lang="fr"] .ci18n.fr{display:inline!important}
+#check[data-check-lang="fr"] .ci18n.es,#check[data-check-lang="fr"] .ci18n.ar{display:none!important}
+#check[data-check-lang="ar"] .ci18n.ar{display:inline!important}
+#check[data-check-lang="ar"] .ci18n.es,#check[data-check-lang="ar"] .ci18n.fr{display:none!important}
+#check[data-check-lang="ar"] .check-card,#check[data-check-lang="ar"] .test-solution{direction:rtl;text-align:right}
+#check[data-check-lang="es"] .check-card,#check[data-check-lang="fr"] .check-card,
+#check[data-check-lang="es"] .test-solution,#check[data-check-lang="fr"] .test-solution{direction:ltr;text-align:left}
+@media print{.local-lang-buttons,.check-lang{display:none!important}}
+
+/* Criterio general APOYO-MAT · divisiones sucesivas en escalera continua.
+   Cada cociente intermedio ES el siguiente dividendo: se dibuja una sola vez. */
+.division-staircase{position:relative;direction:ltr;margin:12px 0 8px;font-family:"Courier New",monospace;font-size:1rem;font-weight:700;overflow-x:auto;min-height:120px}
+.division-staircase .ds-num,.division-staircase .ds-rem,.division-staircase .ds-div{position:absolute;display:block}
+.division-staircase .ds-num{width:34px;text-align:right}
+.division-staircase .ds-div{width:42px;text-align:center;border-left:2px solid #263746;border-bottom:2px solid #263746;padding:0 5px 4px}
+.division-staircase .ds-rem{width:34px;text-align:right;font-weight:800}
+
+
+#solutionsBtn:disabled{opacity:.45;cursor:not-allowed}
+</style>
+<style>body[data-lang="ar"] .i18n.ar .mathline, body[data-lang="ar"] .i18n.ar table, body[data-lang="ar"] .i18n.ar .division-staircase, body[data-lang="ar"] .i18n.ar .mini-read{direction:ltr;unicode-bidi:isolate;text-align:left}</style></head>
+<body data-lang="es">
+<header>
+<div class="title-row">
+<div class="title-block">
+<!-- CONTENT_TITULO_START -->
+<h1><span class="i18n es" data-lang="es">211F · SISTEMAS DE NUMERACIÓN: DECIMAL Y BINARIO</span><span class="i18n fr" data-lang="fr">211F · SYSTÈMES DE NUMÉRATION : DÉCIMAL ET BINAIRE</span><span class="i18n ar" data-lang="ar">211F · أنظمة العد: العشري والثنائي</span></h1><div class="sub"><span class="i18n es" data-lang="es">2.º ESO · NÚMEROS NATURALES</span><span class="i18n fr" data-lang="fr">2e ESO · NOMBRES NATURELS</span><span class="i18n ar" data-lang="ar">السنة الثانية من التعليم الثانوي · الأعداد الطبيعية</span></div>
+<!-- CONTENT_TITULO_END -->
+</div>
+<button class="close-apoyo" id="closeBtn" type="button"><span class="i18n es" data-lang="es">✕ CERRAR</span><span class="i18n fr" data-lang="fr">✕ FERMER</span><span class="i18n ar" data-lang="ar">✕ إغلاق</span></button>
+</div>
+<div class="global-control-panel">
+<div class="langbar"><button class="active" data-l="es">🇪🇸 Castellano</button><button data-l="fr">🇫🇷 Français</button><button data-l="ar">🇲🇦 العربية</button></div>
+<div class="masterbar">
+<label class="master-check-control" for="allHelpCheck"><input id="allHelpCheck" type="checkbox"/> 💡 <span class="i18n es" data-lang="es">Mostrar todas las ayudas</span><span class="i18n fr" data-lang="fr">Afficher toutes les aides</span><span class="i18n ar" data-lang="ar">إظهار جميع المساعدات</span></label>
+<label class="master-check-control" for="allSolCheck"><input id="allSolCheck" type="checkbox"/> ✓ <span class="i18n es" data-lang="es">Mostrar todas las soluciones</span><span class="i18n fr" data-lang="fr">Afficher toutes les solutions</span><span class="i18n ar" data-lang="ar">إظهار جميع الحلول</span></label>
+<button class="print" id="printBtn" type="button">🖨️ <span class="i18n es" data-lang="es">Imprimir</span><span class="i18n fr" data-lang="fr">Imprimer</span><span class="i18n ar" data-lang="ar">طباعة</span></button>
+</div>
+</div>
+<div aria-hidden="true" class="goal-top-line"></div>
+<!-- CONTENT_OBJETIVO_START -->
+<div class="goal"><span class="i18n es" data-lang="es">Comprender el valor posicional y convertir números entre los sistemas decimal y binario.</span><span class="i18n fr" data-lang="fr">Comprendre la valeur de position et convertir des nombres entre les systèmes décimal et binaire.</span><span class="i18n ar" data-lang="ar">فهم القيمة المكانية وتحويل الأعداد بين النظامين العشري والثنائي</span></div>
+<!-- CONTENT_OBJETIVO_END -->
+</header>
+<section class="major-section collapsed">
+<h2 aria-expanded="false" class="section-title collapsible-title" role="button" tabindex="0"><span class="major-num">1 ·</span> 📘 <span class="i18n es" data-lang="es">APRENDE / RECUERDA</span><span class="i18n fr" data-lang="fr">APPRENDS / RAPPELLE-TOI</span><span class="i18n ar" data-lang="ar">تعلّم / تذكّر</span><span aria-hidden="true" class="collapse-indicator">▶</span></h2>
+<!-- CONTENT_APRENDE_START -->
+<div class="learnbox"><div class="i18n es" data-lang="es">
+<h3>1.1 · El sistema decimal</h3><p>Nuestro sistema habitual es decimal: utiliza diez cifras (0–9) y es posicional (basado en las potencias de 10). El valor de una cifra depende del lugar que ocupa.</p>
+<h4>Ejemplo: 5 274</h4><table class="pos pos-labelled"><tr><th>Nombre de la cifra</th><td>Unidades de millar</td><td>Centenas</td><td>Decenas</td><td>Unidades</td></tr><tr><th>Cifra</th><td>5</td><td>2</td><td>7</td><td>4</td></tr><tr><th>Valor posicional</th><td>10³ = 1000</td><td>10² = 100</td><td>10¹ = 10</td><td>10⁰ = 1</td></tr><tr><th>Valor de cada cifra</th><td>5000</td><td>200</td><td>70</td><td>4</td></tr></table>
+<div class="mathline">5 274 = 5·10³ + 2·10² + 7·10¹ + 4·10⁰</div><div class="mathline">= 5·1000 + 2·100 + 7·10 + 4·1   (llamada descomposición polinómica)</div><div class="mathline">= 5 millares + 2 centenas + 7 decenas + 4 unidades</div><p>Comprobación de la corrección de la descomposición polinómica decimal (es decir, esta descomposición a qué número decimal corresponde):</p><div class="mathline">... = 5000 + 200 + 70 + 4<br/>= 5 274</div>
+<h4>Ejemplo guiado · Obtener la descomposición polinómica de 30 406</h4><table class="pos pos-labelled"><tr><th>Nombre de la cifra</th><td>Decenas de millar</td><td>Unidades de millar</td><td>Centenas</td><td>Decenas</td><td>Unidades</td></tr><tr><th>Cifra</th><td>3</td><td>0</td><td>4</td><td>0</td><td>6</td></tr><tr><th>Valor posicional</th><td>10⁴ = 10 000</td><td>10³ = 1000</td><td>10² = 100</td><td>10¹ = 10</td><td>10⁰ = 1</td></tr><tr><th>Valor de cada cifra</th><td>30 000</td><td>0</td><td>400</td><td>0</td><td>6</td></tr></table><div class="mathline">30 406 = 3·10⁴ + 0·10³ + 4·10² + 0·10¹ + 6·10⁰<br/>= 3·10 000 + 0·1000 + 4·100 + 0·10 + 6·1<br/>= 3·10 000 + 4·100 + 6·1</div>
+<h3>1.2 · El sistema binario</h3><p>El sistema binario utiliza solo dos cifras (0 y 1) y es posicional (basado en las potencias de 2). El valor de una cifra depende del lugar que ocupa. Ejemplo de número binario (en base 2): <span class="math">101101₂</span></p><p>Nota: En el sistema decimal (en base 10) el número 5274 se puede expresar también como <span class="math">5274₁₀</span></p>
+<h4>Ejemplo: Obtener la descomposición polinómica de 101101₂</h4><table class="pos"><tr><th>Cifra</th><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><th>Valor posicional</th><td>2⁵ = 32</td><td>2⁴ = 16</td><td>2³ = 8</td><td>2² = 4</td><td>2¹ = 2</td><td>2⁰ = 1</td></tr><tr><th>Valor de cada cifra</th><td>32</td><td>0</td><td>8</td><td>4</td><td>0</td><td>1</td></tr></table><div class="mathline">101101₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰<br/>= 1·32 + 0·16 + 1·8 + 1·4 + 0·2 + 1·1<br/>= 1·32 + 1·8 + 1·4 + 1·1</div><p><strong>Nota:</strong> cifra 1 = utilizamos el valor de esa posición · cifra 0 = no utilizamos ese valor</p>
+<h3>1.3 · Paso de binario a decimal</h3><p>1.º Coloca las potencias de 2<br/>2.º Haz la descomposición polinómica<br/>3.º Sustituye las potencias por sus valores<br/>4.º Suma</p><h4>Ejemplo: Convierte 10110₂ a decimal (base 10)</h4><table class="pos"><tr><th>Cifra</th><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><th>Valor posicional</th><td>2⁴ = 16</td><td>2³ = 8</td><td>2² = 4</td><td>2¹ = 2</td><td>2⁰ = 1</td></tr><tr><th>Valor de cada cifra</th><td>16</td><td>0</td><td>4</td><td>2</td><td>0</td></tr></table><div class="mathline">10110₂ = 1·2⁴ + 0·2³ + 1·2² + 1·2¹ + 0·2⁰<br/>= 1·16 + 0·8 + 1·4 + 1·2 + 0·1<br/>= 16 + 0 + 4 + 2 + 0<br/>= 22₁₀</div>
+<h3>1.4 · Paso de decimal a binario</h3><p>Divide sucesivamente entre 2 utilizando los cocientes hasta obtener cociente 0. Conserva todos los restos y léelos de abajo hacia arriba.</p><h4>Ejemplo: convertimos 26 a binario</h4><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">26</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">13</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">6</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">3</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><table class="division-table"><tr><th>Dividendo</th><th>Cociente</th><th>Resto</th></tr><tr><td>26</td><td>13</td><td>0</td></tr><tr><td>13</td><td>6</td><td>1</td></tr><tr><td>6</td><td>3</td><td>0</td></tr><tr><td>3</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr></table><div class="read-result">Leemos los restos de abajo arriba → 11010₂</div><p><strong>26₁₀ = 11010₂</strong></p><p>Comprueba el resultado haciendo la conversión inversa:</p><div class="mathline">11010₂ = 16 + 8 + 2 = 26₁₀</div><div class="warning">CUIDADO: el error más frecuente es leer los restos de arriba hacia abajo</div>
+</div><div class="i18n fr" data-lang="fr">
+<h3>1.1 · Le système décimal</h3><p>Notre système habituel est décimal : il utilise dix chiffres (0–9) et il est positionnel (fondé sur les puissances de 10). La valeur d’un chiffre dépend de la position qu’il occupe.</p>
+<h4>Exemple : 5 274</h4><table class="pos pos-labelled"><tr><th>Nom du chiffre</th><td>Unités de millier</td><td>Centaines</td><td>Dizaines</td><td>Unités</td></tr><tr><th>Chiffre</th><td>5</td><td>2</td><td>7</td><td>4</td></tr><tr><th>Valeur de position</th><td>10³ = 1000</td><td>10² = 100</td><td>10¹ = 10</td><td>10⁰ = 1</td></tr><tr><th>Valeur de chaque chiffre</th><td>5000</td><td>200</td><td>70</td><td>4</td></tr></table>
+<div class="mathline">5 274 = 5·10³ + 2·10² + 7·10¹ + 4·10⁰</div><div class="mathline">= 5·1000 + 2·100 + 7·10 + 4·1   (appelée décomposition polynomiale)</div><div class="mathline">= 5 milliers + 2 centaines + 7 dizaines + 4 unités</div><p>Vérification de la décomposition polynomiale décimale (c’est-à-dire : à quel nombre décimal correspond cette décomposition) :</p><div class="mathline">... = 5000 + 200 + 70 + 4<br/>= 5 274</div>
+<h4>Exemple guidé · Obtenir la décomposition polynomiale de 30 406</h4><table class="pos pos-labelled"><tr><th>Nom du chiffre</th><td>Dizaines de millier</td><td>Unités de millier</td><td>Centaines</td><td>Dizaines</td><td>Unités</td></tr><tr><th>Chiffre</th><td>3</td><td>0</td><td>4</td><td>0</td><td>6</td></tr><tr><th>Valeur de position</th><td>10⁴ = 10 000</td><td>10³ = 1000</td><td>10² = 100</td><td>10¹ = 10</td><td>10⁰ = 1</td></tr><tr><th>Valeur de chaque chiffre</th><td>30 000</td><td>0</td><td>400</td><td>0</td><td>6</td></tr></table><div class="mathline">30 406 = 3·10⁴ + 0·10³ + 4·10² + 0·10¹ + 6·10⁰<br/>= 3·10 000 + 0·1000 + 4·100 + 0·10 + 6·1<br/>= 3·10 000 + 4·100 + 6·1</div>
+<h3>1.2 · Le système binaire</h3><p>Le système binaire n’utilise que deux chiffres (0 et 1) et il est positionnel (fondé sur les puissances de 2). La valeur d’un chiffre dépend de la position qu’il occupe. Exemple de nombre binaire (en base 2) : <span class="math">101101₂</span></p><p>Remarque : dans le système décimal (en base 10), le nombre 5274 peut aussi s’écrire <span class="math">5274₁₀</span></p>
+<h4>Exemple : obtenir la décomposition polynomiale de 101101₂</h4><table class="pos"><tr><th>Chiffre</th><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><th>Valeur de position</th><td>2⁵ = 32</td><td>2⁴ = 16</td><td>2³ = 8</td><td>2² = 4</td><td>2¹ = 2</td><td>2⁰ = 1</td></tr><tr><th>Valeur de chaque chiffre</th><td>32</td><td>0</td><td>8</td><td>4</td><td>0</td><td>1</td></tr></table><div class="mathline">101101₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰<br/>= 1·32 + 0·16 + 1·8 + 1·4 + 0·2 + 1·1<br/>= 1·32 + 1·8 + 1·4 + 1·1</div><p><strong>Remarque :</strong> chiffre 1 = on utilise la valeur de cette position · chiffre 0 = on n’utilise pas cette valeur</p>
+<h3>1.3 · Passage du binaire au décimal</h3><p>1.º Place les puissances de 2<br/>2.º Fais la décomposition polynomiale<br/>3.º Remplace les puissances par leurs valeurs<br/>4.º Additionne</p><h4>Exemple : convertis 10110₂ en décimal (base 10)</h4><table class="pos"><tr><th>Chiffre</th><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><th>Valeur de position</th><td>2⁴ = 16</td><td>2³ = 8</td><td>2² = 4</td><td>2¹ = 2</td><td>2⁰ = 1</td></tr><tr><th>Valeur de chaque chiffre</th><td>16</td><td>0</td><td>4</td><td>2</td><td>0</td></tr></table><div class="mathline">10110₂ = 1·2⁴ + 0·2³ + 1·2² + 1·2¹ + 0·2⁰<br/>= 1·16 + 0·8 + 1·4 + 1·2 + 0·1<br/>= 16 + 0 + 4 + 2 + 0<br/>= 22₁₀</div>
+<h3>1.4 · Passage du décimal au binaire</h3><p>Divise successivement par 2 en utilisant les quotients jusqu’à obtenir un quotient égal à 0. Conserve tous les restes et lis-les de bas en haut.</p><h4>Exemple : convertissons 26 en binaire</h4><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">26</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">13</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">6</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">3</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><table class="division-table"><tr><th>Dividende</th><th>Quotient</th><th>Reste</th></tr><tr><td>26</td><td>13</td><td>0</td></tr><tr><td>13</td><td>6</td><td>1</td></tr><tr><td>6</td><td>3</td><td>0</td></tr><tr><td>3</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr></table><div class="read-result">Nous lisons les restes de bas en haut → 11010₂</div><p><strong>26₁₀ = 11010₂</strong></p><p>Vérifie le résultat en effectuant la conversion inverse :</p><div class="mathline">11010₂ = 16 + 8 + 2 = 26₁₀</div><div class="warning">ATTENTION : l’erreur la plus fréquente consiste à lire les restes de haut en bas</div>
+</div><div class="i18n ar" data-lang="ar">
+<h3>1.1 · النظام العشري</h3><p>نظام العد الذي نستعمله عادة هو النظام العشري: يستخدم عشرة أرقام (0–9) وهو نظام موضعي يعتمد على قوى العدد 10. قيمة الرقم تعتمد على موضعه</p>
+<h4>مثال: 5 274</h4><table class="pos pos-labelled"><tr><th>اسم المنزلة</th><td>آحاد الآلاف</td><td>المئات</td><td>العشرات</td><td>الآحاد</td></tr><tr><th>الرقم</th><td>5</td><td>2</td><td>7</td><td>4</td></tr><tr><th>القيمة المكانية</th><td>10³ = 1000</td><td>10² = 100</td><td>10¹ = 10</td><td>10⁰ = 1</td></tr><tr><th>قيمة كل رقم</th><td>5000</td><td>200</td><td>70</td><td>4</td></tr></table>
+<div class="mathline">5 274 = 5·10³ + 2·10² + 7·10¹ + 4·10⁰</div><div class="mathline">= 5·1000 + 2·100 + 7·10 + 4·1   (يسمى التحليل باستعمال القوى)</div><div class="mathline">= 5 آلاف + 2 مئات + 7 عشرات + 4 آحاد</div><p>التحقق من صحة التحليل إلى قوى العدد 10 (أي: إلى أي عدد عشري يقابل هذا التحليل):</p><div class="mathline">... = 5000 + 200 + 70 + 4<br/>= 5 274</div>
+<h4>مثال موجه · إيجاد التحليل إلى قوى العدد 10 للعدد 30 406</h4><table class="pos pos-labelled"><tr><th>اسم المنزلة</th><td>عشرات الآلاف</td><td>آحاد الآلاف</td><td>المئات</td><td>العشرات</td><td>الآحاد</td></tr><tr><th>الرقم</th><td>3</td><td>0</td><td>4</td><td>0</td><td>6</td></tr><tr><th>القيمة المكانية</th><td>10⁴ = 10 000</td><td>10³ = 1000</td><td>10² = 100</td><td>10¹ = 10</td><td>10⁰ = 1</td></tr><tr><th>قيمة كل رقم</th><td>30 000</td><td>0</td><td>400</td><td>0</td><td>6</td></tr></table><div class="mathline">30 406 = 3·10⁴ + 0·10³ + 4·10² + 0·10¹ + 6·10⁰<br/>= 3·10 000 + 0·1000 + 4·100 + 0·10 + 6·1<br/>= 3·10 000 + 4·100 + 6·1</div>
+<h3>1.2 · النظام الثنائي</h3><p>يستعمل النظام الثنائي رقمين فقط (0 و1) وهو نظام موضعي يعتمد على قوى العدد 2. قيمة الرقم تعتمد على موضعه. مثال لعدد ثنائي (بالأساس 2): <span class="math">101101₂</span></p><p>ملاحظة: في النظام العشري (بالأساس 10) يمكن أيضًا كتابة العدد 5274 هكذا <span class="math">5274₁₀</span></p>
+<h4>مثال: إيجاد التحليل إلى قوى العدد 2 للعدد 101101₂</h4><table class="pos"><tr><th>الرقم</th><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><th>القيمة المكانية</th><td>2⁵ = 32</td><td>2⁴ = 16</td><td>2³ = 8</td><td>2² = 4</td><td>2¹ = 2</td><td>2⁰ = 1</td></tr><tr><th>قيمة كل رقم</th><td>32</td><td>0</td><td>8</td><td>4</td><td>0</td><td>1</td></tr></table><div class="mathline">101101₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰<br/>= 1·32 + 0·16 + 1·8 + 1·4 + 0·2 + 1·1<br/>= 1·32 + 1·8 + 1·4 + 1·1</div><p><strong>ملاحظة:</strong> الرقم 1 = نستعمل قيمة ذلك الموضع · الرقم 0 = لا نستعمل تلك القيمة</p>
+<h3>1.3 · التحويل من الثنائي إلى العشري</h3><p>1.º ضع قوى العدد 2<br/>2.º اكتب التحليل باستعمال قوى العدد 2<br/>3.º عوّض القوى بقيمها<br/>4.º اجمع</p><h4>مثال: حوّل 10110₂ إلى النظام العشري (الأساس 10)</h4><table class="pos"><tr><th>الرقم</th><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><th>القيمة المكانية</th><td>2⁴ = 16</td><td>2³ = 8</td><td>2² = 4</td><td>2¹ = 2</td><td>2⁰ = 1</td></tr><tr><th>قيمة كل رقم</th><td>16</td><td>0</td><td>4</td><td>2</td><td>0</td></tr></table><div class="mathline">10110₂ = 1·2⁴ + 0·2³ + 1·2² + 1·2¹ + 0·2⁰<br/>= 1·16 + 0·8 + 1·4 + 1·2 + 0·1<br/>= 16 + 0 + 4 + 2 + 0<br/>= 22₁₀</div>
+<h3>1.4 · التحويل من العشري إلى الثنائي</h3><p>اقسم بالتتابع على 2 باستعمال ناتج كل قسمة حتى تصل إلى ناتج يساوي 0. احتفظ بجميع البواقي واقرأها من الأسفل إلى الأعلى</p><h4>مثال: نحوّل 26 إلى النظام الثنائي</h4><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">26</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">13</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">6</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">3</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><table class="division-table"><tr><th>المقسوم</th><th>ناتج القسمة</th><th>الباقي</th></tr><tr><td>26</td><td>13</td><td>0</td></tr><tr><td>13</td><td>6</td><td>1</td></tr><tr><td>6</td><td>3</td><td>0</td></tr><tr><td>3</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr></table><div class="read-result">نقرأ البواقي من الأسفل إلى الأعلى → 11010₂</div><p><strong>26₁₀ = 11010₂</strong></p><p>تحقق من النتيجة بإجراء التحويل العكسي:</p><div class="mathline">11010₂ = 16 + 8 + 2 = 26₁₀</div><div class="warning">انتبه: الخطأ الأكثر شيوعًا هو قراءة البواقي من الأعلى إلى الأسفل</div>
+</div></div>
+<!-- CONTENT_APRENDE_END -->
+</section>
+<section class="major-section collapsed"><h2 aria-expanded="false" class="section-title collapsible-title" role="button" tabindex="0"><span class="major-num">2 ·</span> ✏️ <span class="i18n es" data-lang="es">PRACTICA CON AYUDA</span><span class="i18n fr" data-lang="fr">ENTRAÎNE-TOI AVEC DE L’AIDE</span><span class="i18n ar" data-lang="ar">تدرّب مع المساعدة</span><span aria-hidden="true" class="collapse-indicator">▶</span></h2>
+<!-- CONTENT_PRACTICA_START -->
+<div class="card practice-card" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 AYUDA</label><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div>
+<div class="level">Actividad 1 · NIVEL 1 · IMITO</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Escribe 6 305 mediante potencias de 10.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Écris 6 305 à l’aide de puissances de 10.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>اكتب 6 305 باستعمال قوى العدد 10</p></div>
+<div class="toggle help" hidden=""><div class="i18n es" data-lang="es"><strong>AYUDA</strong><p>Ejemplo análogo:</p><div class="mathline">4 072 = 4·10³ + 0·10² + 7·10¹ + 2·10⁰ = 4000 + 70 + 2</div><p>Mantén los términos con 0 en la primera igualdad</p></div><div class="i18n fr" data-lang="fr"><strong>AIDE</strong><p>Exemple analogue :</p><div class="mathline">4 072 = 4·10³ + 0·10² + 7·10¹ + 2·10⁰ = 4000 + 70 + 2</div><p>Conserve les termes contenant 0 dans la première égalité</p></div><div class="i18n ar" data-lang="ar"><strong>مساعدة</strong><p>مثال مشابه:</p><div class="mathline">4 072 = 4·10³ + 0·10² + 7·10¹ + 2·10⁰ = 4000 + 70 + 2</div><p>احتفظ بالحدود التي تحتوي على 0 في المساواة الأولى</p></div></div>
+<div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><div class="mathline">6 305 = 6·10³ + 3·10² + 0·10¹ + 5·10⁰ = 6000 + 300 + 5</div></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><div class="mathline">6 305 = 6·10³ + 3·10² + 0·10¹ + 5·10⁰ = 6000 + 300 + 5</div></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><div class="mathline">6 305 = 6·10³ + 3·10² + 0·10¹ + 5·10⁰ = 6000 + 300 + 5</div></div></div>
+</div>
+<div class="card practice-card" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 AYUDA</label><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div>
+<div class="level">Actividad 2 · NIVEL 1 · IMITO</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Completa los valores de las potencias de 2: 2⁴, 2³, 2², 2¹, 2⁰.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Complète les valeurs des puissances de 2 : 2⁴, 2³, 2², 2¹, 2⁰.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>أكمل قيم قوى العدد 2: 2⁴، 2³، 2²، 2¹، 2⁰</p></div>
+<div class="toggle help" hidden=""><div class="i18n es" data-lang="es"><strong>AYUDA</strong><p>Recuerda que una potencia indica cuántas veces se multiplica la base por sí misma. Por ejemplo: <span class="math">3³ = 3·3·3 = 27</span>. Aplica la misma idea a las potencias de 2</p></div><div class="i18n fr" data-lang="fr"><strong>AIDE</strong><p>Rappelle-toi qu’une puissance indique combien de fois la base est multipliée par elle-même. Par exemple : <span class="math">3³ = 3·3·3 = 27</span>. Applique la même idée aux puissances de 2</p></div><div class="i18n ar" data-lang="ar"><strong>مساعدة</strong><p>تذكّر أن القوة تبيّن عدد مرات ضرب الأساس في نفسه. مثال: <span class="math">3³ = 3·3·3 = 27</span> طبّق الفكرة نفسها على قوى العدد 2</p></div></div>
+<div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><div class="mathline">2⁴=16; 2³=8; 2²=4; 2¹=2; 2⁰=1</div></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><div class="mathline">2⁴=16; 2³=8; 2²=4; 2¹=2; 2⁰=1</div></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><div class="mathline">2⁴=16; 2³=8; 2²=4; 2¹=2; 2⁰=1</div></div></div>
+</div>
+<div class="card practice-card" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 AYUDA</label><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div>
+<div class="level">Actividad 3 · NIVEL 1 · IMITO</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Descompón 10101₂ utilizando potencias de 2.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Décompose 10101₂ à l’aide de puissances de 2.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>حلّل 10101₂ باستعمال قوى العدد 2</p></div>
+<div class="toggle help" hidden=""><div class="i18n es" data-lang="es"><strong>AYUDA</strong><p>Ejemplo análogo:</p><div class="mathline">11010₂ = 1·2⁴ + 1·2³ + 0·2² + 1·2¹ + 0·2⁰ = 16 + 8 + 2</div></div><div class="i18n fr" data-lang="fr"><strong>AIDE</strong><p>Exemple analogue :</p><div class="mathline">11010₂ = 1·2⁴ + 1·2³ + 0·2² + 1·2¹ + 0·2⁰ = 16 + 8 + 2</div></div><div class="i18n ar" data-lang="ar"><strong>مساعدة</strong><p>مثال مشابه:</p><div class="mathline">11010₂ = 1·2⁴ + 1·2³ + 0·2² + 1·2¹ + 0·2⁰ = 16 + 8 + 2</div></div></div>
+<div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><div class="mathline">10101₂ = 1·2⁴ + 0·2³ + 1·2² + 0·2¹ + 1·2⁰ = 16 + 4 + 1</div></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><div class="mathline">10101₂ = 1·2⁴ + 0·2³ + 1·2² + 0·2¹ + 1·2⁰ = 16 + 4 + 1</div></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><div class="mathline">10101₂ = 1·2⁴ + 0·2³ + 1·2² + 0·2¹ + 1·2⁰ = 16 + 4 + 1</div></div></div>
+</div>
+<div class="card practice-card" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 AYUDA</label><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div>
+<div class="level">Actividad 4 · NIVEL 2 · APLICO</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Convierte 11001₂ a decimal.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Convertis 11001₂ en décimal.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>حوّل 11001₂ إلى النظام العشري</p></div>
+<div class="toggle help" hidden=""><div class="i18n es" data-lang="es"><strong>AYUDA</strong><p>Ejemplo análogo: 10110₂</p><div class="mathline">10110₂ = 1·2⁴ + 0·2³ + 1·2² + 1·2¹ + 0·2⁰ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 22 = 22₁₀</div></div><div class="i18n fr" data-lang="fr"><strong>AIDE</strong><p>Exemple analogue : 10110₂</p><div class="mathline">10110₂ = 1·2⁴ + 0·2³ + 1·2² + 1·2¹ + 0·2⁰ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 22 = 22₁₀</div></div><div class="i18n ar" data-lang="ar"><strong>مساعدة</strong><p>مثال مشابه: 10110₂</p><div class="mathline">10110₂ = 1·2⁴ + 0·2³ + 1·2² + 1·2¹ + 0·2⁰ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 22 = 22₁₀</div></div></div>
+<div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><div class="mathline">11001₂ = 1·2⁴ + 1·2³ + 0·2² + 0·2¹ + 1·2⁰<br/>= 16 + 8 + 1<br/>= 25₁₀</div></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><div class="mathline">11001₂ = 1·2⁴ + 1·2³ + 0·2² + 0·2¹ + 1·2⁰<br/>= 16 + 8 + 1<br/>= 25₁₀</div></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><div class="mathline">11001₂ = 1·2⁴ + 1·2³ + 0·2² + 0·2¹ + 1·2⁰<br/>= 16 + 8 + 1<br/>= 25₁₀</div></div></div>
+</div>
+<div class="card practice-card" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 AYUDA</label><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div>
+<div class="level">Actividad 5 · NIVEL 2 · APLICO</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Convierte 101101₂ a decimal.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Convertis 101101₂ en décimal.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>حوّل 101101₂ إلى النظام العشري</p></div>
+<div class="toggle help" hidden=""><div class="i18n es" data-lang="es"><strong>AYUDA</strong><p>Ejemplo análogo:</p><div class="mathline">10110₂ = 1·2⁴ + 0·2³ + 1·2² + 1·2¹ + 0·2⁰ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 22 = 22₁₀</div></div><div class="i18n fr" data-lang="fr"><strong>AIDE</strong><p>Exemple analogue :</p><div class="mathline">10110₂ = 1·2⁴ + 0·2³ + 1·2² + 1·2¹ + 0·2⁰ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 22 = 22₁₀</div></div><div class="i18n ar" data-lang="ar"><strong>مساعدة</strong><p>مثال مشابه:</p><div class="mathline">10110₂ = 1·2⁴ + 0·2³ + 1·2² + 1·2¹ + 0·2⁰ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 22 = 22₁₀</div></div></div>
+<div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><div class="mathline">101101₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰<br/>= 32 + 8 + 4 + 1<br/>= 45₁₀</div></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><div class="mathline">101101₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰<br/>= 32 + 8 + 4 + 1<br/>= 45₁₀</div></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><div class="mathline">101101₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰<br/>= 32 + 8 + 4 + 1<br/>= 45₁₀</div></div></div>
+</div>
+<div class="card practice-card" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 AYUDA</label><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div>
+<div class="level">Actividad 6 · NIVEL 2 · APLICO</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Convierte 19₁₀ a binario mediante divisiones sucesivas entre 2.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Convertis 19₁₀ en binaire par divisions successives par 2.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>حوّل 19₁₀ إلى النظام الثنائي باستعمال القسمة المتتالية على 2</p></div>
+<div class="toggle help" hidden=""><div class="i18n es" data-lang="es"><strong>AYUDA</strong><p>Ejemplo análogo: 14₁₀. Realizamos las divisiones sucesivas entre 2:</p><div class="division-staircase" style="height:194px;min-width:298px"><span class="ds-num" style="left:0px;top:0px">14</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">7</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">3</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">1</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">0</span></div><div class="mini-read">Restos de arriba abajo: 0 1 1 1<br/>Leemos de abajo arriba → 1110₂</div><p>Por tanto, 14₁₀ = 1110₂</p></div><div class="i18n fr" data-lang="fr"><strong>AIDE</strong><p>Exemple analogue : 14₁₀. Nous effectuons les divisions successives par 2 :</p><div class="division-staircase" style="height:194px;min-width:298px"><span class="ds-num" style="left:0px;top:0px">14</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">7</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">3</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">1</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">0</span></div><div class="mini-read">Restes de haut en bas : 0 1 1 1<br/>Nous lisons de bas en haut → 1110₂</div><p>Donc, 14₁₀ = 1110₂</p></div><div class="i18n ar" data-lang="ar"><strong>مساعدة</strong><p>مثال مشابه: 14₁₀. نجري القسمة المتتالية على 2:</p><div class="division-staircase" style="height:194px;min-width:298px"><span class="ds-num" style="left:0px;top:0px">14</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">7</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">3</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">1</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">0</span></div><div class="mini-read">البواقي من الأعلى إلى الأسفل: 0 1 1 1<br/>نقرأ من الأسفل إلى الأعلى → 1110₂</div><p>إذن، 14₁₀ = 1110₂</p></div></div>
+<div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><p>Realizamos las divisiones sucesivas entre 2:</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">19</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">9</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">4</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">2</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">0</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">Restos de arriba abajo: 1 1 0 0 1<br/>Leemos de abajo arriba → 10011₂</div><p>Por tanto, 19₁₀ = 10011₂</p></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Nous effectuons les divisions successives par 2 :</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">19</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">9</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">4</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">2</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">0</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">Restes de haut en bas : 1 1 0 0 1<br/>Nous lisons de bas en haut → 10011₂</div><p>Donc, 19₁₀ = 10011₂</p></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><p>نجري القسمة المتتالية على 2:</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">19</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">9</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">4</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">2</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">0</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">البواقي من الأعلى إلى الأسفل: 1 1 0 0 1<br/>نقرأ من الأسفل إلى الأعلى → 10011₂</div><p>إذن، 19₁₀ = 10011₂</p></div></div>
+</div>
+<div class="card practice-card" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 AYUDA</label><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div>
+<div class="level">Actividad 7 · NIVEL 2 · APLICO</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Convierte 42₁₀ a binario.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Convertis 42₁₀ en binaire.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>حوّل 42₁₀ إلى النظام الثنائي</p></div>
+<div class="toggle help" hidden=""><div class="i18n es" data-lang="es"><strong>AYUDA</strong><p>Ejemplo análogo: 26₁₀. Realizamos las divisiones sucesivas entre 2:</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">26</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">13</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">6</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">3</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">Restos de arriba abajo: 0 1 0 1 1<br/>Leemos de abajo arriba → 11010₂</div><p>Por tanto, 26₁₀ = 11010₂</p></div><div class="i18n fr" data-lang="fr"><strong>AIDE</strong><p>Exemple analogue : 26₁₀. Nous effectuons les divisions successives par 2 :</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">26</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">13</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">6</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">3</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">Restes de haut en bas : 0 1 0 1 1<br/>Nous lisons de bas en haut → 11010₂</div><p>Donc, 26₁₀ = 11010₂</p></div><div class="i18n ar" data-lang="ar"><strong>مساعدة</strong><p>مثال مشابه: 26₁₀. نجري القسمة المتتالية على 2:</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">26</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">13</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">6</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">3</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">البواقي من الأعلى إلى الأسفل: 0 1 0 1 1<br/>نقرأ من الأسفل إلى الأعلى → 11010₂</div><p>إذن، 26₁₀ = 11010₂</p></div></div>
+<div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><p>Realizamos las divisiones sucesivas entre 2:</p><div class="division-staircase" style="height:262px;min-width:402px"><span class="ds-num" style="left:0px;top:0px">42</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">21</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">10</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">5</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">2</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">0</span><span class="ds-num" style="left:260px;top:170px">1</span><span class="ds-div" style="left:300px;top:170px">2</span><span class="ds-rem" style="left:260px;top:200px">1</span><span class="ds-num" style="left:312px;top:204px">0</span></div><div class="mini-read">Restos de arriba abajo: 0 1 0 1 0 1<br/>Leemos de abajo arriba → 101010₂</div><p>Por tanto, 42₁₀ = 101010₂</p></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Nous effectuons les divisions successives par 2 :</p><div class="division-staircase" style="height:262px;min-width:402px"><span class="ds-num" style="left:0px;top:0px">42</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">21</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">10</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">5</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">2</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">0</span><span class="ds-num" style="left:260px;top:170px">1</span><span class="ds-div" style="left:300px;top:170px">2</span><span class="ds-rem" style="left:260px;top:200px">1</span><span class="ds-num" style="left:312px;top:204px">0</span></div><div class="mini-read">Restes de haut en bas : 0 1 0 1 0 1<br/>Nous lisons de bas en haut → 101010₂</div><p>Donc, 42₁₀ = 101010₂</p></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><p>نجري القسمة المتتالية على 2:</p><div class="division-staircase" style="height:262px;min-width:402px"><span class="ds-num" style="left:0px;top:0px">42</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">21</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">10</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">0</span><span class="ds-num" style="left:156px;top:102px">5</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">2</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">0</span><span class="ds-num" style="left:260px;top:170px">1</span><span class="ds-div" style="left:300px;top:170px">2</span><span class="ds-rem" style="left:260px;top:200px">1</span><span class="ds-num" style="left:312px;top:204px">0</span></div><div class="mini-read">البواقي من الأعلى إلى الأسفل: 0 1 0 1 0 1<br/>نقرأ من الأسفل إلى الأعلى → 101010₂</div><p>إذن، 42₁₀ = 101010₂</p></div></div>
+</div>
+<div class="card practice-card" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 AYUDA</label><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div>
+<div class="level">Actividad 8 · NIVEL 3 · DECIDO</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Realiza las dos conversiones: 10011₂ → ?₁₀ y 29₁₀ → ?₂.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Effectue les deux conversions : 10011₂ → ?₁₀ et 29₁₀ → ?₂.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>أنجز التحويلين: 10011₂ → ?₁₀ و29₁₀ → ?₂</p></div>
+<div class="toggle help" hidden=""><div class="i18n es" data-lang="es"><strong>AYUDA</strong><p>Decide primero el sentido. Si parte de binario, usa potencias de 2. Si parte de decimal, usa divisiones sucesivas entre 2</p></div><div class="i18n fr" data-lang="fr"><strong>AIDE</strong><p>Identifie d’abord le sens de la conversion. Si tu pars du binaire, utilise les puissances de 2. Si tu pars du décimal, utilise les divisions successives par 2</p></div><div class="i18n ar" data-lang="ar"><strong>مساعدة</strong><p>حدّد أولًا اتجاه التحويل. إذا بدأت من الثنائي فاستعمل قوى العدد 2، وإذا بدأت من العشري فاستعمل القسمة المتتالية على 2</p></div></div>
+<div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><p>Primera conversión:</p><div class="mathline">10011₂ = 16 + 2 + 1 = 19₁₀</div><p>Segunda conversión. Para 29₁₀ realizamos las divisiones sucesivas entre 2:</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">29</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">14</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">7</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">3</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">Restos de arriba abajo: 1 0 1 1 1<br/>Leemos de abajo arriba → 11101₂</div><p>Por tanto, 29₁₀ = 11101₂</p></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Première conversion :</p><div class="mathline">10011₂ = 16 + 2 + 1 = 19₁₀</div><p>Deuxième conversion. Pour 29₁₀, nous effectuons les divisions successives par 2 :</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">29</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">14</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">7</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">3</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">Restes de haut en bas : 1 0 1 1 1<br/>Nous lisons de bas en haut → 11101₂</div><p>Donc, 29₁₀ = 11101₂</p></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><p>التحويل الأول:</p><div class="mathline">10011₂ = 16 + 2 + 1 = 19₁₀</div><p>التحويل الثاني. بالنسبة إلى 29₁₀ نجري القسمة المتتالية على 2:</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">29</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">14</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">7</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">3</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">البواقي من الأعلى إلى الأسفل: 1 0 1 1 1<br/>نقرأ من الأسفل إلى الأعلى → 11101₂</div><p>إذن، 29₁₀ = 11101₂</p></div></div>
+</div>
+<div class="card practice-card" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 AYUDA</label><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div>
+<div class="level">Actividad 9 · NIVEL 4 · INTEGRO</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Un alumno escribe:<div class="mathline">10110₂ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 24</div>¿Es correcto? Localiza y corrige el error.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Un élève écrit :<div class="mathline">10110₂ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 24</div>Est-ce correct ? Repère et corrige l’erreur.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>كتب تلميذ:<div class="mathline">10110₂ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 24</div>هل هذا صحيح؟ حدّد الخطأ وصححه</p></div>
+<div class="toggle help" hidden=""><div class="i18n es" data-lang="es"><strong>AYUDA</strong><p>Revisa la suma final del ejemplo. Las posiciones están bien; comprueba 16 + 4 + 2</p></div><div class="i18n fr" data-lang="fr"><strong>AIDE</strong><p>Vérifie la somme finale de l’exemple. Les positions sont correctes ; calcule 16 + 4 + 2</p></div><div class="i18n ar" data-lang="ar"><strong>مساعدة</strong><p>راجع الجمع النهائي في المثال. المواضع صحيحة؛ احسب 16 + 4 + 2</p></div></div>
+<div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><p>No es correcto</p><div class="mathline">16 + 0 + 4 + 2 + 0 = 22, no 24</div><p>Por tanto, 10110₂ = 22₁₀</p></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Ce n’est pas correct</p><div class="mathline">16 + 0 + 4 + 2 + 0 = 22, et non 24</div><p>Donc, 10110₂ = 22₁₀</p></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><p>هذا غير صحيح</p><div class="mathline">16 + 0 + 4 + 2 + 0 = 22، وليس 24</div><p>إذن، 10110₂ = 22₁₀</p></div></div>
+</div>
+<div class="card practice-card" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 AYUDA</label><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div>
+<div class="level">Actividad 10 · NIVEL 4 · INTEGRO</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Al convertir 13₁₀ a binario, los restos obtenidos de arriba hacia abajo son 1, 0, 1, 1. Un alumno escribe 13₁₀ = 1011₂. ¿Ha leído correctamente los restos? Corrige si es necesario.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>En convertissant 13₁₀ en binaire, les restes obtenus de haut en bas sont 1, 0, 1, 1. Un élève écrit 13₁₀ = 1011₂. A-t-il lu les restes dans le bon ordre ? Corrige si nécessaire.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>عند تحويل 13₁₀ إلى النظام الثنائي، كانت البواقي من الأعلى إلى الأسفل: 1، 0، 1، 1. كتب تلميذ 13₁₀ = 1011₂. هل قرأ البواقي بالترتيب الصحيح؟ صحح إذا لزم الأمر</p></div>
+<div class="toggle help" hidden=""><div class="i18n es" data-lang="es"><strong>AYUDA</strong><p>Los restos están escritos en el orden en que aparecieron. Para formar el binario hay que invertir ese orden: se leen de abajo hacia arriba.</p></div><div class="i18n fr" data-lang="fr"><strong>AIDE</strong><p>Les restes sont écrits dans l’ordre où ils sont apparus. Pour former le nombre binaire, il faut inverser cet ordre : on les lit de bas en haut.</p></div><div class="i18n ar" data-lang="ar"><strong>مساعدة</strong><p>البواقي مكتوبة حسب ترتيب ظهورها. لتكوين العدد الثنائي يجب عكس هذا الترتيب وقراءتها من الأسفل إلى الأعلى</p></div></div>
+<div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><p>No. Comprobamos el procedimiento con las divisiones sucesivas entre 2:</p><div class="division-staircase" style="height:194px;min-width:298px"><span class="ds-num" style="left:0px;top:0px">13</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">6</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">3</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">1</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">0</span></div><div class="mini-read">Restos de arriba abajo: 1 0 1 1<br/>Leemos de abajo arriba → 1101₂</div><p>Por tanto, 13₁₀ = 1101₂</p></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Non. Vérifions la procédure avec les divisions successives par 2 :</p><div class="division-staircase" style="height:194px;min-width:298px"><span class="ds-num" style="left:0px;top:0px">13</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">6</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">3</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">1</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">0</span></div><div class="mini-read">Restes de haut en bas : 1 0 1 1<br/>Nous lisons de bas en haut → 1101₂</div><p>Donc, 13₁₀ = 1101₂</p></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><p>لا. نتحقق من الطريقة باستعمال القسمة المتتالية على 2:</p><div class="division-staircase" style="height:194px;min-width:298px"><span class="ds-num" style="left:0px;top:0px">13</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">6</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">3</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">1</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">0</span></div><div class="mini-read">البواقي من الأعلى إلى الأسفل: 1 0 1 1<br/>نقرأ من الأسفل إلى الأعلى → 1101₂</div><p>إذن، 13₁₀ = 1101₂</p></div></div>
+</div>
+<!-- CONTENT_PRACTICA_END -->
+</section>
+<section class="major-section collapsed"><h2 aria-expanded="false" class="section-title collapsible-title" role="button" tabindex="0"><span class="major-num">3 ·</span> 🎯 <span class="i18n es" data-lang="es">RETO SIN AYUDA</span><span class="i18n fr" data-lang="fr">DÉFI SANS AIDE</span><span class="i18n ar" data-lang="ar">تحدٍّ دون مساعدة</span><span aria-hidden="true" class="collapse-indicator">▶</span></h2>
+<!-- CONTENT_RETO_START -->
+<p class="i18n es" data-lang="es"><strong>En esta parte no hay ayuda. Intenta resolverlo de forma autónoma.</strong></p><p class="i18n fr" data-lang="fr"><strong>Dans cette partie, il n’y a pas d’aide. Essaie de résoudre les exercices de façon autonome.</strong></p><p class="i18n ar" data-lang="ar"><strong>لا توجد مساعدة في هذا الجزء. حاول الحل بشكل مستقل</strong></p><div class="card challenge" data-card-lang="es"><div class="question-controls"><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div><div class="level">Reto 1</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Convierte 45₁₀ a binario y comprueba tu resultado mediante la conversión inversa.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Convertis 45₁₀ en binaire et vérifie ton résultat à l’aide de la conversion inverse.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>حوّل 45₁₀ إلى النظام الثنائي وتحقق من النتيجة باستعمال التحويل العكسي</p></div><div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><p>Realizamos las divisiones sucesivas entre 2:</p><div class="division-staircase" style="height:262px;min-width:402px"><span class="ds-num" style="left:0px;top:0px">45</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">22</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">11</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">5</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">2</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">0</span><span class="ds-num" style="left:260px;top:170px">1</span><span class="ds-div" style="left:300px;top:170px">2</span><span class="ds-rem" style="left:260px;top:200px">1</span><span class="ds-num" style="left:312px;top:204px">0</span></div><div class="mini-read">Restos de arriba abajo: 1 0 1 1 0 1<br/>Leemos de abajo arriba → 101101₂</div><p>Por tanto: 45₁₀ = 101101₂</p><p>Comprobación: 101101₂ = 32 + 8 + 4 + 1 = 45₁₀</p></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Nous effectuons les divisions successives par 2 :</p><div class="division-staircase" style="height:262px;min-width:402px"><span class="ds-num" style="left:0px;top:0px">45</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">22</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">11</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">5</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">2</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">0</span><span class="ds-num" style="left:260px;top:170px">1</span><span class="ds-div" style="left:300px;top:170px">2</span><span class="ds-rem" style="left:260px;top:200px">1</span><span class="ds-num" style="left:312px;top:204px">0</span></div><div class="mini-read">Restes de haut en bas : 1 0 1 1 0 1<br/>Nous lisons de bas en haut → 101101₂</div><p>Donc, 45₁₀ = 101101₂</p><p>Vérification : 101101₂ = 32 + 8 + 4 + 1 = 45₁₀</p></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><p>نجري القسمة المتتالية على 2:</p><div class="division-staircase" style="height:262px;min-width:402px"><span class="ds-num" style="left:0px;top:0px">45</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">22</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">11</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">5</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">1</span><span class="ds-num" style="left:208px;top:136px">2</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">0</span><span class="ds-num" style="left:260px;top:170px">1</span><span class="ds-div" style="left:300px;top:170px">2</span><span class="ds-rem" style="left:260px;top:200px">1</span><span class="ds-num" style="left:312px;top:204px">0</span></div><div class="mini-read">البواقي من الأعلى إلى الأسفل: 1 0 1 1 0 1<br/>نقرأ من الأسفل إلى الأعلى → 101101₂</div><p>إذن، 45₁₀ = 101101₂</p><p>التحقق: 101101₂ = 32 + 8 + 4 + 1 = 45₁₀</p></div></div></div><div class="card challenge" data-card-lang="es"><div class="question-controls"><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ SOLUCIÓN</label></div><div class="level">Reto 2</div><div class="i18n es" data-lang="es"><p><strong>Enunciado:</strong><br/>Lucía afirma que 101011₂ = 41₁₀. Usa las potencias de 2 para decidir si tiene razón y corrige el resultado si es necesario.</p></div><div class="i18n fr" data-lang="fr"><p><strong>Énoncé :</strong><br/>Lucía affirme que 101011₂ = 41₁₀. Utilise les puissances de 2 pour décider si elle a raison et corrige le résultat si nécessaire.</p></div><div class="i18n ar" data-lang="ar"><p><strong>المطلوب:</strong><br/>تقول لوسيا إن 101011₂ = 41₁₀. استعمل قوى العدد 2 لتقرر هل قولها صحيح، وصحح النتيجة إذا لزم الأمر</p></div><div class="toggle sol" hidden=""><div class="i18n es" data-lang="es"><strong>SOLUCIÓN</strong><div class="mathline">101011₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 0·2² + 1·2¹ + 1·2⁰<br/>= 32 + 8 + 2 + 1<br/>= 43</div><p>Lucía no tiene razón: 101011₂ = 43₁₀</p></div><div class="i18n fr" data-lang="fr"><strong>SOLUTION</strong><div class="mathline">101011₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 0·2² + 1·2¹ + 1·2⁰<br/>= 32 + 8 + 2 + 1<br/>= 43</div><p>Lucía n’a pas raison : 101011₂ = 43₁₀</p></div><div class="i18n ar" data-lang="ar"><strong>الحل</strong><div class="mathline">101011₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 0·2² + 1·2¹ + 1·2⁰<br/>= 32 + 8 + 2 + 1<br/>= 43</div><p>لوسيا ليست على صواب: 101011₂ = 43₁₀</p></div></div></div>
+<!-- CONTENT_RETO_END -->
+</section>
+<section class="major-section collapsed" id="check">
+<div class="check-head">
+<h2 aria-expanded="false" class="section-title collapsible-title" role="button" tabindex="0"><span class="major-num">4 ·</span> ✅ <span class="ci18n es">COMPRUEBA LO APRENDIDO</span><span class="ci18n fr">VÉRIFIE CE QUE TU AS APPRIS</span><span class="ci18n ar">تحقّق مما تعلّمته</span><span aria-hidden="true" class="collapse-indicator">▶</span></h2>
+<div class="check-controls">
+<button class="check-lang active" data-check-lang="es" type="button" aria-label="Castellano">🇪🇸</button>
+<button class="check-lang" data-check-lang="fr" type="button" aria-label="Français">🇫🇷</button>
+<button class="check-lang" data-check-lang="ar" type="button" aria-label="العربية">🇲🇦</button>
+<button class="mode-btn" id="testModeBtn" type="button">☐ <span class="ci18n es">Tipo test</span><span class="ci18n fr">QCM</span><span class="ci18n ar">اختيار من متعدد</span></button>
+<button class="mode-btn" id="solutionsBtn" type="button" disabled aria-disabled="true">☐ <span class="ci18n es">Solución</span><span class="ci18n fr">Solution</span><span class="ci18n ar">الحل</span></button>
+<button disabled="" id="evaluateBtn" type="button"><span class="ci18n es">Evaluar</span><span class="ci18n fr">Évaluer</span><span class="ci18n ar">تقييم</span></button>
+<div class="eval-result" id="evalResult"></div>
+</div></div>
+<!-- CONTENT_COMPRUEBA_START -->
+<p><span class="ci18n es"><strong>En esta parte no hay ayuda. Resuelve cada cuestión en tu libreta, activa Tipo test y elige una alternativa. Por último, evalúa tus respuestas.</strong></span><span class="ci18n fr" data-lang="fr"><strong>Dans cette partie, il n’y a pas d’aide. Résous chaque question dans ton cahier, active QCM et choisis une réponse. Enfin, évalue tes réponses.</strong></span><span class="ci18n ar" data-lang="ar"><strong>لا توجد مساعدة في هذا الجزء. حل كل سؤال في دفترك، فعّل الاختيار من متعدد واختر إجابة. وفي النهاية قيّم إجاباتك</strong></span></p><div class="check-card" data-correct="a"><h3><span class="qnum">1.</span><span class="ci18n es">Escribe mediante potencias de 10 la descomposición completa del número 40 307.</span><span class="ci18n fr" data-lang="fr">Écris la décomposition complète du nombre 40 307 à l’aide de puissances de 10.</span><span class="ci18n ar" data-lang="ar">اكتب التحليل الكامل للعدد 40 307 باستعمال قوى العدد 10</span></h3><div class="test-options"><label class="test-option"><input name="q1" type="radio" value="a"/><span class="ci18n es">a) 4·10⁴ + 0·10³ + 3·10² + 0·10¹ + 7·10⁰</span><span class="ci18n fr" data-lang="fr">a) 4·10⁴ + 0·10³ + 3·10² + 0·10¹ + 7·10⁰</span><span class="ci18n ar" data-lang="ar">a) 4·10⁴ + 0·10³ + 3·10² + 0·10¹ + 7·10⁰</span></label><label class="test-option"><input name="q1" type="radio" value="b"/><span class="ci18n es">b) 4·10³ + 0·10² + 3·10¹ + 0·10⁰ + 7</span><span class="ci18n fr" data-lang="fr">b) 4·10³ + 0·10² + 3·10¹ + 0·10⁰ + 7</span><span class="ci18n ar" data-lang="ar">b) 4·10³ + 0·10² + 3·10¹ + 0·10⁰ + 7</span></label><label class="test-option"><input name="q1" type="radio" value="c"/><span class="ci18n es">c) 4·10⁴ + 3·10³ + 7·10²</span><span class="ci18n fr" data-lang="fr">c) 4·10⁴ + 3·10³ + 7·10²</span><span class="ci18n ar" data-lang="ar">c) 4·10⁴ + 3·10³ + 7·10²</span></label><label class="test-option"><input name="q1" type="radio" value="d"/><span class="ci18n es">d) 4·10⁵ + 0·10⁴ + 3·10³ + 0·10² + 7·10¹</span><span class="ci18n fr" data-lang="fr">d) 4·10⁵ + 0·10⁴ + 3·10³ + 0·10² + 7·10¹</span><span class="ci18n ar" data-lang="ar">d) 4·10⁵ + 0·10⁴ + 3·10³ + 0·10² + 7·10¹</span></label></div><div class="test-solution"><span class="ci18n es"><strong>SOLUCIÓN</strong><p>En 40 307, las cifras ocupan decenas de millar, unidades de millar, centenas, decenas y unidades. Por tanto:</p><div class="mathline">40 307 = 4·10⁴ + 0·10³ + 3·10² + 0·10¹ + 7·10⁰<br/>= 40 000 + 0 + 300 + 0 + 7<br/>= 40 307</div></span><span class="ci18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Dans 40 307, les chiffres occupent les positions dizaines de millier, unités de millier, centaines, dizaines et unités. Donc :</p><div class="mathline">40 307 = 4·10⁴ + 0·10³ + 3·10² + 0·10¹ + 7·10⁰<br/>= 40 000 + 0 + 300 + 0 + 7<br/>= 40 307</div></span><span class="ci18n ar" data-lang="ar"><strong>الحل</strong><p>في العدد 40 307 تشغل الأرقام منازل عشرات الآلاف وآحاد الآلاف والمئات والعشرات والآحاد. إذن:</p><div class="mathline">40 307 = 4·10⁴ + 0·10³ + 3·10² + 0·10¹ + 7·10⁰<br/>= 40 000 + 0 + 300 + 0 + 7<br/>= 40 307</div></span></div></div>
+<div class="check-card" data-correct="c"><h3><span class="qnum">2.</span><span class="ci18n es">Escribe la descomposición completa de 101101₂ mediante potencias de 2, incluyendo también las posiciones cuya cifra es 0.</span><span class="ci18n fr" data-lang="fr">Écris la décomposition complète de 101101₂ à l’aide de puissances de 2, en incluant aussi les positions dont le chiffre est 0.</span><span class="ci18n ar" data-lang="ar">اكتب التحليل الكامل للعدد 101101₂ باستعمال قوى العدد 2، مع تضمين المواضع التي رقمها 0 أيضًا</span></h3><div class="test-options"><label class="test-option"><input name="q2" type="radio" value="a"/><span class="ci18n es">a) 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 1·2¹ + 0·2⁰</span><span class="ci18n fr" data-lang="fr">a) 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 1·2¹ + 0·2⁰</span><span class="ci18n ar" data-lang="ar">a) 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 1·2¹ + 0·2⁰</span></label><label class="test-option"><input name="q2" type="radio" value="b"/><span class="ci18n es">b) 1·2⁶ + 0·2⁵ + 1·2⁴ + 1·2³ + 0·2² + 1·2¹</span><span class="ci18n fr" data-lang="fr">b) 1·2⁶ + 0·2⁵ + 1·2⁴ + 1·2³ + 0·2² + 1·2¹</span><span class="ci18n ar" data-lang="ar">b) 1·2⁶ + 0·2⁵ + 1·2⁴ + 1·2³ + 0·2² + 1·2¹</span></label><label class="test-option"><input name="q2" type="radio" value="c"/><span class="ci18n es">c) 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰</span><span class="ci18n fr" data-lang="fr">c) 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰</span><span class="ci18n ar" data-lang="ar">c) 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰</span></label><label class="test-option"><input name="q2" type="radio" value="d"/><span class="ci18n es">d) 1·2⁵ + 1·2⁴ + 0·2³ + 1·2² + 0·2¹ + 1·2⁰</span><span class="ci18n fr" data-lang="fr">d) 1·2⁵ + 1·2⁴ + 0·2³ + 1·2² + 0·2¹ + 1·2⁰</span><span class="ci18n ar" data-lang="ar">d) 1·2⁵ + 1·2⁴ + 0·2³ + 1·2² + 0·2¹ + 1·2⁰</span></label></div><div class="test-solution"><span class="ci18n es"><strong>SOLUCIÓN</strong><p>Hay seis cifras, por lo que las posiciones van de 2⁵ a 2⁰. Asociamos cada cifra con su posición:</p><div class="mathline">101101₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰</div><p>Sustituyendo:</p><div class="mathline">32 + 0 + 8 + 4 + 0 + 1 = 45₁₀</div></span><span class="ci18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Il y a six chiffres, donc les positions vont de 2⁵ à 2⁰. Associons chaque chiffre à sa position :</p><div class="mathline">101101₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰</div><p>En remplaçant :</p><div class="mathline">32 + 0 + 8 + 4 + 0 + 1 = 45₁₀</div></span><span class="ci18n ar" data-lang="ar"><strong>الحل</strong><p>لدينا ستة أرقام، لذلك تمتد المواضع من 2⁵ إلى 2⁰. نربط كل رقم بموضعه:</p><div class="mathline">101101₂ = 1·2⁵ + 0·2⁴ + 1·2³ + 1·2² + 0·2¹ + 1·2⁰</div><p>بالتعويض:</p><div class="mathline">32 + 0 + 8 + 4 + 0 + 1 = 45₁₀</div></span></div></div>
+<div class="check-card" data-correct="b"><h3><span class="qnum">3.</span><span class="ci18n es">Convierte el número binario 110101₂ al sistema decimal utilizando el valor posicional de sus cifras.</span><span class="ci18n fr" data-lang="fr">Convertis le nombre binaire 110101₂ en décimal en utilisant la valeur de position de ses chiffres.</span><span class="ci18n ar" data-lang="ar">حوّل العدد الثنائي 110101₂ إلى النظام العشري باستعمال القيمة المكانية لأرقامه</span></h3><div class="test-options"><label class="test-option"><input name="q3" type="radio" value="a"/><span class="ci18n es">a) 45₁₀</span><span class="ci18n fr" data-lang="fr">a) 45₁₀</span><span class="ci18n ar" data-lang="ar">a) 45₁₀</span></label><label class="test-option"><input name="q3" type="radio" value="b"/><span class="ci18n es">b) 53₁₀</span><span class="ci18n fr" data-lang="fr">b) 53₁₀</span><span class="ci18n ar" data-lang="ar">b) 53₁₀</span></label><label class="test-option"><input name="q3" type="radio" value="c"/><span class="ci18n es">c) 51₁₀</span><span class="ci18n fr" data-lang="fr">c) 51₁₀</span><span class="ci18n ar" data-lang="ar">c) 51₁₀</span></label><label class="test-option"><input name="q3" type="radio" value="d"/><span class="ci18n es">d) 55₁₀</span><span class="ci18n fr" data-lang="fr">d) 55₁₀</span><span class="ci18n ar" data-lang="ar">d) 55₁₀</span></label></div><div class="test-solution"><span class="ci18n es"><strong>SOLUCIÓN</strong><p>Colocamos las potencias de 2 correspondientes a las seis posiciones:</p><div class="mathline">110101₂ = 1·2⁵ + 1·2⁴ + 0·2³ + 1·2² + 0·2¹ + 1·2⁰<br/>= 1·32 + 1·16 + 0·8 + 1·4 + 0·2 + 1·1<br/>= 32 + 16 + 0 + 4 + 0 + 1<br/>= 53₁₀</div></span><span class="ci18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Plaçons les puissances de 2 correspondant aux six positions :</p><div class="mathline">110101₂ = 1·2⁵ + 1·2⁴ + 0·2³ + 1·2² + 0·2¹ + 1·2⁰<br/>= 1·32 + 1·16 + 0·8 + 1·4 + 0·2 + 1·1<br/>= 32 + 16 + 0 + 4 + 0 + 1<br/>= 53₁₀</div></span><span class="ci18n ar" data-lang="ar"><strong>الحل</strong><p>نضع قوى العدد 2 الموافقة للمواضع الستة:</p><div class="mathline">110101₂ = 1·2⁵ + 1·2⁴ + 0·2³ + 1·2² + 0·2¹ + 1·2⁰<br/>= 1·32 + 1·16 + 0·8 + 1·4 + 0·2 + 1·1<br/>= 32 + 16 + 0 + 4 + 0 + 1<br/>= 53₁₀</div></span></div></div>
+<div class="check-card" data-correct="d"><h3><span class="qnum">4.</span><span class="ci18n es">Convierte 37₁₀ al sistema binario mediante divisiones sucesivas entre 2 y leyendo los restos en el orden correcto.</span><span class="ci18n fr" data-lang="fr">Convertis 37₁₀ en binaire par divisions successives par 2 et lis les restes dans le bon ordre.</span><span class="ci18n ar" data-lang="ar">حوّل 37₁₀ إلى النظام الثنائي باستعمال القسمة المتتالية على 2، واقرأ البواقي بالترتيب الصحيح</span></h3><div class="test-options"><label class="test-option"><input name="q4" type="radio" value="a"/><span class="ci18n es">a) 100011₂</span><span class="ci18n fr" data-lang="fr">a) 100011₂</span><span class="ci18n ar" data-lang="ar">a) 100011₂</span></label><label class="test-option"><input name="q4" type="radio" value="b"/><span class="ci18n es">b) 101001₂</span><span class="ci18n fr" data-lang="fr">b) 101001₂</span><span class="ci18n ar" data-lang="ar">b) 101001₂</span></label><label class="test-option"><input name="q4" type="radio" value="c"/><span class="ci18n es">c) 110001₂</span><span class="ci18n fr" data-lang="fr">c) 110001₂</span><span class="ci18n ar" data-lang="ar">c) 110001₂</span></label><label class="test-option"><input name="q4" type="radio" value="d"/><span class="ci18n es">d) 100101₂</span><span class="ci18n fr" data-lang="fr">d) 100101₂</span><span class="ci18n ar" data-lang="ar">d) 100101₂</span></label></div><div class="test-solution"><span class="ci18n es"><strong>SOLUCIÓN</strong><p>Realizamos las divisiones sucesivas entre 2:</p><div class="division-staircase" style="height:262px;min-width:402px"><span class="ds-num" style="left:0px;top:0px">37</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">18</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">9</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">4</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">0</span><span class="ds-num" style="left:208px;top:136px">2</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">0</span><span class="ds-num" style="left:260px;top:170px">1</span><span class="ds-div" style="left:300px;top:170px">2</span><span class="ds-rem" style="left:260px;top:200px">1</span><span class="ds-num" style="left:312px;top:204px">0</span></div><div class="mini-read">Restos de arriba abajo: 1 0 1 0 0 1<br/>Los leemos de abajo arriba → 100101₂</div><p>Por tanto: 37₁₀ = 100101₂</p></span><span class="ci18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Nous effectuons les divisions successives par 2 :</p><div class="division-staircase" style="height:262px;min-width:402px"><span class="ds-num" style="left:0px;top:0px">37</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">18</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">9</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">4</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">0</span><span class="ds-num" style="left:208px;top:136px">2</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">0</span><span class="ds-num" style="left:260px;top:170px">1</span><span class="ds-div" style="left:300px;top:170px">2</span><span class="ds-rem" style="left:260px;top:200px">1</span><span class="ds-num" style="left:312px;top:204px">0</span></div><div class="mini-read">Restes de haut en bas : 1 0 1 0 0 1<br/>Nous les lisons de bas en haut → 100101₂</div><p>Donc, 37₁₀ = 100101₂</p></span><span class="ci18n ar" data-lang="ar"><strong>الحل</strong><p>نجري القسمة المتتالية على 2:</p><div class="division-staircase" style="height:262px;min-width:402px"><span class="ds-num" style="left:0px;top:0px">37</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">1</span><span class="ds-num" style="left:52px;top:34px">18</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">0</span><span class="ds-num" style="left:104px;top:68px">9</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">4</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">0</span><span class="ds-num" style="left:208px;top:136px">2</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">0</span><span class="ds-num" style="left:260px;top:170px">1</span><span class="ds-div" style="left:300px;top:170px">2</span><span class="ds-rem" style="left:260px;top:200px">1</span><span class="ds-num" style="left:312px;top:204px">0</span></div><div class="mini-read">البواقي من الأعلى إلى الأسفل: 1 0 1 0 0 1<br/>نقرأها من الأسفل إلى الأعلى → 100101₂</div><p>إذن، 37₁₀ = 100101₂</p></span></div></div>
+<div class="check-card" data-correct="b"><h3><span class="qnum">5.</span><span class="ci18n es">Al convertir 22₁₀ a binario mediante divisiones sucesivas entre 2, un alumno obtiene, de arriba hacia abajo, los restos 0, 1, 1, 0, 1 y escribe 01101₂. Decide si ha leído los restos correctamente y determina la conversión correcta.</span><span class="ci18n fr" data-lang="fr">En convertissant 22₁₀ en binaire par divisions successives par 2, un élève obtient, de haut en bas, les restes 0, 1, 1, 0, 1 et écrit 01101₂. Décide s’il a lu les restes correctement et détermine la conversion correcte.</span><span class="ci18n ar" data-lang="ar">عند تحويل 22₁₀ إلى النظام الثنائي بالقسمة المتتالية على 2، حصل تلميذ من الأعلى إلى الأسفل على البواقي 0، 1، 1، 0، 1 وكتب 01101₂. قرر هل قرأ البواقي بالترتيب الصحيح وحدد التحويل الصحيح</span></h3><div class="test-options"><label class="test-option"><input name="q5" type="radio" value="a"/><span class="ci18n es">a) Sí; 22₁₀ = 01101₂.</span><span class="ci18n fr" data-lang="fr">a) Oui ; 22₁₀ = 01101₂.</span><span class="ci18n ar" data-lang="ar">a) نعم؛ 22₁₀ = 01101₂.</span></label><label class="test-option"><input name="q5" type="radio" value="b"/><span class="ci18n es">b) No; debe leerlos de abajo arriba y obtiene 22₁₀ = 10110₂.</span><span class="ci18n fr" data-lang="fr">b) Non ; il doit les lire de bas en haut et obtient 22₁₀ = 10110₂.</span><span class="ci18n ar" data-lang="ar">b) لا؛ يجب أن يقرأها من الأسفل إلى الأعلى فيحصل على 22₁₀ = 10110₂</span></label><label class="test-option"><input name="q5" type="radio" value="c"/><span class="ci18n es">c) No; la conversión correcta es 22₁₀ = 11010₂.</span><span class="ci18n fr" data-lang="fr">c) Non ; la conversion correcte est 22₁₀ = 11010₂.</span><span class="ci18n ar" data-lang="ar">c) لا؛ التحويل الصحيح هو 22₁₀ = 11010₂</span></label><label class="test-option"><input name="q5" type="radio" value="d"/><span class="ci18n es">d) No; debe eliminar el primer resto y obtiene 1101₂.</span><span class="ci18n fr" data-lang="fr">d) Non ; il doit supprimer le premier reste et obtient 1101₂.</span><span class="ci18n ar" data-lang="ar">d) لا؛ يجب حذف الباقي الأول فيحصل على 1101₂</span></label></div><div class="test-solution"><span class="ci18n es"><strong>SOLUCIÓN</strong><p>Los restos se escriben según van apareciendo, pero el número binario se forma leyéndolos <strong>de abajo hacia arriba</strong>.</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">22</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">11</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">5</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">2</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">0</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">De arriba abajo: 0 1 1 0 1<br/>Al invertir el orden: 1 0 1 1 0</div><p><strong>22₁₀ = 10110₂</strong></p><p>Comprobación:</p><div class="mathline">10110₂ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 22₁₀</div></span><span class="ci18n fr" data-lang="fr"><strong>SOLUTION</strong><p>Les restes s’écrivent au fur et à mesure, mais le nombre binaire se forme en les lisant <strong>de bas en haut</strong>.</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">22</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">11</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">5</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">2</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">0</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">De haut en bas : 0 1 1 0 1<br/>En inversant l’ordre : 1 0 1 1 0</div><p><strong>22₁₀ = 10110₂</strong></p><p>Vérification :</p><div class="mathline">10110₂ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 22₁₀</div></span><span class="ci18n ar" data-lang="ar"><strong>الحل</strong><p>تُكتب البواقي حسب ترتيب ظهورها، لكن العدد الثنائي يتكوّن بقراءتها <strong>من الأسفل إلى الأعلى</strong>.</p><div class="division-staircase" style="height:228px;min-width:350px"><span class="ds-num" style="left:0px;top:0px">22</span><span class="ds-div" style="left:40px;top:0px">2</span><span class="ds-rem" style="left:0px;top:30px">0</span><span class="ds-num" style="left:52px;top:34px">11</span><span class="ds-div" style="left:92px;top:34px">2</span><span class="ds-rem" style="left:52px;top:64px">1</span><span class="ds-num" style="left:104px;top:68px">5</span><span class="ds-div" style="left:144px;top:68px">2</span><span class="ds-rem" style="left:104px;top:98px">1</span><span class="ds-num" style="left:156px;top:102px">2</span><span class="ds-div" style="left:196px;top:102px">2</span><span class="ds-rem" style="left:156px;top:132px">0</span><span class="ds-num" style="left:208px;top:136px">1</span><span class="ds-div" style="left:248px;top:136px">2</span><span class="ds-rem" style="left:208px;top:166px">1</span><span class="ds-num" style="left:260px;top:170px">0</span></div><div class="mini-read">من الأعلى إلى الأسفل: 0 1 1 0 1<br/>بعد عكس الترتيب: 1 0 1 1 0</div><p><strong>22₁₀ = 10110₂</strong></p><p>التحقق:</p><div class="mathline">10110₂ = 1·16 + 0·8 + 1·4 + 1·2 + 0·1 = 22₁₀</div></span></div></div>
+<!-- CONTENT_COMPRUEBA_END -->
+</section>
+<script>
+const body=document.body;
+/* Motor: selectores locales en PRACTICA y RETO */
+(function ensureLocalLanguageControls(){
+  const sections=[...document.querySelectorAll('.major-section')];
+  [sections[1],sections[2]].filter(Boolean).forEach(section=>{
+    section.querySelectorAll('.card').forEach(card=>{
+      card.dataset.cardLang=card.dataset.cardLang||body.dataset.lang||'es';
+      let controls=card.querySelector('.question-controls');
+      if(!controls){controls=document.createElement('div');controls.className='question-controls';card.prepend(controls);}
+      if(!controls.querySelector('.local-lang-buttons')){
+        const langs=document.createElement('div');langs.className='local-lang-buttons';
+        [['es','🇪🇸','Castellano'],['fr','🇫🇷','Français'],['ar','🇲🇦','العربية']].forEach(([lang,flag,label])=>{
+          const b=document.createElement('button');b.type='button';b.className='q-lang';b.dataset.qLang=lang;b.setAttribute('aria-label',label);b.textContent=flag;langs.appendChild(b);
+        });
+        controls.prepend(langs);
+      }
+    });
+  });
+})();
+function setCardLang(card,lang){
+  card.dataset.cardLang=lang;
+  card.querySelectorAll('.q-lang').forEach(b=>{const on=b.dataset.qLang===lang;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false');});
+}
+function syncMasterChecks(){
+  const helps=[...document.querySelectorAll('.item-help-check')];
+  const sols=[...document.querySelectorAll('.item-sol-check')];
+  const mh=document.getElementById('allHelpCheck'), ms=document.getElementById('allSolCheck');
+
+  /* Los controles maestros reflejan exclusivamente las tarjetas ordinarias.
+     El bloque 4 COMPRUEBA LO APRENDIDO es totalmente independiente. */
+  if(mh){
+    if(helps.length){
+      mh.checked=helps.every(x=>x.checked);
+      mh.indeterminate=helps.some(x=>x.checked)&&!mh.checked;
+    }else{
+      mh.indeterminate=false;
+    }
+  }
+
+  if(ms){
+    if(sols.length){
+      const regularAll=sols.every(x=>x.checked);
+      const regularSome=sols.some(x=>x.checked);
+      ms.checked=regularAll;
+      ms.indeterminate=!regularAll&&regularSome;
+    }else{
+      ms.checked=false;
+      ms.indeterminate=false;
+    }
+  }
+}
+function setItemBox(card,kind,show){
+  const box=card.querySelector('.toggle.'+kind); if(box) box.hidden=!show;
+  const ck=card.querySelector(kind==='help'?'.item-help-check':'.item-sol-check'); if(ck) ck.checked=show;
+}
+document.querySelectorAll('.langbar button').forEach(b=>b.addEventListener('click',()=>{
+  const lang=b.dataset.l; body.dataset.lang=lang; document.documentElement.lang=lang; document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.querySelectorAll('.langbar button').forEach(x=>x.classList.toggle('active',x===b));
+  document.querySelectorAll('.card[data-card-lang]').forEach(card=>setCardLang(card,lang));
+  const checkBlock=document.getElementById('check');
+  if(checkBlock){
+    checkBlock.dataset.checkLang=lang;
+    document.querySelectorAll('.check-lang').forEach(x=>x.classList.toggle('active',x.dataset.checkLang===lang));
+  }
+  if(typeof updateCheckControls==='function') updateCheckControls();
+  if(typeof refreshEval==='function') refreshEval();
+}));
+document.querySelectorAll('.q-lang').forEach(b=>b.addEventListener('click',()=>setCardLang(b.closest('.card'),b.dataset.qLang)));
+document.querySelectorAll('.card[data-card-lang]').forEach(card=>setCardLang(card,card.dataset.cardLang||body.dataset.lang||'es'));
+document.querySelectorAll('.item-help-check').forEach(c=>c.addEventListener('change',()=>{setItemBox(c.closest('.card'),'help',c.checked);syncMasterChecks();}));
+document.querySelectorAll('.item-sol-check').forEach(c=>c.addEventListener('change',()=>{setItemBox(c.closest('.card'),'sol',c.checked);syncMasterChecks();}));
+const allHelpCheck=document.getElementById('allHelpCheck');
+if(allHelpCheck) allHelpCheck.addEventListener('change',()=>{document.querySelectorAll('.card').forEach(card=>{if(card.querySelector('.toggle.help'))setItemBox(card,'help',allHelpCheck.checked)});syncMasterChecks();});
+const allSolCheck=document.getElementById('allSolCheck');
+if(allSolCheck) allSolCheck.addEventListener('change',()=>{
+  /* Las soluciones globales afectan solo a las tarjetas ordinarias.
+     COMPRUEBA LO APRENDIDO queda deliberadamente desconectado. */
+  document.querySelectorAll('.card').forEach(card=>{
+    if(card.querySelector('.toggle.sol')) setItemBox(card,'sol',allSolCheck.checked);
+  });
+  syncMasterChecks();
+});
+document.getElementById('printBtn').addEventListener('click',()=>window.print());
+document.getElementById('closeBtn').addEventListener('click',()=>{if(window.history.length>1) window.history.back(); else window.close();});
+syncMasterChecks();
+
+const check=document.getElementById('check');
+if(check&&!check.dataset.checkLang) check.dataset.checkLang=body.dataset.lang||'es';
+const testModeBtn=document.getElementById('testModeBtn');
+const solutionsBtn=document.getElementById('solutionsBtn');
+const evaluateBtn=document.getElementById('evaluateBtn');
+const evalResult=document.getElementById('evalResult');
+
+function checkLang(){return (check&&check.dataset.checkLang)||body.dataset.lang||'es';}
+function updateCheckControls(){
+ const l=checkLang();
+ const tOn=testModeBtn.classList.contains('active');
+ const sOn=solutionsBtn.classList.contains('active');
+ const evaluated=evalResult.classList.contains('visible');
+ const txt={es:{test:'Tipo test',sol:'Solución',eval:'Evaluar',hide:'Ocultar evaluación'},fr:{test:'QCM',sol:'Solution',eval:'Évaluer',hide:'Masquer l’évaluation'},ar:{test:'اختيار من متعدد',sol:'الحل',eval:'قيّم',hide:'إخفاء التقييم'}}[l];
+ testModeBtn.childNodes[0].nodeValue=tOn?'☑ ':'☐ ';
+ solutionsBtn.childNodes[0].nodeValue=sOn?'☑ ':'☐ ';
+ solutionsBtn.disabled=!evaluated;
+ solutionsBtn.setAttribute('aria-disabled',evaluated?'false':'true');
+ evaluateBtn.querySelectorAll('.ci18n').forEach(x=>x.textContent=x.classList.contains(l)?(evaluated?txt.hide:txt.eval):x.textContent);
+}
+
+function clearEvaluationMarks(){
+ check.querySelectorAll('.test-option').forEach(x=>x.classList.remove('correcta-alumno','incorrecta-alumno'));
+}
+function paintEvaluationMarks(){
+ clearEvaluationMarks();
+ check.querySelectorAll('.check-card[data-correct]').forEach(card=>{
+  const chosen=card.querySelector('input[type="radio"]:checked');
+  if(!chosen)return;
+  const lab=chosen.closest('.test-option');
+  if(lab)lab.classList.add(chosen.value===card.dataset.correct?'correcta-alumno':'incorrecta-alumno');
+ });
+}
+function closeCheckSolutions(){
+ solutionsBtn.classList.remove('active');
+ check.querySelectorAll('.test-solution').forEach(x=>x.classList.remove('visible'));
+}
+
+testModeBtn.addEventListener('click',()=>{
+ const on=!testModeBtn.classList.contains('active');
+ testModeBtn.classList.toggle('active',on);
+ check.querySelectorAll('.test-options').forEach(x=>x.classList.toggle('visible',on));
+ evaluateBtn.disabled=!on;
+ if(!on){
+   evalResult.classList.remove('visible');
+   closeCheckSolutions();
+   clearEvaluationMarks();
+   check.querySelectorAll('input[type="radio"]').forEach(r=>r.disabled=false);
+   check.querySelectorAll('.test-options').forEach(x=>x.classList.remove('locked'));
+ }
+ updateCheckControls();
+});
+
+solutionsBtn.addEventListener('click',()=>{
+ if(!evalResult.classList.contains('visible'))return;
+ const on=!solutionsBtn.classList.contains('active');
+ solutionsBtn.classList.toggle('active',on);
+ check.querySelectorAll('.test-solution').forEach(x=>x.classList.toggle('visible',on));
+ updateCheckControls();
+});
+
+function scoreCheck(){
+ let answered=0,correct=0;
+ const cards=[...check.querySelectorAll('.check-card[data-correct]')];
+ cards.forEach(card=>{
+   const r=card.querySelector('input[type="radio"]:checked');
+   if(r){answered++;if(r.value===card.dataset.correct)correct++;}
+ });
+ const total=cards.length;
+ const raw=total?(correct/total)*100:0;
+ const pct=Number.isInteger(raw)?raw:Number(raw.toFixed(1));
+ return {answered,correct,total,pct};
+}
+function refreshEval(){
+ if(!evalResult.classList.contains('visible'))return;
+ const x=scoreCheck(),l=checkLang(),tx={es:['Respondidas','de','Aciertos','Éxito'],fr:['Répondues','sur','Réussites','Réussite'],ar:['تمت الإجابة عن','من','الإجابات الصحيحة','نسبة النجاح']}[l];
+ evalResult.innerHTML=`${tx[0]}: ${x.answered} ${tx[1]} ${x.total}<br>${tx[2]}: ${x.correct}<br>${tx[3]}: ${x.pct} %`;
+}
+evaluateBtn.addEventListener('click',()=>{
+ if(evalResult.classList.contains('visible')){
+   evalResult.classList.remove('visible');
+   closeCheckSolutions();
+   clearEvaluationMarks();
+   check.querySelectorAll('input[type="radio"]').forEach(r=>r.disabled=false);
+   check.querySelectorAll('.test-options').forEach(x=>x.classList.remove('locked'));
+   updateCheckControls();
+   return;
+ }
+ evalResult.classList.add('visible');
+ refreshEval();
+ paintEvaluationMarks();
+ check.querySelectorAll('input[type="radio"]').forEach(r=>r.disabled=true);
+ check.querySelectorAll('.test-options').forEach(x=>x.classList.add('locked'));
+ updateCheckControls();
+});
+check.querySelectorAll('input[type="radio"]').forEach(r=>r.addEventListener('change',refreshEval));
+document.querySelectorAll('.check-lang').forEach(b=>b.addEventListener('click',()=>{
+ const lang=b.dataset.checkLang; check.dataset.checkLang=lang;
+ document.querySelectorAll('.check-lang').forEach(x=>x.classList.toggle('active',x===b));
+ updateCheckControls(); refreshEval();
+}));
+closeCheckSolutions();
+clearEvaluationMarks();
+updateCheckControls();
+
+
+// V5 · Motor general: totales del test dinámicos y controles maestros verificables incluso sin contenido.
+// V23 · Revisión integral ES/FR/AR; los cuatro bloques se inician contraídos y conservan su estado interno al expandir/contraer.
+function toggleMajorSection(title){
+ const section=title.closest('.major-section'); if(!section)return;
+ const collapsed=section.classList.toggle('collapsed');
+ title.setAttribute('aria-expanded',collapsed?'false':'true');
+ const indicator=title.querySelector('.collapse-indicator'); if(indicator)indicator.textContent=collapsed?'▶':'▼';
+}
+document.querySelectorAll('.major-section .collapsible-title').forEach(title=>{
+ title.addEventListener('click',()=>toggleMajorSection(title));
+ title.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleMajorSection(title);}});
+});
+// Criterio visual general: agrupación de miles/millones/milésimas con espacio fino no separable.
+(function normalizeDigitGrouping(){
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(n){
+   const p=n.parentElement; if(!p||['SCRIPT','STYLE','TEXTAREA'].includes(p.tagName))return NodeFilter.FILTER_REJECT;
+   return NodeFilter.FILTER_ACCEPT;
+ }});
+ const nodes=[]; while(walker.nextNode())nodes.push(walker.currentNode);
+ nodes.forEach(n=>{n.nodeValue=n.nodeValue.replace(/(\d) (?=\d{3}(?:\D|$))/g,'$1\u202F');});
+})();
+
+</script>
+</body></html>

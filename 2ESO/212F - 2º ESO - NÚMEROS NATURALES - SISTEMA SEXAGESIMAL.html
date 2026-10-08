@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<!-- PLANTILLA MAESTRA V6: MOTOR GENERAL CONGELADO.
+NO contiene contenido de ninguna ficha concreta.
+Para generar una ficha, sustituir EXCLUSIVAMENTE las zonas CONTENT_* delimitadas.
+No modificar CSS, JavaScript, controles, estructura de bloques ni comportamiento. -->
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>212F · Système sexagésimal · APOYO-MAT · ES/FR/AR</title>
+<style>
+:root{--ink:#24323d;--muted:#61717c;--line:#d6dee3;--soft:#f7fafb;--learn:#eef6ff;--help:#f4f9ff;--sol:#f1faf2;--warn:#fff8e8;--accent:#1f638d}
+*{box-sizing:border-box} body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);max-width:1050px;margin:0 auto;padding:20px;line-height:1.5;background:#fff}
+header{border-bottom:3px solid var(--accent);padding-bottom:14px;margin-bottom:18px}.top{display:flex;gap:12px;align-items:flex-start}.top h1{margin:0;flex:1;font-size:1.65rem}.sub{font-weight:700;color:var(--muted);margin:.25rem 0}.goal{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px 12px}.goal-top-line{border-top:3px solid var(--accent);margin:16px 0 16px}
+.langbar{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.langbar button,.actions button,#checkBtn,#resetBtn{border:1px solid #9aabb5;background:#fff;border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer}.langbar button.active{background:#e6f2fa;border-color:#5f94b4}
+section{margin:24px 0}.section-title{font-size:1.28rem;border-bottom:2px solid var(--line);padding-bottom:5px}.learnbox{background:var(--learn);border:1px solid #bdd5e5;border-radius:12px;padding:14px;margin:12px 0}.card{border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0;background:#fff}.level{font-size:.84rem;font-weight:800;color:var(--accent);margin-bottom:5px}.math{direction:ltr;unicode-bidi:isolate;display:inline-block}.mathline{direction:ltr;unicode-bidi:isolate;margin:7px 0;font-family:Arial,sans-serif}.pos{border-collapse:collapse;margin:10px 0;direction:ltr}.pos th,.pos td{border:1px solid #aab8c0;padding:6px 11px;text-align:center}.pos th{background:#f4f7f8}.pos-labelled th:first-child{white-space:nowrap;text-align:left;background:#e8f1f7}.pos-labelled td{min-width:78px}
+.warning{background:var(--warn);border:1px solid #e3c985;border-radius:9px;padding:10px 12px;font-weight:700}.work{width:100%;min-height:78px;border:1.5px solid #aab4ba;border-radius:8px;padding:8px;font:inherit;direction:ltr;resize:vertical}.actions{display:flex;gap:8px;margin-top:8px}.toggle{margin-top:9px;padding:11px 12px;border-radius:9px}.help{background:var(--help);border:1px solid #bdd5e5}.sol{background:var(--sol);border:1px solid #b9d9bd}.challenge{border-left:5px solid #8b6aaf}.check-card{background:#fbfcfd}.answer{width:100%;padding:8px;border:1.5px solid #9aa8b0;border-radius:7px;font:inherit;direction:ltr}.feedback{margin-top:12px;padding:12px;border-radius:9px;font-weight:700}.ok{background:#eef8ee;border:1px solid #9ac39d}.bad{background:#fff0f2;border:1px solid #d9a2aa}
+.i18n{display:none}.i18n.es{display:inline}.i18n.ar{direction:rtl;text-align:right}.i18n.ar p,.i18n.ar h2,.i18n.ar h3{direction:rtl;text-align:right}.toggle .i18n{display:none}.toggle .i18n.activeblock{display:block}
+body[data-lang="fr"] .i18n.fr,body[data-lang="ar"] .i18n.ar,body[data-lang="es"] .i18n.es{display:inline}
+body[data-lang="fr"] .toggle .i18n.fr,body[data-lang="ar"] .toggle .i18n.ar,body[data-lang="es"] .toggle .i18n.es{display:block}
+body[data-lang="fr"] .i18n.es,body[data-lang="fr"] .i18n.ar,body[data-lang="ar"] .i18n.es,body[data-lang="ar"] .i18n.fr,body[data-lang="es"] .i18n.fr,body[data-lang="es"] .i18n.ar{display:none}
+.divchain{display:flex;gap:10px;flex-wrap:wrap;direction:ltr;margin:10px 0}.division{border:1px solid #aab8c0;border-radius:8px;padding:6px 9px;min-width:95px;text-align:center;background:#fff}.division .r{font-weight:700}
+
+.school-chain{display:flex;align-items:center;gap:10px;flex-wrap:wrap;direction:ltr;margin:16px 0 12px}
+.school-div{display:grid;grid-template-columns:58px 45px;grid-template-rows:auto auto auto;font-family:"Courier New",monospace;font-size:1.08rem;line-height:1.25}
+.school-div .dividend{grid-column:1;grid-row:1;padding:4px 8px;text-align:right}
+.school-div .divisor{grid-column:2;grid-row:1;padding:4px 8px;text-align:center;border-left:2px solid #263746;border-bottom:2px solid #263746;font-weight:700}
+.school-div .partial{grid-column:1;grid-row:2;padding:3px 8px;text-align:right;border-bottom:1px solid #263746}
+.school-div .quotient{grid-column:2;grid-row:2;padding:3px 8px;text-align:center;border-left:2px solid #263746;font-weight:700}
+.school-div .remainder{grid-column:1;grid-row:3;padding:3px 8px;text-align:right;font-weight:800}
+.chain-arrow{font-weight:800;color:#667984}
+.reading-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;direction:ltr;margin:6px 0 10px}
+.read-label{font-weight:700}.rest-seq{font-family:"Courier New",monospace;font-weight:800;letter-spacing:.08em}.read-arrow{font-weight:700}
+
+
+.stair-wrap{direction:ltr;margin:14px 0}.stair-title{margin-bottom:8px}
+
+.single-chain{position:relative;height:215px;min-width:370px;max-width:500px;font-family:"Courier New",monospace;font-size:1.08rem;font-weight:700}
+.single-chain span{position:absolute;left:var(--x);top:var(--y);display:block}
+.single-chain .sn,.single-chain .sr{width:28px;text-align:right}
+.single-chain .sd{width:46px;text-align:center;border-left:2px solid #263746;border-bottom:2px solid #263746;padding:0 5px 4px}
+.single-chain .sq{width:38px;text-align:center}
+.single-chain .nextn{font-weight:700}
+
+.stair{position:relative;height:225px;min-width:390px;max-width:520px;font-family:"Courier New",monospace;font-size:1.05rem;font-weight:700}
+.step{position:absolute;left:var(--x);top:calc(var(--x) * .55);width:105px;height:72px}
+.step .n{position:absolute;left:0;top:8px;width:38px;text-align:right}
+.step .d{position:absolute;left:52px;top:8px;width:38px;text-align:center;border-left:2px solid #263746;border-bottom:2px solid #263746;padding:0 6px 4px}
+.step .r{position:absolute;left:16px;top:40px;width:22px;text-align:right}
+.step .q{position:absolute;left:52px;top:39px;width:38px;text-align:center;border-left:2px solid #263746;padding:0 6px}
+.division-table{border-collapse:collapse;margin:8px 0 10px;font-size:1rem}.division-table th,.division-table td{border:1px solid #aab3b8;padding:7px 14px;text-align:center}.division-table th{background:#f5f6f7}
+.read-result{border-left:4px solid #83afe7;padding-left:10px;font-weight:700;margin-top:8px}
+
+
+.mini-stair{position:relative;height:230px;min-width:390px;max-width:500px;margin:10px 0 4px;direction:ltr;font-family:"Courier New",monospace;font-size:1rem;font-weight:700}
+.mini-stair span{position:absolute;left:var(--x);top:var(--y);display:block}
+.mini-stair .msn,.mini-stair .msr{width:28px;text-align:right}
+.mini-stair .msd{width:46px;text-align:center;border-left:2px solid #263746;border-bottom:2px solid #263746;padding:0 5px 4px}
+.mini-stair .msq{width:38px;text-align:center}
+.mini-read{direction:ltr;border-left:3px solid #83afe7;padding-left:8px;margin:4px 0 8px;font-weight:700}
+
+@media(max-width:650px){body{padding:12px}.top{display:block}.pos{font-size:.9rem}.pos th,.pos td{padding:5px}.actions{flex-wrap:wrap}}
+@media print{.langbar,.actions,#checkBtn,#resetBtn{display:none!important}.work,.answer{border:1px solid #aaa}.toggle[hidden]{display:none}.card,.learnbox{break-inside:avoid-page}}
+
+/* APOYO-MAT · controles globales según modelo 211P */
+.title-row{display:flex;align-items:center;gap:14px}
+.title-row .title-block{flex:1;min-width:0}
+.close-apoyo{flex:0 0 auto;white-space:nowrap;font-weight:700}
+.masterbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.masterbar button{font-weight:700}
+.masterbar .print{margin-left:auto}
+@media(max-width:700px){
+  .title-row{gap:8px}
+  .close-apoyo{font-size:.88rem;padding:.48rem .62rem}
+  .masterbar .print{margin-left:0}
+}
+@media print{
+  .close-apoyo,.masterbar,.langbar,.actions,#checkBtn,#resetBtn{display:none!important}
+}
+
+
+/* V14 · panel global recuadrado como en las pruebas PC/Moodle */
+.global-control-panel{border:1px solid #d5dadd;border-radius:14px;padding:12px 16px 14px;margin:12px 0;background:#fbfbfb}
+.global-control-panel .langbar{margin:0 0 8px}
+.global-control-panel .masterbar{margin-top:0}
+@media print{.global-control-panel{display:none!important}}
+
+/* V11 · controles individuales según prueba modelo */
+.master-check-control,.item-check-control{display:inline-flex;align-items:center;gap:5px;border:1px solid #9aabb5;background:#fff;border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer;white-space:nowrap}
+.master-check-control input,.item-check-control input{width:17px;height:17px;margin:0;accent-color:#1f638d;cursor:pointer}
+.question-controls{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid #e2e8ec}
+.question-langs{display:flex;gap:4px;margin-right:auto}
+.question-langs button{border:1px solid #9aabb5;background:#fff;border-radius:7px;padding:5px 8px;cursor:pointer}
+.question-langs button.active{background:#e6f2fa;border-color:#5f94b4}
+.card .actions{display:none!important}
+/* El idioma individual gobierna enunciado, ayuda y solución de esa actividad. */
+.card[data-card-lang="es"] .i18n.es{display:inline!important}.card[data-card-lang="es"] .i18n.fr,.card[data-card-lang="es"] .i18n.ar{display:none!important}
+.card[data-card-lang="fr"] .i18n.fr{display:inline!important}.card[data-card-lang="fr"] .i18n.es,.card[data-card-lang="fr"] .i18n.ar{display:none!important}
+.card[data-card-lang="ar"] .i18n.ar{display:inline!important}.card[data-card-lang="ar"] .i18n.es,.card[data-card-lang="ar"] .i18n.fr{display:none!important}
+.card[data-card-lang="es"] .toggle .i18n.es,.card[data-card-lang="fr"] .toggle .i18n.fr,.card[data-card-lang="ar"] .toggle .i18n.ar{display:block!important}
+@media print{.question-controls,.master-check-control{display:none!important}}
+
+
+/* V12 · IMPRESIÓN · criterios APOYO-MAT: aprovechar página sin romper unidades matemáticas compactas */
+@media print {
+  /* Las tarjetas y bloques largos PUEDEN continuar en la página siguiente. */
+  section,
+  .card,
+  .practice-card,
+  .check-card,
+  .challenge,
+  .learnbox,
+  .toggle,
+  .help,
+  .sol,
+  .stair-wrap {
+    break-inside:auto !important;
+    page-break-inside:auto !important;
+  }
+
+  /* Evitar títulos huérfanos: el título debe viajar con el comienzo del contenido. */
+  h1,h2,h3,h4,
+  .section-title,
+  .level {
+    break-after:avoid-page !important;
+    page-break-after:avoid !important;
+  }
+
+  /* No separar controles/respuesta breve ni pasos matemáticos compactos. */
+  .mathline,
+  .warning,
+  .reading-row,
+  .read-result,
+  .mini-read,
+  .single-chain,
+  .mini-stair,
+  .school-div,
+  .division-table,
+  table.pos {
+    break-inside:avoid-page !important;
+    page-break-inside:avoid !important;
+  }
+
+  /* Una solución o ayuda larga puede partirse entre pasos; sus párrafos individuales no. */
+  .toggle p,
+  .help p,
+  .sol p {
+    break-inside:avoid-page;
+    page-break-inside:avoid;
+  }
+
+  /* Mantener el aspecto de la tarjeta cuando atraviesa dos páginas, sin reservarla entera. */
+  .card,.learnbox,.toggle {
+    -webkit-box-decoration-break:clone;
+    box-decoration-break:clone;
+  }
+
+  /* Controles sin utilidad en papel. */
+  .close-apoyo,.masterbar,.langbar,.actions,.question-controls,.master-check-control,
+  #checkBtn,#resetBtn,#printBtn {
+    display:none!important;
+  }
+}
+
+
+/* V17 · COMPRUEBA LO APRENDIDO · formato tipo test según ficha de referencia */
+#check{border:1px solid #e1c979;border-radius:14px;background:#fffdf4;padding:16px 20px;margin-top:24px}
+#check .check-head{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+#check .check-head .section-title{flex:1;min-width:280px;border:0;margin:0;padding:4px 0}
+#check .check-controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-left:auto}
+#check .check-controls button{border:1px solid #c5c9cc;background:#fff;border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+#check .check-controls .check-lang.active,#check .check-controls .mode-btn.active{background:#e7f2ff;border:2px solid #5fa8eb}
+#check .check-controls button:disabled{cursor:default;color:#7c858b;background:#f3f3f3}
+#check .check-card{background:#fff;border:1px solid #cfd4d8;border-radius:13px;padding:16px 20px;margin:14px 0}
+#check .check-card h3{font-size:1.04rem;margin:0;font-weight:500}
+#check .qnum{font-weight:800;margin-right:5px}
+#check .test-options{display:none;margin-top:13px;padding-top:10px;border-top:1px solid #e5e8ea}
+#check .test-options.visible{display:grid;gap:7px}
+#check .test-option{display:block;padding:6px 8px;border-radius:7px;cursor:pointer}
+#check .test-option:hover{background:#f6f8f9}
+#check .test-option input{margin-right:7px}
+#check .test-options.locked .test-option{cursor:default}
+#check .test-option.correcta-alumno{background:#eef8ee;border:1px solid #9ac39d;font-weight:700}
+#check .test-option.incorrecta-alumno{background:#fff0f2;border:1px solid #d9a2aa;font-weight:700}
+#check .test-solution{display:none;background:var(--sol);border:1px solid #b9d9bd;border-radius:9px;padding:12px 14px;margin-top:12px}
+#check .test-solution.visible{display:block}
+#check .eval-result{display:none;min-width:165px;text-align:right;background:#fff;border:1px solid #cfd4d8;border-radius:10px;padding:8px 12px;font-weight:700;line-height:1.45}
+#check .eval-result.visible{display:block}
+#check .ci18n{display:none}
+body[data-lang="es"] #check .ci18n.es,body[data-lang="fr"] #check .ci18n.fr,body[data-lang="ar"] #check .ci18n.ar{display:inline}
+body[data-lang="ar"] #check .check-card,body[data-lang="ar"] #check .test-solution{direction:rtl;text-align:right}
+body[data-lang="ar"] #check .math,body[data-lang="ar"] #check .mini-stair,body[data-lang="ar"] #check .mini-read{direction:ltr;unicode-bidi:isolate}
+@media print{#check .check-controls{display:none!important}#check .test-options.visible,#check .test-solution.visible,#check .eval-result.visible{display:block!important}}
+
+
+/* V19 · bloques principales contraíbles */
+.collapsible-title{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.collapsible-title:focus{outline:2px solid #83afe7;outline-offset:3px;border-radius:4px}
+.collapse-indicator{margin-left:auto;font-size:1rem;color:var(--muted);font-weight:800}
+/* V21 · Numeración y color diferenciado para las cuatro cabeceras principales */
+.major-section > .section-title,.major-section > .check-head > .section-title{border:1px solid transparent;border-bottom-width:2px;border-radius:11px;padding:10px 12px;margin-bottom:10px}
+.major-section:nth-of-type(1) > .section-title{background:#e8f3ff;border-color:#83b9e8}
+.major-section:nth-of-type(2) > .section-title{background:#e9f7ee;border-color:#84c99b}
+.major-section:nth-of-type(3) > .section-title{background:#fff2df;border-color:#e3b467}
+#check > .check-head > .section-title{background:#f2eafa;border-color:#b99ad9}
+/* V22 · El bloque 4 usa exactamente la misma estructura visual de cabecera que los bloques 1–3. */
+#check{border:0;background:transparent;padding:0;margin-top:24px;border-radius:0}
+#check .check-head{display:flex;flex-direction:column;align-items:stretch;gap:0;margin-bottom:12px}
+#check .check-head .section-title{width:100%;box-sizing:border-box;flex:none;min-width:0;margin:0 0 10px 0;padding:10px 12px}
+#check .check-controls{align-self:flex-end;margin-left:0}
+#check .collapsible-title .collapse-indicator{margin-left:auto;margin-right:0;flex:0 0 auto}
+.major-num{font-weight:900;color:#18364b;margin-right:2px}
+.major-section.collapsed > :not(.section-title):not(.check-head){display:none!important}
+.major-section.collapsed > .check-head > :not(.section-title){display:none!important}
+.content-slot{display:block}
+@media print{.collapse-indicator{display:none!important}/* Se respeta el estado actual: un bloque contraído permanece contraído al imprimir. */}
+
+/* V6 · Refuerzo visual uniforme de cabeceras y controles maestros activos */
+.major-section > .section-title,
+.major-section > .check-head > .section-title,
+#check > .check-head > .section-title{
+  border-style:solid;
+  border-width:2px;
+}
+.major-section:nth-of-type(1) > .section-title{border-color:#4f93ca}
+.major-section:nth-of-type(2) > .section-title{border-color:#4eaa70}
+.major-section:nth-of-type(3) > .section-title{border-color:#c98a2e}
+#check > .check-head > .section-title{border-color:#8f67ba}
+.master-check-control:has(input:checked){
+  background:#e7f2ff;
+  border:2px solid #5fa8eb;
+  padding:6px 9px;
+}
+.master-check-control:has(input:focus-visible){outline:2px solid #83afe7;outline-offset:2px}
+
+
+/* APOYO-MAT · selectores locales de idioma */
+.local-lang-buttons{display:flex;gap:4px;margin-right:auto}
+.local-lang-buttons button,.check-lang{border:1px solid #9aabb5;background:#fff;border-radius:7px;padding:5px 8px;cursor:pointer;font-weight:700}
+.local-lang-buttons button.active,.check-lang.active{background:#e6f2fa;border:2px solid #5fa8eb;padding:4px 7px}
+#check[data-check-lang="es"] .ci18n.es{display:inline!important}
+#check[data-check-lang="es"] .ci18n.fr,#check[data-check-lang="es"] .ci18n.ar{display:none!important}
+#check[data-check-lang="fr"] .ci18n.fr{display:inline!important}
+#check[data-check-lang="fr"] .ci18n.es,#check[data-check-lang="fr"] .ci18n.ar{display:none!important}
+#check[data-check-lang="ar"] .ci18n.ar{display:inline!important}
+#check[data-check-lang="ar"] .ci18n.es,#check[data-check-lang="ar"] .ci18n.fr{display:none!important}
+#check[data-check-lang="ar"] .check-card,#check[data-check-lang="ar"] .test-solution{direction:rtl;text-align:right}
+#check[data-check-lang="es"] .check-card,#check[data-check-lang="fr"] .check-card,
+#check[data-check-lang="es"] .test-solution,#check[data-check-lang="fr"] .test-solution{direction:ltr;text-align:left}
+@media print{.local-lang-buttons,.check-lang{display:none!important}}
+
+/* Criterio general APOYO-MAT · divisiones sucesivas en escalera continua.
+   Cada cociente intermedio ES el siguiente dividendo: se dibuja una sola vez.
+   Geometría consolidada: avance horizontal compacto de 52 px entre cociente/dividendo sucesivos;
+   no usar el antiguo avance de 78 px, que desplaza excesivamente la escalera hacia la derecha. */
+.division-staircase{position:relative;direction:ltr;margin:12px 0 8px;font-family:"Courier New",monospace;font-size:1rem;font-weight:700;overflow-x:auto;min-height:120px}
+.division-staircase .ds-num,.division-staircase .ds-rem,.division-staircase .ds-div{position:absolute;display:block}
+.division-staircase .ds-num{width:34px;text-align:right}
+.division-staircase .ds-div{width:42px;text-align:center;border-left:2px solid #263746;border-bottom:2px solid #263746;padding:0 5px 4px}
+.division-staircase .ds-rem{width:34px;text-align:right;font-weight:800}
+
+
+/* 212F · representación escolar vertical de operaciones sexagesimales */
+.sexop-wrap{margin:12px 0;direction:ltr;overflow-x:auto}
+.sexop{border-collapse:collapse;direction:ltr;font-family:"Courier New",monospace;font-size:1.05rem;line-height:1.35;min-width:330px}
+.sexop th,.sexop td{padding:3px 13px;text-align:right;white-space:nowrap}
+.sexop th{font-family:Arial,Helvetica,sans-serif;font-size:.86rem;text-align:center;color:var(--muted);border-bottom:1px solid #b8c3ca}
+.sexop .sign{width:30px;text-align:center;font-weight:900}
+.sexop .rule td{border-top:2px solid #263746;padding-top:5px;font-weight:800}
+.sexop .carry td{font-size:.86rem;color:#526b7b;padding-bottom:0}
+.sexop .borrow td{font-size:.92rem;color:#526b7b;font-weight:700;background:#f7fafb}
+.sexop-note{font-size:.94rem;margin:5px 0 10px}
+@media print{.sexop{break-inside:avoid-page;page-break-inside:avoid}}
+
+
+/* 212F V3 · sangrados y lectura jerárquica */
+.learnbox .mathline,.card .mathline,.toggle .mathline{margin-left:28px}
+.sexop-wrap{margin-left:28px}
+.sexop .raw-result td{font-weight:700;border-top:2px solid #263746}
+.sexop .transform td{font-family:Arial,Helvetica,sans-serif;font-size:.88rem;color:#526b7b;text-align:left;padding-top:7px;padding-bottom:7px}
+.sexop .final-result td{font-weight:900;border-top:1px solid #8d9aa2}
+.sexop .borrow-step td{font-size:.92rem;color:#526b7b;background:#f7fafb}
+@media(max-width:650px){.learnbox .mathline,.card .mathline,.toggle .mathline,.sexop-wrap{margin-left:16px}}
+
+
+/* 212F V5 · esquema visual de conversiones sexagesimales */
+.sex-conv{margin:14px 0 18px 28px;max-width:690px;direction:ltr}
+.sex-conv-title{font-weight:800;margin-bottom:7px}
+.sex-conv-grid{display:grid;grid-template-columns:1fr 74px 1fr 74px 1fr;align-items:center;gap:5px}
+.sex-conv-unit{border:1px solid #9fb7c7;border-radius:9px;background:#fff;text-align:center;padding:9px 7px;font-weight:800}
+.sex-conv-unit small{display:block;font-family:Arial,Helvetica,sans-serif;font-weight:600;color:#61717c;margin-top:2px}
+.sex-conv-arrow{text-align:center;font-weight:800;line-height:1.25;color:#315d78}
+.sex-conv-arrow .forward,.sex-conv-arrow .back{display:block;white-space:nowrap}
+.sex-conv-arrow .forward{margin-bottom:3px}
+.sex-conv-note{margin-top:8px;font-size:.93rem;color:#43545f}
+@media(max-width:650px){
+ .sex-conv{margin-left:16px}
+ .sex-conv-grid{grid-template-columns:1fr 58px 1fr 58px 1fr;font-size:.9rem}
+ .sex-conv-unit{padding:7px 4px}
+ .sex-conv-arrow{font-size:.82rem}
+}
+@media print{.sex-conv{break-inside:avoid-page;page-break-inside:avoid}}
+
+
+/* 212F V7 · conversión directa h↔s y dos vías para pasar de segundos a forma compleja */
+.direct-conv{margin:12px 0 16px 28px;max-width:690px}
+.direct-conv .box{border:1px solid #b9c9d3;border-radius:10px;background:#fff;padding:11px 14px}
+.direct-conv .math{font-weight:700}
+.two-paths{margin:12px 0 18px 28px;max-width:760px}
+.two-paths .path{border-left:4px solid #8fb5ca;padding:8px 12px;margin:12px 0;background:#fbfdfe}
+.two-paths .path-title{font-weight:800;margin-bottom:6px}
+.div60-wrap{margin:10px 0 10px 28px;display:inline-block}
+.div60{border-collapse:collapse;font-family:"Courier New",monospace;font-size:1.03rem}
+.div60 td{padding:3px 10px;text-align:right;vertical-align:bottom}
+.div60 .divisor{border-left:2px solid #263238;border-bottom:2px solid #263238;font-weight:700}
+.div60 .quotient{border-left:2px solid #263238;font-weight:700}
+.div60 .rest{font-weight:700}
+.read-result{margin-left:28px;font-weight:800}
+@media(max-width:650px){
+ .direct-conv,.two-paths{margin-left:16px}
+ .div60-wrap,.read-result{margin-left:16px}
+}
+@media print{
+ .direct-conv,.two-paths,.div60-wrap{break-inside:avoid-page;page-break-inside:avoid}
+}
+
+
+/* V8 · divisiones sucesivas encadenadas */
+.div60-chain{border-spacing:0;border-collapse:separate}
+.div60-chain td{min-width:62px}
+.div60-chain .chain-left{padding-right:12px}
+.div60-chain .chain-right{padding-left:12px}
+.div60-chain .next-dividend{padding-top:14px}
+.div60-chain tr:nth-child(3) .divisor{padding-top:14px}
+
+
+/* V9 · jerarquía visual de las soluciones de COMPRUEBA LO APRENDIDO */
+#block4 .solution p,
+#block4 .solucion p,
+#block4 .solution .mathline,
+#block4 .solucion .mathline,
+.block4 .solution p,
+.block4 .solucion p{margin-left:28px}
+#block4 .solution p .math,
+#block4 .solucion p .math,
+.block4 .solution p .math,
+.block4 .solucion p .math{display:inline-block}
+@media(max-width:650px){
+ #block4 .solution p,#block4 .solucion p,
+ .block4 .solution p,.block4 .solucion p{margin-left:16px}
+}
+
+
+
+/* V10 · escalera continua de divisiones sucesivas */
+.div-stair-wrap{margin:12px 0 16px 28px}
+.div-stair{position:relative;width:330px;height:142px;font-family:"Courier New",monospace;font-size:1.08rem}
+.stair-step{position:absolute;width:170px;height:68px}
+.stair-step .dvd,.stair-step .dvs,.stair-step .rem,.stair-step .quo{position:absolute}
+.stair-step .dvd{left:0;top:4px;width:76px;text-align:right}
+.stair-step .dvs{left:100px;top:4px;font-weight:700}
+.stair-step .bar{position:absolute;left:88px;top:0;width:2px;height:48px;background:#263238}
+.stair-step:after{content:"";position:absolute;left:88px;top:27px;width:58px;border-top:2px solid #263238}
+.stair-step .rem{left:48px;top:38px;width:28px;text-align:right;font-weight:700}
+.stair-step .quo{left:101px;top:38px;font-weight:700}
+.stair-step.step1{left:0;top:0}
+.stair-step.step2{left:101px;top:61px}
+@media(max-width:650px){.div-stair-wrap{margin-left:16px}}
+@media print{.div-stair-wrap{break-inside:avoid-page;page-break-inside:avoid}}
+
+/* V10 · sangrado real de las soluciones del test final.
+   Se aplica al contenido de .test-sol, que es la clase usada por el motor. */
+.test-sol{padding-left:28px}
+.test-sol > *{margin-left:0}
+.test-sol .mathline{margin-left:20px}
+.test-sol .sexop-wrap,.test-sol .div60-wrap,.test-sol .div-stair-wrap{margin-left:20px}
+@media(max-width:650px){
+ .test-sol{padding-left:16px}
+ .test-sol .mathline,.test-sol .sexop-wrap,.test-sol .div60-wrap,.test-sol .div-stair-wrap{margin-left:12px}
+}
+
+
+.b4-solution{padding-left:28px}
+.b4-solution .mathline{margin-left:20px}
+@media(max-width:650px){.b4-solution{padding-left:16px}.b4-solution .mathline{margin-left:12px}}
+
+
+/* V12 · sangrado pedagógico efectivo dentro de las soluciones del bloque 4 */
+#check .test-solution h4{margin-left:0!important}
+#check .test-solution p{margin-left:28px!important}
+#check .test-solution p.mathline{margin-left:52px!important}
+#check .test-solution .sexop-wrap{margin-left:52px!important}
+@media(max-width:650px){
+ #check .test-solution p{margin-left:16px!important}
+ #check .test-solution p.mathline,#check .test-solution .sexop-wrap{margin-left:30px!important}
+}
+
+
+/* V14 · COMPRUEBA LO APRENDIDO: Solución disponible solo después de Evaluar */
+#solutionsBtn:disabled{opacity:.45;cursor:not-allowed}
+
+</style>
+</head>
+<body data-lang="es">
+<header>
+<div class="title-row">
+<div class="title-block">
+<!-- CONTENT_TITULO_START -->
+<h1>
+<span class="i18n es" data-lang="es">212F · SISTEMA SEXAGESIMAL</span>
+<span class="i18n fr" data-lang="fr">212F · SYSTÈME SEXAGÉSIMAL</span>
+<span class="i18n ar" data-lang="ar">212F · النظام الستيني</span>
+</h1>
+<div class="sub">
+<span class="i18n es" data-lang="es">2.º ESO · NÚMEROS NATURALES</span>
+<span class="i18n fr" data-lang="fr">2e ESO · NOMBRES NATURELS</span>
+<span class="i18n ar" data-lang="ar">السنة الثانية ESO · الأعداد الطبيعية</span>
+</div>
+<!-- CONTENT_TITULO_END -->
+</div>
+<button class="close-apoyo" id="closeBtn" type="button"><span class="i18n es" data-lang="es">✕ CERRAR</span><span class="i18n fr" data-lang="fr">✕ FERMER</span><span class="i18n ar" data-lang="ar">✕ إغلاق</span></button>
+</div>
+<div class="global-control-panel">
+<div class="langbar"><button class="active" data-l="es">🇪🇸 Castellano</button><button data-l="fr">🇫🇷 Français</button><button data-l="ar">🇲🇦 العربية</button></div>
+<div class="masterbar">
+<label class="master-check-control" for="allHelpCheck"><input id="allHelpCheck" type="checkbox"/> 💡 <span class="i18n es" data-lang="es">Mostrar todas las ayudas</span><span class="i18n fr" data-lang="fr">Afficher toutes les aides</span><span class="i18n ar" data-lang="ar">إظهار جميع المساعدات</span></label>
+<label class="master-check-control" for="allSolCheck"><input id="allSolCheck" type="checkbox"/> ✓ <span class="i18n es" data-lang="es">Mostrar todas las soluciones</span><span class="i18n fr" data-lang="fr">Afficher toutes les solutions</span><span class="i18n ar" data-lang="ar">إظهار جميع الحلول</span></label>
+<button class="print" id="printBtn" type="button">🖨️ <span class="i18n es" data-lang="es">Imprimir</span><span class="i18n fr" data-lang="fr">Imprimer</span><span class="i18n ar" data-lang="ar">طباعة</span></button>
+</div>
+</div>
+<div aria-hidden="true" class="goal-top-line"></div>
+<!-- CONTENT_OBJETIVO_START -->
+<div class="goal">
+<span class="i18n es" data-lang="es">Comprender las equivalencias entre las unidades del sistema sexagesimal y utilizarlas para transformar medidas de <strong>tiempo</strong> y de <strong>medida de ángulos</strong> entre forma compleja e incompleja. Como <strong>AMPLIACIÓN</strong>, sumar y restar cantidades expresadas en forma compleja.
+
+---</span>
+<span class="i18n fr" data-lang="fr">Comprendre les équivalences entre les unités du système sexagésimal et les utiliser pour convertir des mesures de <strong>temps</strong> et de <strong>mesure des angles</strong> entre forme complexe et forme simple. En <strong>APPROFONDISSEMENT</strong>, sumar y restar cantidades expresadas en forma compleja.
+
+---</span>
+<span class="i18n ar" data-lang="ar">فهم التكافؤات بين وحدات النظام الستيني واستخدامها لتحويل قياسات <strong>الزمن</strong> و <strong>قياس الزوايا</strong> بين الصيغة المركبة والصيغة البسيطة. وفي <strong>التوسّع</strong>, sumar y restar cantidades expresadas en forma compleja.
+
+---</span>
+</div>
+<!-- CONTENT_OBJETIVO_END -->
+</header>
+<section class="major-section collapsed">
+<h2 aria-expanded="false" class="section-title collapsible-title" role="button" tabindex="0"><span class="major-num">1 ·</span> 📘 <span class="i18n es" data-lang="es">APRENDE / RECUERDA</span><span class="i18n fr" data-lang="fr">APPRENDS / RETIENS</span><span class="i18n ar" data-lang="ar">تعلّم / تذكّر</span><span aria-hidden="true" class="collapse-indicator">▶</span></h2>
+<!-- CONTENT_APRENDE_START -->
+<div class="content-slot" data-content-slot="aprende">
+<div class="learnbox"><span class="i18n es" data-lang="es"><h3>1.1. ¿Qué es el sistema sexagesimal?</h3>
+<p>En el sistema sexagesimal, cada unidad se divide en <strong>60 unidades del orden inmediatamente inferior</strong>.</p>
+<p>Lo utilizamos, entre otras situaciones, para medir:</p>
+<ul>
+<li><strong>tiempo</strong>: horas, minutos y segundos;</li>
+<li><strong>medida de ángulos</strong>: grados, minutos y segundos.</li>
+</ul>
+<p>Aunque las relaciones entre las unidades son las mismas, debemos distinguir sus nombres y símbolos.</p>
+<hr/>
+<h3>1.2. Tiempo</h3>
+<h4>Unidades</h4>
+<table class="pos"><thead><tr><th>Unidad</th><th>Símbolo</th></tr></thead><tbody>
+<tr><td>hora</td><td>h</td></tr>
+<tr><td>minuto</td><td>min</td></tr>
+<tr><td>segundo</td><td>s</td></tr>
+</tbody></table>
+<h4>Relación entre las unidades</h4>
+<div class="sex-conv">
+<div class="sex-conv-title">Relación entre las unidades de tiempo</div>
+<div class="sex-conv-grid">
+<div class="sex-conv-unit">h<small>hora</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">min<small>minuto</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">s<small>segundo</small></div>
+</div>
+<div class="sex-conv-note">Hacia unidades menores: ×60 · Hacia unidades mayores: ÷60</div>
+<div class="direct-conv">
+<div class="box">
+<strong>También podemos pasar directamente entre horas y segundos:</strong>
+<p class="mathline"><span class="math">1 h = 60 × 60 = 3600 s</span></p>
+<p class="mathline"><span class="math">h ──×3600──→ s     h ←──÷3600── s</span></p>
+</div>
+</div>
+</div>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">1 h = 60 min</span></p>
+<p class="mathline"><span class="math">1 min = 60 s</span></p>
+<p class="mathline"><span class="math">1 h = 3600 s</span></p>
+<hr/>
+<h3>1.3. Medida de ángulos</h3>
+<h4>Unidades</h4>
+<table class="pos"><thead><tr><th>Unidad</th><th>Símbolo</th></tr></thead><tbody>
+<tr><td>grado</td><td>°</td></tr>
+<tr><td>minuto</td><td>′</td></tr>
+<tr><td>segundo</td><td>″</td></tr>
+</tbody></table>
+<h4>Relación entre las unidades</h4>
+<div class="sex-conv">
+<div class="sex-conv-title">Relación entre las unidades de medida de ángulos</div>
+<div class="sex-conv-grid">
+<div class="sex-conv-unit">°<small>grado</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">′<small>minuto</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">″<small>segundo</small></div>
+</div>
+<div class="sex-conv-note">Hacia unidades menores: ×60 · Hacia unidades mayores: ÷60</div>
+</div>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">1° = 60′</span></p>
+<p class="mathline"><span class="math">1′ = 60″</span></p>
+<p class="mathline"><span class="math">1° = 3600″</span></p>
+<div class="warning"><strong>Importante:</strong> en tiempo usamos <span class="math">h, min, s</span>; en medida de ángulos usamos <span class="math">°, ′, ″</span>. No debemos mezclar los símbolos.</div>
+<hr/>
+<h3>1.4. Forma compleja y forma incompleja</h3>
+<p>Una medida está en <strong>forma compleja</strong> cuando utiliza varias unidades.</p>
+<p>Ejemplos:</p>
+<p class="mathline"><span class="math">3 h 25 min 30 s</span></p>
+<p class="mathline"><span class="math">6° 35′ 6″</span></p>
+<p>Una medida está en <strong>forma incompleja</strong> cuando está expresada en una sola unidad.</p>
+<p>Ejemplos:</p>
+<p class="mathline"><span class="math">205,5 min</span></p>
+<p class="mathline"><span class="math">395,1′</span></p>
+<hr/>
+<h3>1.5. De forma compleja a forma incompleja</h3>
+<h4>Ejemplo A · Tiempo</h4>
+<p>Convierte <span class="math">2 h 14 min 18 s</span> a minutos.</p>
+<p>Transformamos <strong>cada componente por separado</strong>:</p>
+<p class="mathline"><span class="math">2 h = 2·60 min = 120 min</span></p>
+<p class="mathline"><span class="math">14 min = 14 min</span></p>
+<p class="mathline"><span class="math">18 s = 18:60 min = 0,3 min</span></p>
+<p>Ahora reunimos los resultados:</p>
+<p class="mathline"><span class="math">2 h 14 min 18 s = 120 min + 14 min + 0,3 min</span></p>
+<p class="mathline"><span class="math">= 134,3 min</span></p>
+<h4>Ejemplo B · Medida de ángulos</h4>
+<p>Convierte <span class="math">4° 12′ 30″</span> a minutos.</p>
+<p class="mathline"><span class="math">4° = 4·60′ = 240′</span></p>
+<p class="mathline"><span class="math">12′ = 12′</span></p>
+<p class="mathline"><span class="math">30″ = 30:60′ = 0,5′</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">4° 12′ 30″ = 240′ + 12′ + 0,5′</span></p>
+<p class="mathline"><span class="math">= 252,5′</span></p>
+<hr/>
+<h3>1.6. De una cantidad decimal a forma compleja</h3>
+<h4>Ejemplo A · Grados decimales</h4>
+<p>Convierte <span class="math">7,325°</span> a grados, minutos y segundos.</p>
+<p>La parte entera permanece como grados:</p>
+<p class="mathline"><span class="math">7,325° = 7° + 0,325°</span></p>
+<p>Transformamos la parte decimal en minutos:</p>
+<p class="mathline"><span class="math">0,325·60 = 19,5′</span></p>
+<p>La parte entera son <span class="math">19′</span> y transformamos la parte decimal restante en segundos:</p>
+<p class="mathline"><span class="math">0,5·60 = 30″</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">7,325° = 7° 19′ 30″</span></p>
+<h4>Ejemplo B · Minutos decimales</h4>
+<p>Convierte <span class="math">154,5 min</span> a horas, minutos y segundos.</p>
+<p>Separamos las horas completas:</p>
+<p class="mathline"><span class="math">154,5 : 60 = 2 h</span> y quedan <span class="math">34,5 min</span></p>
+<p>Separamos los minutos completos:</p>
+<p class="mathline"><span class="math">34,5 min = 34 min + 0,5 min</span></p>
+<p>Transformamos la parte decimal de minuto en segundos:</p>
+<p class="mathline"><span class="math">0,5·60 = 30 s</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">154,5 min = 2 h 34 min 30 s</span></p>
+<hr/>
+<h3>1.7. De segundos a forma compleja</h3>
+<p>Cuando la cantidad está expresada completamente en segundos, podemos utilizar divisiones enteras.</p>
+<h4>Ejemplo A · Tiempo</h4>
+<p>Convierte <span class="math">20 645 s</span> a horas, minutos y segundos.</p>
+<p>Primero obtenemos las horas completas:</p>
+<p class="mathline"><span class="math">20 645 : 3600 = 5 h</span>, resto <span class="math">2645 s</span></p>
+<p>Después obtenemos los minutos completos del resto:</p>
+<p class="mathline"><span class="math">2645 : 60 = 44 min</span>, resto <span class="math">5 s</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">20 645 s = 5 h 44 min 5 s</span></p>
+<h4>Ejemplo B · Medida de ángulos</h4>
+<p>El mismo procedimiento sirve con segundos angulares, utilizando los símbolos correspondientes.</p>
+<p>Convierte <span class="math">20 645″</span> a grados, minutos y segundos.</p>
+<p class="mathline"><span class="math">20 645 : 3600 = 5°</span>, resto <span class="math">2645″</span></p>
+<p class="mathline"><span class="math">2645 : 60 = 44′</span>, resto <span class="math">5″</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">20 645″ = 5° 44′ 5″</span></p>
+<hr/>
+<h3>1.8. De segundos a horas, minutos y segundos: dos caminos</h3>
+<p>Cuando una cantidad está expresada únicamente en segundos y queremos escribirla en forma compleja, podemos seguir <strong>dos caminos equivalentes</strong>.</p>
+<div class="two-paths">
+<div class="path">
+<div class="path-title">CAMINO 1 · Empezar por las horas</div>
+<p>Dividimos primero entre <span class="math">3600</span>. El cociente indica las horas y continuamos con el resto.</p>
+<p class="mathline"><span class="math">19 765 ÷ 3600 = 5</span>, resto <span class="math">1765</span></p>
+<p class="mathline"><span class="math">1765 ÷ 60 = 29</span>, resto <span class="math">25</span></p>
+<p class="read-result"><span class="math">19 765 s = 5 h 29 min 25 s</span></p>
+</div>
+<div class="path">
+<div class="path-title">CAMINO 2 · Divisiones sucesivas entre 60</div>
+<p>Primero obtenemos minutos y segundos. Después volvemos a dividir los minutos entre 60 para obtener horas y minutos.</p>
+<div aria-label="Divisiones sucesivas encadenadas entre 60" class="div60-wrap div-stair-wrap">
+<div class="div-stair">
+<div class="stair-step step1">
+<span class="dvd">19 765</span><span class="bar"></span><span class="dvs">60</span>
+<span class="rem">25</span><span class="quo">329</span>
+</div>
+<div class="stair-step step2">
+<span class="dvd">329</span><span class="bar"></span><span class="dvs">60</span>
+<span class="rem">29</span><span class="quo">5</span>
+</div>
+</div>
+</div>
+<p>Leemos el último cociente y los restos con sus unidades:</p>
+<p class="read-result"><span class="math">5 h · 29 min · 25 s</span></p>
+<p><strong>Conexión con lo que ya sabes:</strong> es el mismo tipo de procedimiento de divisiones sucesivas que utilizamos para pasar de decimal a binario, pero aquí dividimos entre <span class="math">60</span>. En binario los restos forman las cifras del número; aquí cada cociente y cada resto se interpreta según su unidad: horas, minutos y segundos.</p>
+</div>
+</div>
+<div class="tip">
+<strong>Idea clave.</strong> Los dos caminos son correctos y conducen al mismo resultado. Puedes elegir el que te resulte más claro.
+</div>
+<h3>1.9. AMPLIACIÓN · Suma de cantidades sexagesimales</h3>
+<p>Para sumar cantidades sexagesimales, colocamos juntas las unidades del mismo orden y sumamos por columnas.</p>
+<h4>Ejemplo · Suma de tiempos</h4>
+<p class="mathline"><p><strong>Calcula:</strong> <span class="math">2 h 48 min 35 s + 1 h 26 min 40 s</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>2</td><td>48</td><td>35</td></tr><tr><td class="sign">+</td><td>1</td><td>26</td><td>40</td></tr><tr class="raw-result"><td></td><td>3</td><td>74</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75 s = 1 min 15 s</td></tr><tr class="borrow-step"><td></td><td>3</td><td>75</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">75 min = 1 h 15 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>15</td><td>15</td></tr><tr class="final-result"><td></td><td>4</td><td>15</td><td>15</td></tr></table></div></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">2 h 48 min 35 s + 1 h 26 min 40 s = 4 h 15 min 15 s</span></p>
+<div class="warning"><strong>Idea clave:</strong> si obtenemos <span class="math">60 s</span> o más, transformamos grupos de <span class="math">60 s</span> en minutos; si obtenemos <span class="math">60 min</span> o más, transformamos grupos de <span class="math">60 min</span> en horas.</div>
+<h4>Ejemplo · Suma de ángulos</h4>
+<p class="mathline"><p><strong>Calcula:</strong> <span class="math">18° 42′ 35″ + 7° 28′ 40″</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>18</td><td>42</td><td>35</td></tr><tr><td class="sign">+</td><td>7</td><td>28</td><td>40</td></tr><tr class="raw-result"><td></td><td>25</td><td>70</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75″ = 1′ 15″</td></tr><tr class="borrow-step"><td></td><td>25</td><td>71</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">71′ = 1° 11′</td></tr><tr class="borrow-step"><td></td><td>26</td><td>11</td><td>15</td></tr><tr class="final-result"><td></td><td>26</td><td>11</td><td>15</td></tr></table></div></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">18° 42′ 35″ + 7° 28′ 40″ = 26° 11′ 15″</span></p>
+<hr/>
+<h3>1.10. AMPLIACIÓN · Resta de cantidades sexagesimales</h3>
+<p>Para restar cantidades sexagesimales, colocamos juntas las unidades del mismo orden. Si una cantidad no se puede restar directamente, hacemos un <strong>préstamo</strong>:</p>
+<p class="mathline"><span class="math">1 min = 60 s</span> <span class="math">1 h = 60 min</span></p>
+<p>y, en medida de ángulos:</p>
+<p class="mathline"><span class="math">1′ = 60″</span> <span class="math">1° = 60′</span></p>
+<h4>Ejemplo · Resta de tiempos</h4>
+<p class="mathline"><p><strong>Calcula:</strong> <span class="math">5 h 12 min 20 s − 2 h 38 min 45 s</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>5</td><td>12</td><td>20</td></tr><tr><td class="sign">−</td><td>2</td><td>38</td><td>45</td></tr><tr class="transform"><td></td><td colspan="3">Tomamos 1 min = 60 s</td></tr><tr class="borrow-step"><td></td><td>5</td><td>11</td><td>80</td></tr><tr class="transform"><td></td><td colspan="3">Tomamos 1 h = 60 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>71</td><td>80</td></tr><tr class="final-result"><td></td><td>2</td><td>33</td><td>35</td></tr></table></div></p>
+<p>Tomamos <span class="math">1 min = 60 s</span>:</p>
+<p>Ahora tomamos <span class="math">1 h = 60 min</span>:</p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">5 h 12 min 20 s − 2 h 38 min 45 s = 2 h 33 min 35 s</span></p>
+<h4>Ejemplo · Resta de ángulos</h4>
+<p class="mathline"><p><strong>Calcula:</strong> <span class="math">12° 15′ 20″ − 4° 28′ 45″</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>12</td><td>15</td><td>20</td></tr><tr><td class="sign">−</td><td>4</td><td>28</td><td>45</td></tr><tr class="transform"><td></td><td colspan="3">Tomamos 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>12</td><td>14</td><td>80</td></tr><tr class="transform"><td></td><td colspan="3">Tomamos 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>11</td><td>74</td><td>80</td></tr><tr class="final-result"><td></td><td>7</td><td>46</td><td>35</td></tr></table></div></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">12° 15′ 20″ − 4° 28′ 45″ = 7° 46′ 35″</span></p>
+<hr/></span><span class="i18n fr" data-lang="fr"><h3>1.1. Qu’est-ce que le système sexagésimal ?</h3>
+<p>Dans le système sexagésimal, chaque unité se divise en <strong>60 unités de l’ordre immédiatement inférieur</strong>.</p>
+<p>Nous l’utilisons notamment pour mesurer :</p>
+<ul>
+<li><strong>temps</strong>: heures, minutes et secondes ;</li>
+<li><strong>mesure des angles</strong>: degrés, minutes et secondes.</li>
+</ul>
+<p>Même si les relations entre les unités sont les mêmes, il faut distinguer leurs noms et leurs symboles.</p>
+<hr/>
+<h3>1.2. Temps</h3>
+<h4>Unités</h4>
+<table class="pos"><thead><tr><th>Unité</th><th>Symbole</th></tr></thead><tbody>
+<tr><td>heure</td><td>h</td></tr>
+<tr><td>minute</td><td>min</td></tr>
+<tr><td>seconde</td><td>s</td></tr>
+</tbody></table>
+<h4>Relation entre les unités</h4>
+<div class="sex-conv">
+<div class="sex-conv-title">Relation entre les unités de temps</div>
+<div class="sex-conv-grid">
+<div class="sex-conv-unit">h<small>heure</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">min<small>minute</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">s<small>seconde</small></div>
+</div>
+<div class="sex-conv-note">Vers des unités plus petites : ×60 · Vers des unités plus grandes : ÷60</div>
+<div class="direct-conv">
+<div class="box">
+<strong>On peut aussi passer directement des heures aux secondes et inversement :</strong>
+<p class="mathline"><span class="math">1 h = 60 × 60 = 3600 s</span></p>
+<p class="mathline"><span class="math">h ──×3600──→ s     h ←──÷3600── s</span></p>
+</div>
+</div>
+</div>
+<p>Donc :</p>
+<p class="mathline"><span class="math">1 h = 60 min</span></p>
+<p class="mathline"><span class="math">1 min = 60 s</span></p>
+<p class="mathline"><span class="math">1 h = 3600 s</span></p>
+<hr/>
+<h3>1.3. Mesure des angles</h3>
+<h4>Unités</h4>
+<table class="pos"><thead><tr><th>Unité</th><th>Symbole</th></tr></thead><tbody>
+<tr><td>degré</td><td>°</td></tr>
+<tr><td>minute</td><td>′</td></tr>
+<tr><td>seconde</td><td>″</td></tr>
+</tbody></table>
+<h4>Relation entre les unités</h4>
+<div class="sex-conv">
+<div class="sex-conv-title">Relation entre les unités de mesure des angles</div>
+<div class="sex-conv-grid">
+<div class="sex-conv-unit">°<small>degré</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">′<small>minute</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">″<small>seconde</small></div>
+</div>
+<div class="sex-conv-note">Vers des unités plus petites : ×60 · Vers des unités plus grandes : ÷60</div>
+</div>
+<p>Donc :</p>
+<p class="mathline"><span class="math">1° = 60′</span></p>
+<p class="mathline"><span class="math">1′ = 60″</span></p>
+<p class="mathline"><span class="math">1° = 3600″</span></p>
+<div class="warning"><strong>Important :</strong> pour le temps, on utilise <span class="math">h, min, s</span>; pour la mesure des angles, on utilise <span class="math">°, ′, ″</span>. Il ne faut pas mélanger les symboles.</div>
+<hr/>
+<h3>1.4. Forme complexe et forme simple</h3>
+<p>Une mesure est sous <strong>forme complexe</strong> lorsqu’elle utilise plusieurs unités.</p>
+<p>Exemples :</p>
+<p class="mathline"><span class="math">3 h 25 min 30 s</span></p>
+<p class="mathline"><span class="math">6° 35′ 6″</span></p>
+<p>Une mesure est sous <strong>forme simple</strong> lorsqu’elle est exprimée dans une seule unité.</p>
+<p>Exemples :</p>
+<p class="mathline"><span class="math">205,5 min</span></p>
+<p class="mathline"><span class="math">395,1′</span></p>
+<hr/>
+<h3>1.5. De la forme complexe à la forme simple</h3>
+<h4>Exemple A · Temps</h4>
+<p>Convertis <span class="math">2 h 14 min 18 s</span> en minutes.</p>
+<p>Nous convertissons <strong>chaque composante séparément</strong>:</p>
+<p class="mathline"><span class="math">2 h = 2·60 min = 120 min</span></p>
+<p class="mathline"><span class="math">14 min = 14 min</span></p>
+<p class="mathline"><span class="math">18 s = 18:60 min = 0,3 min</span></p>
+<p>Nous réunissons maintenant les résultats :</p>
+<p class="mathline"><span class="math">2 h 14 min 18 s = 120 min + 14 min + 0,3 min</span></p>
+<p class="mathline"><span class="math">= 134,3 min</span></p>
+<h4>Exemple B · Mesure des angles</h4>
+<p>Convertis <span class="math">4° 12′ 30″</span> en minutes.</p>
+<p class="mathline"><span class="math">4° = 4·60′ = 240′</span></p>
+<p class="mathline"><span class="math">12′ = 12′</span></p>
+<p class="mathline"><span class="math">30″ = 30:60′ = 0,5′</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">4° 12′ 30″ = 240′ + 12′ + 0,5′</span></p>
+<p class="mathline"><span class="math">= 252,5′</span></p>
+<hr/>
+<h3>1.6. D’une quantité décimale à la forme complexe</h3>
+<h4>Exemple A · Degrés décimaux</h4>
+<p>Convertis <span class="math">7,325°</span> en degrés, minutes et secondes.</p>
+<p>La partie entière reste en degrés :</p>
+<p class="mathline"><span class="math">7,325° = 7° + 0,325°</span></p>
+<p>Nous convertissons la partie décimale en minutes :</p>
+<p class="mathline"><span class="math">0,325·60 = 19,5′</span></p>
+<p>La partie entière donne <span class="math">19′</span> et nous convertissons la partie décimale restante en secondes :</p>
+<p class="mathline"><span class="math">0,5·60 = 30″</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">7,325° = 7° 19′ 30″</span></p>
+<h4>Exemple B · Minutes décimales</h4>
+<p>Convertis <span class="math">154,5 min</span> en heures, minutes et secondes.</p>
+<p>Nous séparons les heures entières :</p>
+<p class="mathline"><span class="math">154,5 : 60 = 2 h</span> et il reste <span class="math">34,5 min</span></p>
+<p>Nous séparons les minutes entières :</p>
+<p class="mathline"><span class="math">34,5 min = 34 min + 0,5 min</span></p>
+<p>Nous convertissons la partie décimale de minute en secondes :</p>
+<p class="mathline"><span class="math">0,5·60 = 30 s</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">154,5 min = 2 h 34 min 30 s</span></p>
+<hr/>
+<h3>1.7. Des secondes à la forme complexe</h3>
+<p>Quand la quantité est entièrement exprimée en secondes, nous pouvons utiliser des divisions entières.</p>
+<h4>Exemple A · Temps</h4>
+<p>Convertis <span class="math">20 645 s</span> en heures, minutes et secondes.</p>
+<p>Nous déterminons d’abord les heures entières :</p>
+<p class="mathline"><span class="math">20 645 : 3600 = 5 h</span>, reste <span class="math">2645 s</span></p>
+<p>Nous déterminons ensuite les minutes entières à partir du reste :</p>
+<p class="mathline"><span class="math">2645 : 60 = 44 min</span>, reste <span class="math">5 s</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">20 645 s = 5 h 44 min 5 s</span></p>
+<h4>Exemple B · Mesure des angles</h4>
+<p>La même méthode s’applique aux secondes d’angle, avec les symboles correspondants.</p>
+<p>Convertis <span class="math">20 645″</span> en degrés, minutes et secondes.</p>
+<p class="mathline"><span class="math">20 645 : 3600 = 5°</span>, reste <span class="math">2645″</span></p>
+<p class="mathline"><span class="math">2645 : 60 = 44′</span>, reste <span class="math">5″</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">20 645″ = 5° 44′ 5″</span></p>
+<hr/>
+<h3>1.8. Des secondes aux heures, minutes et secondes : deux méthodes</h3>
+<p>Lorsqu’une quantité est exprimée uniquement en secondes et que nous voulons l’écrire sous forme complexe, nous pouvons suivre <strong>deux méthodes équivalentes</strong>.</p>
+<div class="two-paths">
+<div class="path">
+<div class="path-title">MÉTHODE 1 · Commencer par les heures</div>
+<p>Nous divisons d’abord par <span class="math">3600</span>. Le quotient indique les heures et nous continuons avec le reste.</p>
+<p class="mathline"><span class="math">19 765 ÷ 3600 = 5</span>, reste <span class="math">1765</span></p>
+<p class="mathline"><span class="math">1765 ÷ 60 = 29</span>, reste <span class="math">25</span></p>
+<p class="read-result"><span class="math">19 765 s = 5 h 29 min 25 s</span></p>
+</div>
+<div class="path">
+<div class="path-title">MÉTHODE 2 · Divisions successives par 60</div>
+<p>Nous obtenons d’abord les minutes et les secondes. Puis nous divisons de nouveau les minutes par 60 pour obtenir les heures et les minutes.</p>
+<div aria-label="Divisiones sucesivas encadenadas entre 60" class="div60-wrap div-stair-wrap">
+<div class="div-stair">
+<div class="stair-step step1">
+<span class="dvd">19 765</span><span class="bar"></span><span class="dvs">60</span>
+<span class="rem">25</span><span class="quo">329</span>
+</div>
+<div class="stair-step step2">
+<span class="dvd">329</span><span class="bar"></span><span class="dvs">60</span>
+<span class="rem">29</span><span class="quo">5</span>
+</div>
+</div>
+</div>
+<p>Nous lisons le dernier quotient et les restes avec leurs unités :</p>
+<p class="read-result"><span class="math">5 h · 29 min · 25 s</span></p>
+<p><strong>Lien avec ce que tu sais déjà :</strong> c’est le même type de divisions successives que celui utilisé pour passer du décimal au binaire, mais ici nous divisons par <span class="math">60</span>. En binaire, les restes forment les chiffres du nombre ; ici, chaque quotient et chaque reste s’interprète selon son unité : heures, minutes et secondes.</p>
+</div>
+</div>
+<div class="tip">
+<strong>Idée clé.</strong> Les deux méthodes sont correctes et conduisent au même résultat. Tu peux choisir celle qui te paraît la plus claire.
+</div>
+<h3>1.9. APPROFONDISSEMENT · Addition de quantités sexagésimales</h3>
+<p>Pour additionner des quantités sexagésimales, nous alignons les unités de même ordre et additionnons par colonnes.</p>
+<h4>Exemple · Addition de temps</h4>
+<p class="mathline"><p><strong>Calcule :</strong> <span class="math">2 h 48 min 35 s + 1 h 26 min 40 s</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>2</td><td>48</td><td>35</td></tr><tr><td class="sign">+</td><td>1</td><td>26</td><td>40</td></tr><tr class="raw-result"><td></td><td>3</td><td>74</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75 s = 1 min 15 s</td></tr><tr class="borrow-step"><td></td><td>3</td><td>75</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">75 min = 1 h 15 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>15</td><td>15</td></tr><tr class="final-result"><td></td><td>4</td><td>15</td><td>15</td></tr></table></div></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">2 h 48 min 35 s + 1 h 26 min 40 s = 4 h 15 min 15 s</span></p>
+<div class="warning"><strong>Idée clé :</strong> si nous obtenons <span class="math">60 s</span> ou plus, nous transformons des groupes de <span class="math">60 s</span> en minutes ; si nous obtenons <span class="math">60 min</span> ou plus, nous transformons des groupes de <span class="math">60 min</span> en heures.</div>
+<h4>Exemple · Addition d’angles</h4>
+<p class="mathline"><p><strong>Calcule :</strong> <span class="math">18° 42′ 35″ + 7° 28′ 40″</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>18</td><td>42</td><td>35</td></tr><tr><td class="sign">+</td><td>7</td><td>28</td><td>40</td></tr><tr class="raw-result"><td></td><td>25</td><td>70</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75″ = 1′ 15″</td></tr><tr class="borrow-step"><td></td><td>25</td><td>71</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">71′ = 1° 11′</td></tr><tr class="borrow-step"><td></td><td>26</td><td>11</td><td>15</td></tr><tr class="final-result"><td></td><td>26</td><td>11</td><td>15</td></tr></table></div></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">18° 42′ 35″ + 7° 28′ 40″ = 26° 11′ 15″</span></p>
+<hr/>
+<h3>1.10. APPROFONDISSEMENT · Soustraction de quantités sexagésimales</h3>
+<p>Pour soustraire des quantités sexagésimales, nous alignons les unités de même ordre. Si une quantité ne peut pas être soustraite directement, nous effectuons un <strong>emprunt</strong>:</p>
+<p class="mathline"><span class="math">1 min = 60 s</span> <span class="math">1 h = 60 min</span></p>
+<p>et, pour la mesure des angles :</p>
+<p class="mathline"><span class="math">1′ = 60″</span> <span class="math">1° = 60′</span></p>
+<h4>Exemple · Soustraction de temps</h4>
+<p class="mathline"><p><strong>Calcule :</strong> <span class="math">5 h 12 min 20 s − 2 h 38 min 45 s</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>5</td><td>12</td><td>20</td></tr><tr><td class="sign">−</td><td>2</td><td>38</td><td>45</td></tr><tr class="transform"><td></td><td colspan="3">Nous empruntons 1 min = 60 s</td></tr><tr class="borrow-step"><td></td><td>5</td><td>11</td><td>80</td></tr><tr class="transform"><td></td><td colspan="3">Nous empruntons 1 h = 60 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>71</td><td>80</td></tr><tr class="final-result"><td></td><td>2</td><td>33</td><td>35</td></tr></table></div></p>
+<p>Nous empruntons <span class="math">1 min = 60 s</span>:</p>
+<p>Nous empruntons maintenant <span class="math">1 h = 60 min</span>:</p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">5 h 12 min 20 s − 2 h 38 min 45 s = 2 h 33 min 35 s</span></p>
+<h4>Exemple · Soustraction d’angles</h4>
+<p class="mathline"><p><strong>Calcule :</strong> <span class="math">12° 15′ 20″ − 4° 28′ 45″</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>12</td><td>15</td><td>20</td></tr><tr><td class="sign">−</td><td>4</td><td>28</td><td>45</td></tr><tr class="transform"><td></td><td colspan="3">Nous empruntons 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>12</td><td>14</td><td>80</td></tr><tr class="transform"><td></td><td colspan="3">Nous empruntons 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>11</td><td>74</td><td>80</td></tr><tr class="final-result"><td></td><td>7</td><td>46</td><td>35</td></tr></table></div></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">12° 15′ 20″ − 4° 28′ 45″ = 7° 46′ 35″</span></p>
+<hr/></span><span class="i18n ar" data-lang="ar"><h3>1.1. ما النظام الستيني؟</h3>
+<p>في النظام الستيني، تنقسم كل وحدة إلى <strong>60 وحدة من المرتبة الأصغر مباشرة</strong>.</p>
+<p>نستعمله، من بين استعمالات أخرى، لقياس:</p>
+<ul>
+<li><strong>الزمن</strong>: الساعات والدقائق والثواني؛</li>
+<li><strong>قياس الزوايا</strong>: الدرجات والدقائق والثواني.</li>
+</ul>
+<p>رغم أن العلاقات بين الوحدات نفسها، يجب التمييز بين أسمائها ورموزها.</p>
+<hr/>
+<h3>1.2. الزمن</h3>
+<h4>الوحدات</h4>
+<table class="pos"><thead><tr><th>الوحدة</th><th>الرمز</th></tr></thead><tbody>
+<tr><td>ساعة</td><td>h</td></tr>
+<tr><td>دقيقة</td><td>min</td></tr>
+<tr><td>ثانية</td><td>s</td></tr>
+</tbody></table>
+<h4>العلاقة بين الوحدات</h4>
+<div class="sex-conv">
+<div class="sex-conv-title">العلاقة بين وحدات الزمن</div>
+<div class="sex-conv-grid">
+<div class="sex-conv-unit">h<small>ساعة</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">min<small>دقيقة</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">s<small>ثانية</small></div>
+</div>
+<div class="sex-conv-note">نحو وحدات أصغر: ×60 · نحو وحدات أكبر: ÷60</div>
+<div class="direct-conv">
+<div class="box">
+<strong>يمكننا أيضًا التحويل مباشرة بين الساعات والثواني:</strong>
+<p class="mathline"><span class="math">1 h = 60 × 60 = 3600 s</span></p>
+<p class="mathline"><span class="math">h ──×3600──→ s     h ←──÷3600── s</span></p>
+</div>
+</div>
+</div>
+<p>إذن:</p>
+<p class="mathline"><span class="math">1 h = 60 min</span></p>
+<p class="mathline"><span class="math">1 min = 60 s</span></p>
+<p class="mathline"><span class="math">1 h = 3600 s</span></p>
+<hr/>
+<h3>1.3. قياس الزوايا</h3>
+<h4>الوحدات</h4>
+<table class="pos"><thead><tr><th>الوحدة</th><th>الرمز</th></tr></thead><tbody>
+<tr><td>درجة</td><td>°</td></tr>
+<tr><td>دقيقة</td><td>′</td></tr>
+<tr><td>ثانية</td><td>″</td></tr>
+</tbody></table>
+<h4>العلاقة بين الوحدات</h4>
+<div class="sex-conv">
+<div class="sex-conv-title">العلاقة بين وحدات قياس الزوايا</div>
+<div class="sex-conv-grid">
+<div class="sex-conv-unit">°<small>درجة</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">′<small>دقيقة</small></div>
+<div class="sex-conv-arrow"><span class="forward">×60 →</span><span class="back">← ÷60</span></div>
+<div class="sex-conv-unit">″<small>ثانية</small></div>
+</div>
+<div class="sex-conv-note">نحو وحدات أصغر: ×60 · نحو وحدات أكبر: ÷60</div>
+</div>
+<p>إذن:</p>
+<p class="mathline"><span class="math">1° = 60′</span></p>
+<p class="mathline"><span class="math">1′ = 60″</span></p>
+<p class="mathline"><span class="math">1° = 3600″</span></p>
+<div class="warning"><strong>مهم:</strong> في الزمن نستعمل <span class="math">h, min, s</span>؛ وفي قياس الزوايا نستعمل <span class="math">°, ′, ″</span>. يجب ألا نخلط بين الرموز.</div>
+<hr/>
+<h3>1.4. الصيغة المركبة والصيغة البسيطة</h3>
+<p>يكون القياس في <strong>الصيغة المركبة</strong> عندما يستعمل عدة وحدات.</p>
+<p>أمثلة:</p>
+<p class="mathline"><span class="math">3 h 25 min 30 s</span></p>
+<p class="mathline"><span class="math">6° 35′ 6″</span></p>
+<p>يكون القياس في <strong>الصيغة البسيطة</strong> عندما يُعبَّر عنه بوحدة واحدة.</p>
+<p>أمثلة:</p>
+<p class="mathline"><span class="math">205,5 min</span></p>
+<p class="mathline"><span class="math">395,1′</span></p>
+<hr/>
+<h3>1.5. من الصيغة المركبة إلى الصيغة البسيطة</h3>
+<h4>مثال أ · الزمن</h4>
+<p>حوّل <span class="math">2 h 14 min 18 s</span> إلى دقائق.</p>
+<p>نحوّل <strong>كل جزء على حدة</strong>:</p>
+<p class="mathline"><span class="math">2 h = 2·60 min = 120 min</span></p>
+<p class="mathline"><span class="math">14 min = 14 min</span></p>
+<p class="mathline"><span class="math">18 s = 18:60 min = 0,3 min</span></p>
+<p>الآن نجمع النتائج:</p>
+<p class="mathline"><span class="math">2 h 14 min 18 s = 120 min + 14 min + 0,3 min</span></p>
+<p class="mathline"><span class="math">= 134,3 min</span></p>
+<h4>مثال ب · قياس الزوايا</h4>
+<p>حوّل <span class="math">4° 12′ 30″</span> إلى دقائق.</p>
+<p class="mathline"><span class="math">4° = 4·60′ = 240′</span></p>
+<p class="mathline"><span class="math">12′ = 12′</span></p>
+<p class="mathline"><span class="math">30″ = 30:60′ = 0,5′</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">4° 12′ 30″ = 240′ + 12′ + 0,5′</span></p>
+<p class="mathline"><span class="math">= 252,5′</span></p>
+<hr/>
+<h3>1.6. من كمية عشرية إلى الصيغة المركبة</h3>
+<h4>مثال أ · درجات عشرية</h4>
+<p>حوّل <span class="math">7,325°</span> إلى درجات ودقائق وثوانٍ.</p>
+<p>يبقى الجزء الصحيح درجات:</p>
+<p class="mathline"><span class="math">7,325° = 7° + 0,325°</span></p>
+<p>نحوّل الجزء العشري إلى دقائق:</p>
+<p class="mathline"><span class="math">0,325·60 = 19,5′</span></p>
+<p>الجزء الصحيح هو <span class="math">19′</span> ونحوّل الجزء العشري المتبقي إلى ثوانٍ:</p>
+<p class="mathline"><span class="math">0,5·60 = 30″</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">7,325° = 7° 19′ 30″</span></p>
+<h4>مثال ب · دقائق عشرية</h4>
+<p>حوّل <span class="math">154,5 min</span> إلى ساعات ودقائق وثوانٍ.</p>
+<p>نستخرج الساعات الكاملة:</p>
+<p class="mathline"><span class="math">154,5 : 60 = 2 h</span> ويتبقى <span class="math">34,5 min</span></p>
+<p>نستخرج الدقائق الكاملة:</p>
+<p class="mathline"><span class="math">34,5 min = 34 min + 0,5 min</span></p>
+<p>نحوّل الجزء العشري من الدقيقة إلى ثوانٍ:</p>
+<p class="mathline"><span class="math">0,5·60 = 30 s</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">154,5 min = 2 h 34 min 30 s</span></p>
+<hr/>
+<h3>1.7. من الثواني إلى الصيغة المركبة</h3>
+<p>عندما تكون الكمية معبَّرًا عنها بالكامل بالثواني، يمكننا استعمال القسمة الصحيحة.</p>
+<h4>مثال أ · الزمن</h4>
+<p>حوّل <span class="math">20 645 s</span> إلى ساعات ودقائق وثوانٍ.</p>
+<p>نستخرج أولًا الساعات الكاملة:</p>
+<p class="mathline"><span class="math">20 645 : 3600 = 5 h</span>، الباقي <span class="math">2645 s</span></p>
+<p>ثم نستخرج الدقائق الكاملة من الباقي:</p>
+<p class="mathline"><span class="math">2645 : 60 = 44 min</span>، الباقي <span class="math">5 s</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">20 645 s = 5 h 44 min 5 s</span></p>
+<h4>مثال ب · قياس الزوايا</h4>
+<p>تُستعمل الطريقة نفسها مع الثواني الزاوية باستعمال الرموز المناسبة.</p>
+<p>حوّل <span class="math">20 645″</span> إلى درجات ودقائق وثوانٍ.</p>
+<p class="mathline"><span class="math">20 645 : 3600 = 5°</span>، الباقي <span class="math">2645″</span></p>
+<p class="mathline"><span class="math">2645 : 60 = 44′</span>، الباقي <span class="math">5″</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">20 645″ = 5° 44′ 5″</span></p>
+<hr/>
+<h3>1.8. من الثواني إلى الساعات والدقائق والثواني: طريقتان</h3>
+<p>عندما تكون الكمية معبَّرًا عنها بالثواني فقط ونريد كتابتها بالصيغة المركبة، يمكننا اتباع <strong>طريقتين متكافئتين</strong>.</p>
+<div class="two-paths">
+<div class="path">
+<div class="path-title">الطريقة 1 · البدء بالساعات</div>
+<p>نقسم أولًا على <span class="math">3600</span>. خارج القسمة يمثل الساعات ونواصل باستعمال الباقي.</p>
+<p class="mathline"><span class="math">19 765 ÷ 3600 = 5</span>، الباقي <span class="math">1765</span></p>
+<p class="mathline"><span class="math">1765 ÷ 60 = 29</span>، الباقي <span class="math">25</span></p>
+<p class="read-result"><span class="math">19 765 s = 5 h 29 min 25 s</span></p>
+</div>
+<div class="path">
+<div class="path-title">الطريقة 2 · قسمة متتالية على 60</div>
+<p>نستخرج أولًا الدقائق والثواني. ثم نقسم الدقائق مرة أخرى على 60 للحصول على الساعات والدقائق.</p>
+<div aria-label="Divisiones sucesivas encadenadas entre 60" class="div60-wrap div-stair-wrap">
+<div class="div-stair">
+<div class="stair-step step1">
+<span class="dvd">19 765</span><span class="bar"></span><span class="dvs">60</span>
+<span class="rem">25</span><span class="quo">329</span>
+</div>
+<div class="stair-step step2">
+<span class="dvd">329</span><span class="bar"></span><span class="dvs">60</span>
+<span class="rem">29</span><span class="quo">5</span>
+</div>
+</div>
+</div>
+<p>نقرأ خارج القسمة الأخير والبواقي مع وحداتها:</p>
+<p class="read-result"><span class="math">5 h · 29 min · 25 s</span></p>
+<p><strong>ارتباط بما تعرفه سابقًا:</strong> إنها الطريقة نفسها للقسمة المتتالية التي استعملناها للتحويل من النظام العشري إلى الثنائي، لكننا هنا نقسم على <span class="math">60</span>. في النظام الثنائي تكوّن البواقي أرقام العدد؛ أما هنا فيُفسَّر كل خارج قسمة وكل باقٍ حسب وحدته: ساعات ودقائق وثوانٍ.</p>
+</div>
+</div>
+<div class="tip">
+<strong>فكرة أساسية.</strong> الطريقتان صحيحتان وتؤديان إلى النتيجة نفسها. اختر الطريقة الأوضح لك.
+</div>
+<h3>1.9. التوسّع · جمع كميات ستينية</h3>
+<p>لجمع كميات ستينية، نضع وحدات المرتبة نفسها معًا ونجمع حسب الأعمدة.</p>
+<h4>مثال · جمع أزمنة</h4>
+<p class="mathline"><p><strong>احسب:</strong> <span class="math">2 h 48 min 35 s + 1 h 26 min 40 s</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>2</td><td>48</td><td>35</td></tr><tr><td class="sign">+</td><td>1</td><td>26</td><td>40</td></tr><tr class="raw-result"><td></td><td>3</td><td>74</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75 s = 1 min 15 s</td></tr><tr class="borrow-step"><td></td><td>3</td><td>75</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">75 min = 1 h 15 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>15</td><td>15</td></tr><tr class="final-result"><td></td><td>4</td><td>15</td><td>15</td></tr></table></div></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">2 h 48 min 35 s + 1 h 26 min 40 s = 4 h 15 min 15 s</span></p>
+<div class="warning"><strong>فكرة أساسية:</strong> إذا حصلنا على <span class="math">60 s</span> أو أكثر، نحوّل مجموعات من <span class="math">60 s</span> إلى دقائق؛ وإذا حصلنا على <span class="math">60 min</span> أو أكثر، نحوّل مجموعات من <span class="math">60 min</span> إلى ساعات.</div>
+<h4>مثال · جمع زوايا</h4>
+<p class="mathline"><p><strong>احسب:</strong> <span class="math">18° 42′ 35″ + 7° 28′ 40″</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>18</td><td>42</td><td>35</td></tr><tr><td class="sign">+</td><td>7</td><td>28</td><td>40</td></tr><tr class="raw-result"><td></td><td>25</td><td>70</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75″ = 1′ 15″</td></tr><tr class="borrow-step"><td></td><td>25</td><td>71</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">71′ = 1° 11′</td></tr><tr class="borrow-step"><td></td><td>26</td><td>11</td><td>15</td></tr><tr class="final-result"><td></td><td>26</td><td>11</td><td>15</td></tr></table></div></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">18° 42′ 35″ + 7° 28′ 40″ = 26° 11′ 15″</span></p>
+<hr/>
+<h3>1.10. التوسّع · طرح كميات ستينية</h3>
+<p>لطرح كميات ستينية، نضع وحدات المرتبة نفسها معًا. وإذا تعذر الطرح مباشرة، نقوم بعملية <strong>استلاف</strong>:</p>
+<p class="mathline"><span class="math">1 min = 60 s</span> <span class="math">1 h = 60 min</span></p>
+<p>وفي قياس الزوايا:</p>
+<p class="mathline"><span class="math">1′ = 60″</span> <span class="math">1° = 60′</span></p>
+<h4>مثال · طرح أزمنة</h4>
+<p class="mathline"><p><strong>احسب:</strong> <span class="math">5 h 12 min 20 s − 2 h 38 min 45 s</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>5</td><td>12</td><td>20</td></tr><tr><td class="sign">−</td><td>2</td><td>38</td><td>45</td></tr><tr class="transform"><td></td><td colspan="3">نستلف 1 min = 60 s</td></tr><tr class="borrow-step"><td></td><td>5</td><td>11</td><td>80</td></tr><tr class="transform"><td></td><td colspan="3">نستلف 1 h = 60 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>71</td><td>80</td></tr><tr class="final-result"><td></td><td>2</td><td>33</td><td>35</td></tr></table></div></p>
+<p>نستلف <span class="math">1 min = 60 s</span>:</p>
+<p>الآن نستلف <span class="math">1 h = 60 min</span>:</p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">5 h 12 min 20 s − 2 h 38 min 45 s = 2 h 33 min 35 s</span></p>
+<h4>مثال · طرح زوايا</h4>
+<p class="mathline"><p><strong>احسب:</strong> <span class="math">12° 15′ 20″ − 4° 28′ 45″</span></p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>12</td><td>15</td><td>20</td></tr><tr><td class="sign">−</td><td>4</td><td>28</td><td>45</td></tr><tr class="transform"><td></td><td colspan="3">نستلف 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>12</td><td>14</td><td>80</td></tr><tr class="transform"><td></td><td colspan="3">نستلف 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>11</td><td>74</td><td>80</td></tr><tr class="final-result"><td></td><td>7</td><td>46</td><td>35</td></tr></table></div></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">12° 15′ 20″ − 4° 28′ 45″ = 7° 46′ 35″</span></p>
+<hr/></span></div>
+</div>
+<!-- CONTENT_APRENDE_END -->
+</section>
+<section class="major-section collapsed"><h2 aria-expanded="false" class="section-title collapsible-title" role="button" tabindex="0"><span class="major-num">2 ·</span> ✏️ <span class="i18n es" data-lang="es">PRACTICA CON AYUDA</span><span class="i18n fr" data-lang="fr">ENTRAÎNE-TOI AVEC AIDE</span><span class="i18n ar" data-lang="ar">تدرّب مع المساعدة</span><span aria-hidden="true" class="collapse-indicator">▶</span></h2>
+<!-- CONTENT_PRACTICA_START -->
+<div class="content-slot" data-content-slot="practica">
+<div class="learnbox"><span class="i18n es" data-lang="es"><p>Resuelve cada actividad en tu libreta. Si lo necesitas, consulta la <strong>AYUDA</strong>. Después puedes comprobar tu procedimiento con la <strong>SOLUCIÓN</strong>.</p></span><span class="i18n fr" data-lang="fr"><p>Résous chaque activité dans ton cahier. Si nécessaire, consulte l’ <strong>AIDE</strong>. Ensuite, tu peux vérifier ta démarche avec la <strong>SOLUTION</strong>.</p></span><span class="i18n ar" data-lang="ar"><p>حلّ كل نشاط في دفترك. إذا احتجت، راجع <strong>المساعدة</strong>. بعد ذلك يمكنك التحقق من طريقتك باستعمال <strong>الحل</strong>.</p></span></div>
+<div class="card" data-card-lang="es">
+<div class="question-controls">
+<label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 <span class="i18n es">Mostrar ayuda</span><span class="i18n fr" data-lang="fr">Afficher l’aide</span><span class="i18n ar" data-lang="ar">إظهار المساعدة</span></label>
+<label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label>
+</div>
+<div class="level">ACTIVIDAD 1 · NIVEL 1 · IMITO</div>
+<div class="i18n es" data-lang="es"><p>Completa estas equivalencias:</p>
+<p>a) <span class="math">1 h = ____ min</span></p>
+<p>b) <span class="math">1 min = ____ s</span></p>
+<p>c) <span class="math">1° = ____′</span></p>
+<p>d) <span class="math">1′ = ____″</span></p></div><div class="i18n fr" data-lang="fr"><p>Complète ces équivalences :</p>
+<p>a) <span class="math">1 h = ____ min</span></p>
+<p>b) <span class="math">1 min = ____ s</span></p>
+<p>c) <span class="math">1° = ____′</span></p>
+<p>d) <span class="math">1′ = ____″</span></p></div><div class="i18n ar" data-lang="ar"><p>أكمل هذه التكافؤات:</p>
+<p>a) <span class="math">1 h = ____ min</span></p>
+<p>b) <span class="math">1 min = ____ s</span></p>
+<p>c) <span class="math">1° = ____′</span></p>
+<p>d) <span class="math">1′ = ____″</span></p></div>
+<div class="toggle help" hidden=""><span class="i18n es" data-lang="es"><h4>NECESITO AYUDA</h4><p>Recuerda que el sistema es <strong>sexagesimal</strong>: cada unidad equivale a <strong>60 unidades del orden inmediatamente inferior</strong>.</p>
+<p>Ejemplo análogo:</p>
+<p class="mathline"><span class="math">2 h = 2·60 min = 120 min</span></p></span><span class="i18n fr" data-lang="fr"><h4>J’AI BESOIN D’AIDE</h4><p>Rappelle-toi que le système est <strong>sexagésimal</strong>: chaque unité équivaut à <strong>60 unités de l’ordre immédiatement inférieur</strong>.</p>
+<p>Exemple analogue :</p>
+<p class="mathline"><span class="math">2 h = 2·60 min = 120 min</span></p></span><span class="i18n ar" data-lang="ar"><h4>أحتاج إلى مساعدة</h4><p>تذكّر أن النظام <strong>ستيني</strong>: كل وحدة تساوي <strong>60 وحدة من المرتبة الأصغر مباشرة</strong>.</p>
+<p>مثال مشابه:</p>
+<p class="mathline"><span class="math">2 h = 2·60 min = 120 min</span></p></span></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4><p>a) <span class="math">1 h = 60 min</span></p>
+<p>b) <span class="math">1 min = 60 s</span></p>
+<p>c) <span class="math">1° = 60′</span></p>
+<p>d) <span class="math">1′ = 60″</span></p></span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4><p>a) <span class="math">1 h = 60 min</span></p>
+<p>b) <span class="math">1 min = 60 s</span></p>
+<p>c) <span class="math">1° = 60′</span></p>
+<p>d) <span class="math">1′ = 60″</span></p></span><span class="i18n ar" data-lang="ar"><h4>الحل</h4><p>a) <span class="math">1 h = 60 min</span></p>
+<p>b) <span class="math">1 min = 60 s</span></p>
+<p>c) <span class="math">1° = 60′</span></p>
+<p>d) <span class="math">1′ = 60″</span></p></span></div>
+</div>
+<div class="card" data-card-lang="es">
+<div class="question-controls">
+<label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 <span class="i18n es">Mostrar ayuda</span><span class="i18n fr" data-lang="fr">Afficher l’aide</span><span class="i18n ar" data-lang="ar">إظهار المساعدة</span></label>
+<label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label>
+</div>
+<div class="level">ACTIVIDAD 2 · NIVEL 1 · IMITO</div>
+<div class="i18n es" data-lang="es"><p>Convierte:</p>
+<p>a) <span class="math">3 h</span> a minutos.</p>
+<p>b) <span class="math">5 min</span> a segundos.</p>
+<p>c) <span class="math">4°</span> a minutos angulares.</p>
+<p>d) <span class="math">7′</span> a segundos angulares.</p></div><div class="i18n fr" data-lang="fr"><p>Convertis :</p>
+<p>a) <span class="math">3 h</span> en minutes.</p>
+<p>b) <span class="math">5 min</span> en secondes.</p>
+<p>c) <span class="math">4°</span> en minutes d’angle.</p>
+<p>d) <span class="math">7′</span> en secondes d’angle.</p></div><div class="i18n ar" data-lang="ar"><p>حوّل:</p>
+<p>a) <span class="math">3 h</span> إلى دقائق.</p>
+<p>b) <span class="math">5 min</span> إلى ثوانٍ.</p>
+<p>c) <span class="math">4°</span> إلى دقائق زاوية.</p>
+<p>d) <span class="math">7′</span> إلى ثوانٍ زاوية.</p></div>
+<div class="toggle help" hidden=""><span class="i18n es" data-lang="es"><h4>NECESITO AYUDA</h4><p>Si pasamos a una unidad inmediatamente menor, <strong>multiplicamos por 60</strong>.</p>
+<p>Ejemplo:</p>
+<p class="mathline"><span class="math">2 h = 2·60 = 120 min</span></p>
+<p class="mathline"><span class="math">3′ = 3·60 = 180″</span></p></span><span class="i18n fr" data-lang="fr"><h4>J’AI BESOIN D’AIDE</h4><p>Si nous passons à l’unité immédiatement inférieure, <strong>nous multiplions par 60</strong>.</p>
+<p>Exemple :</p>
+<p class="mathline"><span class="math">2 h = 2·60 = 120 min</span></p>
+<p class="mathline"><span class="math">3′ = 3·60 = 180″</span></p></span><span class="i18n ar" data-lang="ar"><h4>أحتاج إلى مساعدة</h4><p>إذا انتقلنا إلى الوحدة الأصغر مباشرة، <strong>نضرب في 60</strong>.</p>
+<p>مثال:</p>
+<p class="mathline"><span class="math">2 h = 2·60 = 120 min</span></p>
+<p class="mathline"><span class="math">3′ = 3·60 = 180″</span></p></span></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4><p>a) <span class="math">3 h = 3·60 = 180 min</span></p>
+<p>b) <span class="math">5 min = 5·60 = 300 s</span></p>
+<p>c) <span class="math">4° = 4·60 = 240′</span></p>
+<p>d) <span class="math">7′ = 7·60 = 420″</span></p></span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4><p>a) <span class="math">3 h = 3·60 = 180 min</span></p>
+<p>b) <span class="math">5 min = 5·60 = 300 s</span></p>
+<p>c) <span class="math">4° = 4·60 = 240′</span></p>
+<p>d) <span class="math">7′ = 7·60 = 420″</span></p></span><span class="i18n ar" data-lang="ar"><h4>الحل</h4><p>a) <span class="math">3 h = 3·60 = 180 min</span></p>
+<p>b) <span class="math">5 min = 5·60 = 300 s</span></p>
+<p>c) <span class="math">4° = 4·60 = 240′</span></p>
+<p>d) <span class="math">7′ = 7·60 = 420″</span></p></span></div>
+</div>
+<div class="card" data-card-lang="es">
+<div class="question-controls">
+<label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 <span class="i18n es">Mostrar ayuda</span><span class="i18n fr" data-lang="fr">Afficher l’aide</span><span class="i18n ar" data-lang="ar">إظهار المساعدة</span></label>
+<label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label>
+</div>
+<div class="level">ACTIVIDAD 3 · NIVEL 1 · IMITO</div>
+<div class="i18n es" data-lang="es"><p>Convierte:</p>
+<p>a) <span class="math">180 min</span> a horas.</p>
+<p>b) <span class="math">300 s</span> a minutos.</p>
+<p>c) <span class="math">240′</span> a grados.</p>
+<p>d) <span class="math">420″</span> a minutos angulares.</p></div><div class="i18n fr" data-lang="fr"><p>Convertis :</p>
+<p>a) <span class="math">180 min</span> en heures.</p>
+<p>b) <span class="math">300 s</span> en minutes.</p>
+<p>c) <span class="math">240′</span> en degrés.</p>
+<p>d) <span class="math">420″</span> en minutes d’angle.</p></div><div class="i18n ar" data-lang="ar"><p>حوّل:</p>
+<p>a) <span class="math">180 min</span> إلى ساعات.</p>
+<p>b) <span class="math">300 s</span> إلى دقائق.</p>
+<p>c) <span class="math">240′</span> إلى درجات.</p>
+<p>d) <span class="math">420″</span> إلى دقائق زاوية.</p></div>
+<div class="toggle help" hidden=""><span class="i18n es" data-lang="es"><h4>NECESITO AYUDA</h4><p>Si pasamos a una unidad inmediatamente mayor, <strong>dividimos entre 60</strong>.</p>
+<p>Ejemplo:</p>
+<p class="mathline"><span class="math">120 min : 60 = 2 h</span></p>
+<p class="mathline"><span class="math">180″ : 60 = 3′</span></p></span><span class="i18n fr" data-lang="fr"><h4>J’AI BESOIN D’AIDE</h4><p>Si nous passons à l’unité immédiatement supérieure, <strong>nous divisons par 60</strong>.</p>
+<p>Exemple :</p>
+<p class="mathline"><span class="math">120 min : 60 = 2 h</span></p>
+<p class="mathline"><span class="math">180″ : 60 = 3′</span></p></span><span class="i18n ar" data-lang="ar"><h4>أحتاج إلى مساعدة</h4><p>إذا انتقلنا إلى الوحدة الأكبر مباشرة، <strong>نقسم على 60</strong>.</p>
+<p>مثال:</p>
+<p class="mathline"><span class="math">120 min : 60 = 2 h</span></p>
+<p class="mathline"><span class="math">180″ : 60 = 3′</span></p></span></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4><p>a) <span class="math">180 min : 60 = 3 h</span></p>
+<p>b) <span class="math">300 s : 60 = 5 min</span></p>
+<p>c) <span class="math">240′ : 60 = 4°</span></p>
+<p>d) <span class="math">420″ : 60 = 7′</span></p></span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4><p>a) <span class="math">180 min : 60 = 3 h</span></p>
+<p>b) <span class="math">300 s : 60 = 5 min</span></p>
+<p>c) <span class="math">240′ : 60 = 4°</span></p>
+<p>d) <span class="math">420″ : 60 = 7′</span></p></span><span class="i18n ar" data-lang="ar"><h4>الحل</h4><p>a) <span class="math">180 min : 60 = 3 h</span></p>
+<p>b) <span class="math">300 s : 60 = 5 min</span></p>
+<p>c) <span class="math">240′ : 60 = 4°</span></p>
+<p>d) <span class="math">420″ : 60 = 7′</span></p></span></div>
+</div>
+<div class="card" data-card-lang="es">
+<div class="question-controls">
+<label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 <span class="i18n es">Mostrar ayuda</span><span class="i18n fr" data-lang="fr">Afficher l’aide</span><span class="i18n ar" data-lang="ar">إظهار المساعدة</span></label>
+<label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label>
+</div>
+<div class="level">ACTIVIDAD 4 · NIVEL 2 · APLICO</div>
+<div class="i18n es" data-lang="es"><p>Expresa <span class="math">3 h 25 min 30 s</span> en minutos.</p></div><div class="i18n fr" data-lang="fr"><p>Exprime <span class="math">3 h 25 min 30 s</span> en minutes.</p></div><div class="i18n ar" data-lang="ar"><p>عبّر عن <span class="math">3 h 25 min 30 s</span> بالدقائق.</p></div>
+<div class="toggle help" hidden=""><span class="i18n es" data-lang="es"><h4>NECESITO AYUDA</h4><p>Convierte <strong>cada componente</strong> a minutos y después suma.</p>
+<p>Ejemplo análogo:</p>
+<p class="mathline"><span class="math">2 h 14 min 18 s</span></p>
+<p class="mathline"><span class="math">2 h = 120 min</span></p>
+<p class="mathline"><span class="math">14 min = 14 min</span></p>
+<p class="mathline"><span class="math">18 s = 18:60 = 0,3 min</span></p>
+<p class="mathline"><span class="math">120 + 14 + 0,3 = 134,3 min</span></p></span><span class="i18n fr" data-lang="fr"><h4>J’AI BESOIN D’AIDE</h4><p>Convertis <strong>chaque composante</strong> en minutes puis additionne.</p>
+<p>Exemple analogue :</p>
+<p class="mathline"><span class="math">2 h 14 min 18 s</span></p>
+<p class="mathline"><span class="math">2 h = 120 min</span></p>
+<p class="mathline"><span class="math">14 min = 14 min</span></p>
+<p class="mathline"><span class="math">18 s = 18:60 = 0,3 min</span></p>
+<p class="mathline"><span class="math">120 + 14 + 0,3 = 134,3 min</span></p></span><span class="i18n ar" data-lang="ar"><h4>أحتاج إلى مساعدة</h4><p>حوّل <strong>كل جزء</strong> إلى دقائق ثم اجمع.</p>
+<p>مثال مشابه:</p>
+<p class="mathline"><span class="math">2 h 14 min 18 s</span></p>
+<p class="mathline"><span class="math">2 h = 120 min</span></p>
+<p class="mathline"><span class="math">14 min = 14 min</span></p>
+<p class="mathline"><span class="math">18 s = 18:60 = 0,3 min</span></p>
+<p class="mathline"><span class="math">120 + 14 + 0,3 = 134,3 min</span></p></span></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4><p class="mathline"><span class="math">3 h = 3·60 = 180 min</span></p>
+<p class="mathline"><span class="math">25 min = 25 min</span></p>
+<p class="mathline"><span class="math">30 s = 30:60 = 0,5 min</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">3 h 25 min 30 s = 180 + 25 + 0,5</span></p>
+<p class="mathline"><span class="math">= 205,5 min</span></p></span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4><p class="mathline"><span class="math">3 h = 3·60 = 180 min</span></p>
+<p class="mathline"><span class="math">25 min = 25 min</span></p>
+<p class="mathline"><span class="math">30 s = 30:60 = 0,5 min</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">3 h 25 min 30 s = 180 + 25 + 0,5</span></p>
+<p class="mathline"><span class="math">= 205,5 min</span></p></span><span class="i18n ar" data-lang="ar"><h4>الحل</h4><p class="mathline"><span class="math">3 h = 3·60 = 180 min</span></p>
+<p class="mathline"><span class="math">25 min = 25 min</span></p>
+<p class="mathline"><span class="math">30 s = 30:60 = 0,5 min</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">3 h 25 min 30 s = 180 + 25 + 0,5</span></p>
+<p class="mathline"><span class="math">= 205,5 min</span></p></span></div>
+</div>
+<div class="card" data-card-lang="es">
+<div class="question-controls">
+<label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 <span class="i18n es">Mostrar ayuda</span><span class="i18n fr" data-lang="fr">Afficher l’aide</span><span class="i18n ar" data-lang="ar">إظهار المساعدة</span></label>
+<label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label>
+</div>
+<div class="level">ACTIVIDAD 5 · NIVEL 2 · APLICO</div>
+<div class="i18n es" data-lang="es"><p>Expresa <span class="math">6° 35′ 6″</span> en minutos angulares.</p></div><div class="i18n fr" data-lang="fr"><p>Exprime <span class="math">6° 35′ 6″</span> en minutes d’angle.</p></div><div class="i18n ar" data-lang="ar"><p>عبّر عن <span class="math">6° 35′ 6″</span> بالدقائق الزاوية.</p></div>
+<div class="toggle help" hidden=""><span class="i18n es" data-lang="es"><h4>NECESITO AYUDA</h4><p>Trabaja igual que con el tiempo, pero utiliza correctamente los símbolos angulares.</p>
+<p>Ejemplo análogo:</p>
+<p class="mathline"><span class="math">4° 12′ 30″</span></p>
+<p class="mathline"><span class="math">4° = 240′</span></p>
+<p class="mathline"><span class="math">12′ = 12′</span></p>
+<p class="mathline"><span class="math">30″ = 0,5′</span></p>
+<p class="mathline"><span class="math">240 + 12 + 0,5 = 252,5′</span></p></span><span class="i18n fr" data-lang="fr"><h4>J’AI BESOIN D’AIDE</h4><p>Procède comme pour le temps, mais utilise correctement les symboles d’angle.</p>
+<p>Exemple analogue :</p>
+<p class="mathline"><span class="math">4° 12′ 30″</span></p>
+<p class="mathline"><span class="math">4° = 240′</span></p>
+<p class="mathline"><span class="math">12′ = 12′</span></p>
+<p class="mathline"><span class="math">30″ = 0,5′</span></p>
+<p class="mathline"><span class="math">240 + 12 + 0,5 = 252,5′</span></p></span><span class="i18n ar" data-lang="ar"><h4>أحتاج إلى مساعدة</h4><p>اعمل بالطريقة نفسها كما في الزمن، لكن استعمل رموز الزوايا استعمالًا صحيحًا.</p>
+<p>مثال مشابه:</p>
+<p class="mathline"><span class="math">4° 12′ 30″</span></p>
+<p class="mathline"><span class="math">4° = 240′</span></p>
+<p class="mathline"><span class="math">12′ = 12′</span></p>
+<p class="mathline"><span class="math">30″ = 0,5′</span></p>
+<p class="mathline"><span class="math">240 + 12 + 0,5 = 252,5′</span></p></span></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4><p class="mathline"><span class="math">6° = 6·60 = 360′</span></p>
+<p class="mathline"><span class="math">35′ = 35′</span></p>
+<p class="mathline"><span class="math">6″ = 6:60 = 0,1′</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">6° 35′ 6″ = 360 + 35 + 0,1</span></p>
+<p class="mathline"><span class="math">= 395,1′</span></p></span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4><p class="mathline"><span class="math">6° = 6·60 = 360′</span></p>
+<p class="mathline"><span class="math">35′ = 35′</span></p>
+<p class="mathline"><span class="math">6″ = 6:60 = 0,1′</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">6° 35′ 6″ = 360 + 35 + 0,1</span></p>
+<p class="mathline"><span class="math">= 395,1′</span></p></span><span class="i18n ar" data-lang="ar"><h4>الحل</h4><p class="mathline"><span class="math">6° = 6·60 = 360′</span></p>
+<p class="mathline"><span class="math">35′ = 35′</span></p>
+<p class="mathline"><span class="math">6″ = 6:60 = 0,1′</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">6° 35′ 6″ = 360 + 35 + 0,1</span></p>
+<p class="mathline"><span class="math">= 395,1′</span></p></span></div>
+</div>
+<div class="card" data-card-lang="es">
+<div class="question-controls">
+<label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 <span class="i18n es">Mostrar ayuda</span><span class="i18n fr" data-lang="fr">Afficher l’aide</span><span class="i18n ar" data-lang="ar">إظهار المساعدة</span></label>
+<label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label>
+</div>
+<div class="level">ACTIVIDAD 6 · NIVEL 2 · APLICO</div>
+<div class="i18n es" data-lang="es"><p>Pasa <span class="math">19 765 s</span> a horas, minutos y segundos.</p></div><div class="i18n fr" data-lang="fr"><p>Convertis <span class="math">19 765 s</span> en heures, minutes et secondes.</p></div><div class="i18n ar" data-lang="ar"><p>حوّل <span class="math">19 765 s</span> إلى ساعات ودقائق وثوانٍ.</p></div>
+<div class="toggle help" hidden=""><span class="i18n es" data-lang="es"><h4>NECESITO AYUDA</h4><p>Primero busca las <strong>horas completas</strong> dividiendo entre <span class="math">3600</span>. Después divide el resto entre <span class="math">60</span>.</p>
+<p>Ejemplo análogo:</p>
+<p class="mathline"><span class="math">20 645 s : 3600 = 5 h</span>, resto <span class="math">2645 s</span></p>
+<p class="mathline"><span class="math">2645 : 60 = 44 min</span>, resto <span class="math">5 s</span></p>
+<p>Resultado: <span class="math">5 h 44 min 5 s</span></p></span><span class="i18n fr" data-lang="fr"><h4>J’AI BESOIN D’AIDE</h4><p>Cherche d’abord les <strong>heures entières</strong> en divisant par <span class="math">3600</span>. Puis divise le reste par <span class="math">60</span>.</p>
+<p>Exemple analogue :</p>
+<p class="mathline"><span class="math">20 645 s : 3600 = 5 h</span>, reste <span class="math">2645 s</span></p>
+<p class="mathline"><span class="math">2645 : 60 = 44 min</span>, reste <span class="math">5 s</span></p>
+<p>Résultat : <span class="math">5 h 44 min 5 s</span></p></span><span class="i18n ar" data-lang="ar"><h4>أحتاج إلى مساعدة</h4><p>ابحث أولًا عن <strong>الساعات الكاملة</strong> بالقسمة على <span class="math">3600</span>. ثم اقسم الباقي على <span class="math">60</span>.</p>
+<p>مثال مشابه:</p>
+<p class="mathline"><span class="math">20 645 s : 3600 = 5 h</span>، الباقي <span class="math">2645 s</span></p>
+<p class="mathline"><span class="math">2645 : 60 = 44 min</span>، الباقي <span class="math">5 s</span></p>
+<p>النتيجة: <span class="math">5 h 44 min 5 s</span></p></span></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4><p class="mathline"><span class="math">19 765 : 3600 = 5 h</span>, resto <span class="math">1765 s</span></p>
+<p class="mathline"><span class="math">1765 : 60 = 29 min</span>, resto <span class="math">25 s</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">19 765 s = 5 h 29 min 25 s</span></p></span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4><p class="mathline"><span class="math">19 765 : 3600 = 5 h</span>, reste <span class="math">1765 s</span></p>
+<p class="mathline"><span class="math">1765 : 60 = 29 min</span>, reste <span class="math">25 s</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">19 765 s = 5 h 29 min 25 s</span></p></span><span class="i18n ar" data-lang="ar"><h4>الحل</h4><p class="mathline"><span class="math">19 765 : 3600 = 5 h</span>، الباقي <span class="math">1765 s</span></p>
+<p class="mathline"><span class="math">1765 : 60 = 29 min</span>، الباقي <span class="math">25 s</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">19 765 s = 5 h 29 min 25 s</span></p></span></div>
+</div>
+<div class="card" data-card-lang="es">
+<div class="question-controls">
+<label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 <span class="i18n es">Mostrar ayuda</span><span class="i18n fr" data-lang="fr">Afficher l’aide</span><span class="i18n ar" data-lang="ar">إظهار المساعدة</span></label>
+<label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label>
+</div>
+<div class="level">ACTIVIDAD 7 · NIVEL 2 · APLICO</div>
+<div class="i18n es" data-lang="es"><p>Pasa <span class="math">35 679″</span> a grados, minutos y segundos.</p></div><div class="i18n fr" data-lang="fr"><p>Convertis <span class="math">35 679″</span> en degrés, minutes et secondes.</p></div><div class="i18n ar" data-lang="ar"><p>حوّل <span class="math">35 679″</span> إلى درجات ودقائق وثوانٍ.</p></div>
+<div class="toggle help" hidden=""><span class="i18n es" data-lang="es"><h4>NECESITO AYUDA</h4><p>El procedimiento es el mismo que para pasar segundos de tiempo a forma compleja, pero ahora las unidades son <span class="math">°</span>, <span class="math">′</span> y <span class="math">″</span>.</p>
+<p>Ejemplo análogo:</p>
+<p class="mathline"><span class="math">20 645″ : 3600 = 5°</span>, resto <span class="math">2645″</span></p>
+<p class="mathline"><span class="math">2645 : 60 = 44′</span>, resto <span class="math">5″</span></p>
+<p>Resultado: <span class="math">5° 44′ 5″</span></p></span><span class="i18n fr" data-lang="fr"><h4>J’AI BESOIN D’AIDE</h4><p>La méthode est la même que pour convertir des secondes de temps en forme complexe, mais ici les unités sont <span class="math">°</span>, <span class="math">′</span> et <span class="math">″</span>.</p>
+<p>Exemple analogue :</p>
+<p class="mathline"><span class="math">20 645″ : 3600 = 5°</span>, reste <span class="math">2645″</span></p>
+<p class="mathline"><span class="math">2645 : 60 = 44′</span>, reste <span class="math">5″</span></p>
+<p>Résultat : <span class="math">5° 44′ 5″</span></p></span><span class="i18n ar" data-lang="ar"><h4>أحتاج إلى مساعدة</h4><p>الطريقة نفسها المستخدمة لتحويل ثواني الزمن إلى صيغة مركبة، لكن الوحدات الآن هي <span class="math">°</span>, <span class="math">′</span> و <span class="math">″</span>.</p>
+<p>مثال مشابه:</p>
+<p class="mathline"><span class="math">20 645″ : 3600 = 5°</span>، الباقي <span class="math">2645″</span></p>
+<p class="mathline"><span class="math">2645 : 60 = 44′</span>، الباقي <span class="math">5″</span></p>
+<p>النتيجة: <span class="math">5° 44′ 5″</span></p></span></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4><p class="mathline"><span class="math">35 679 : 3600 = 9°</span>, resto <span class="math">3279″</span></p>
+<p class="mathline"><span class="math">3279 : 60 = 54′</span>, resto <span class="math">39″</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">35 679″ = 9° 54′ 39″</span></p></span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4><p class="mathline"><span class="math">35 679 : 3600 = 9°</span>, reste <span class="math">3279″</span></p>
+<p class="mathline"><span class="math">3279 : 60 = 54′</span>, reste <span class="math">39″</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">35 679″ = 9° 54′ 39″</span></p></span><span class="i18n ar" data-lang="ar"><h4>الحل</h4><p class="mathline"><span class="math">35 679 : 3600 = 9°</span>، الباقي <span class="math">3279″</span></p>
+<p class="mathline"><span class="math">3279 : 60 = 54′</span>، الباقي <span class="math">39″</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">35 679″ = 9° 54′ 39″</span></p></span></div>
+</div>
+<div class="card" data-card-lang="es">
+<div class="question-controls">
+<label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 <span class="i18n es">Mostrar ayuda</span><span class="i18n fr" data-lang="fr">Afficher l’aide</span><span class="i18n ar" data-lang="ar">إظهار المساعدة</span></label>
+<label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label>
+</div>
+<div class="level">ACTIVIDAD 8 · NIVEL 3 · DECIDO</div>
+<div class="i18n es" data-lang="es"><p>Convierte <span class="math">5,32°</span> a grados, minutos y segundos.</p></div><div class="i18n fr" data-lang="fr"><p>Convertis <span class="math">5,32°</span> en degrés, minutes et secondes.</p></div><div class="i18n ar" data-lang="ar"><p>حوّل <span class="math">5,32°</span> إلى درجات ودقائق وثوانٍ.</p></div>
+<div class="toggle help" hidden=""><span class="i18n es" data-lang="es"><h4>NECESITO AYUDA</h4><p>No multipliques todo el número por 60.</p>
+<p>1. Conserva la <strong>parte entera</strong> como grados.</p>
+<p>2. Multiplica solo la <strong>parte decimal</strong> por 60 para obtener minutos.</p>
+<p>3. Conserva los minutos enteros.</p>
+<p>4. Multiplica la parte decimal restante por 60 para obtener segundos.</p>
+<p>Ejemplo análogo:</p>
+<p class="mathline"><span class="math">7,325° = 7° + 0,325°</span></p>
+<p class="mathline"><span class="math">0,325·60 = 19,5′</span></p>
+<p class="mathline"><span class="math">0,5·60 = 30″</span></p>
+<p>Resultado: <span class="math">7° 19′ 30″</span></p></span><span class="i18n fr" data-lang="fr"><h4>J’AI BESOIN D’AIDE</h4><p>Ne multiplie pas tout le nombre par 60.</p>
+<p>1. Garde la <strong>partie entière</strong> comme degrés.</p>
+<p>2. Multiplie uniquement la <strong>partie décimale</strong> par 60 pour obtenir les minutes.</p>
+<p>3. Garde les minutes entières.</p>
+<p>4. Multiplie la partie décimale restante par 60 pour obtenir les secondes.</p>
+<p>Exemple analogue :</p>
+<p class="mathline"><span class="math">7,325° = 7° + 0,325°</span></p>
+<p class="mathline"><span class="math">0,325·60 = 19,5′</span></p>
+<p class="mathline"><span class="math">0,5·60 = 30″</span></p>
+<p>Résultat : <span class="math">7° 19′ 30″</span></p></span><span class="i18n ar" data-lang="ar"><h4>أحتاج إلى مساعدة</h4><p>لا تضرب العدد كله في 60.</p>
+<p>1. احتفظ بـ <strong>الجزء الصحيح</strong> كدرجات.</p>
+<p>2. اضرب فقط <strong>الجزء العشري</strong> في 60 للحصول على الدقائق.</p>
+<p>3. احتفظ بالدقائق الصحيحة.</p>
+<p>4. اضرب الجزء العشري المتبقي في 60 للحصول على الثواني.</p>
+<p>مثال مشابه:</p>
+<p class="mathline"><span class="math">7,325° = 7° + 0,325°</span></p>
+<p class="mathline"><span class="math">0,325·60 = 19,5′</span></p>
+<p class="mathline"><span class="math">0,5·60 = 30″</span></p>
+<p>النتيجة: <span class="math">7° 19′ 30″</span></p></span></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4><p class="mathline"><span class="math">5,32° = 5° + 0,32°</span></p>
+<p class="mathline"><span class="math">0,32·60 = 19,2′</span></p>
+<p class="mathline"><span class="math">19,2′ = 19′ + 0,2′</span></p>
+<p class="mathline"><span class="math">0,2·60 = 12″</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">5,32° = 5° 19′ 12″</span></p></span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4><p class="mathline"><span class="math">5,32° = 5° + 0,32°</span></p>
+<p class="mathline"><span class="math">0,32·60 = 19,2′</span></p>
+<p class="mathline"><span class="math">19,2′ = 19′ + 0,2′</span></p>
+<p class="mathline"><span class="math">0,2·60 = 12″</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">5,32° = 5° 19′ 12″</span></p></span><span class="i18n ar" data-lang="ar"><h4>الحل</h4><p class="mathline"><span class="math">5,32° = 5° + 0,32°</span></p>
+<p class="mathline"><span class="math">0,32·60 = 19,2′</span></p>
+<p class="mathline"><span class="math">19,2′ = 19′ + 0,2′</span></p>
+<p class="mathline"><span class="math">0,2·60 = 12″</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">5,32° = 5° 19′ 12″</span></p></span></div>
+</div>
+<div class="card" data-card-lang="es">
+<div class="question-controls">
+<label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 <span class="i18n es">Mostrar ayuda</span><span class="i18n fr" data-lang="fr">Afficher l’aide</span><span class="i18n ar" data-lang="ar">إظهار المساعدة</span></label>
+<label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label>
+</div>
+<div class="level">ACTIVIDAD 9 · NIVEL 4 · INTEGRO · AMPLIACIÓN</div>
+<div class="i18n es" data-lang="es"><p><strong>Calcula:</strong> <span class="math">3 h 47 min 38 s + 2 h 28 min 35 s</span></p></div><div class="i18n fr" data-lang="fr"><p><strong>Calcule :</strong> <span class="math">3 h 47 min 38 s + 2 h 28 min 35 s</span></p></div><div class="i18n ar" data-lang="ar"><p><strong>احسب:</strong> <span class="math">3 h 47 min 38 s + 2 h 28 min 35 s</span></p></div>
+<div class="toggle help" hidden=""><span class="i18n es" data-lang="es"><h4>NECESITO AYUDA</h4>
+<p>Suma primero los segundos. Si llegas a <span class="math">60 s</span> o más, transforma <span class="math">60 s</span> en <span class="math">1 min</span> y añade ese minuto a la columna siguiente.</p>
+<p><strong>Ejemplo análogo. Calcula:</strong></p>
+<p class="mathline"><span class="math">1 h 35 min 40 s + 2 h 32 min 30 s</span></p>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>1</td><td>35</td><td>40</td></tr><tr><td class="sign">+</td><td>2</td><td>32</td><td>30</td></tr><tr class="raw-result"><td></td><td>3</td><td>67</td><td>70</td></tr><tr class="transform"><td></td><td colspan="3">70 s = 1 min 10 s</td></tr><tr class="borrow-step"><td></td><td>3</td><td>68</td><td>10</td></tr><tr class="transform"><td></td><td colspan="3">68 min = 1 h 8 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>8</td><td>10</td></tr><tr class="final-result"><td></td><td>4</td><td>8</td><td>10</td></tr></table></div>
+<p>Por tanto:</p><p class="mathline"><span class="math">1 h 35 min 40 s + 2 h 32 min 30 s = 4 h 8 min 10 s</span></p>
+</span><span class="i18n fr" data-lang="fr"><h4>J’AI BESOIN D’AIDE</h4>
+<p>Additionne d’abord les secondes. Si tu atteins <span class="math">60 s</span> ou plus, transforme <span class="math">60 s</span> en <span class="math">1 min</span> et ajoute cette minute à la colonne suivante.</p>
+<p><strong>Exemple analogue. Calcule :</strong></p>
+<p class="mathline"><span class="math">1 h 35 min 40 s + 2 h 32 min 30 s</span></p>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>1</td><td>35</td><td>40</td></tr><tr><td class="sign">+</td><td>2</td><td>32</td><td>30</td></tr><tr class="raw-result"><td></td><td>3</td><td>67</td><td>70</td></tr><tr class="transform"><td></td><td colspan="3">70 s = 1 min 10 s</td></tr><tr class="borrow-step"><td></td><td>3</td><td>68</td><td>10</td></tr><tr class="transform"><td></td><td colspan="3">68 min = 1 h 8 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>8</td><td>10</td></tr><tr class="final-result"><td></td><td>4</td><td>8</td><td>10</td></tr></table></div>
+<p>Donc :</p><p class="mathline"><span class="math">1 h 35 min 40 s + 2 h 32 min 30 s = 4 h 8 min 10 s</span></p>
+</span><span class="i18n ar" data-lang="ar"><h4>أحتاج إلى مساعدة</h4>
+<p>اجمع الثواني أولًا. إذا وصلت إلى <span class="math">60 s</span> أو أكثر، حوّل <span class="math">60 s</span> إلى <span class="math">1 min</span> وأضف تلك الدقيقة إلى العمود التالي.</p>
+<p><strong>مثال مشابه. احسب:</strong></p>
+<p class="mathline"><span class="math">1 h 35 min 40 s + 2 h 32 min 30 s</span></p>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>1</td><td>35</td><td>40</td></tr><tr><td class="sign">+</td><td>2</td><td>32</td><td>30</td></tr><tr class="raw-result"><td></td><td>3</td><td>67</td><td>70</td></tr><tr class="transform"><td></td><td colspan="3">70 s = 1 min 10 s</td></tr><tr class="borrow-step"><td></td><td>3</td><td>68</td><td>10</td></tr><tr class="transform"><td></td><td colspan="3">68 min = 1 h 8 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>8</td><td>10</td></tr><tr class="final-result"><td></td><td>4</td><td>8</td><td>10</td></tr></table></div>
+<p>إذن:</p><p class="mathline"><span class="math">1 h 35 min 40 s + 2 h 32 min 30 s = 4 h 8 min 10 s</span></p>
+</span></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>3</td><td>47</td><td>38</td></tr><tr><td class="sign">+</td><td>2</td><td>28</td><td>35</td></tr><tr class="raw-result"><td></td><td>5</td><td>75</td><td>73</td></tr><tr class="transform"><td></td><td colspan="3">73 s = 1 min 13 s</td></tr><tr class="borrow-step"><td></td><td>5</td><td>76</td><td>13</td></tr><tr class="transform"><td></td><td colspan="3">76 min = 1 h 16 min</td></tr><tr class="borrow-step"><td></td><td>6</td><td>16</td><td>13</td></tr><tr class="final-result"><td></td><td>6</td><td>16</td><td>13</td></tr></table></div>
+<p>Por tanto:</p><p class="mathline"><span class="math">3 h 47 min 38 s + 2 h 28 min 35 s = 6 h 16 min 13 s</span></p>
+</span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>3</td><td>47</td><td>38</td></tr><tr><td class="sign">+</td><td>2</td><td>28</td><td>35</td></tr><tr class="raw-result"><td></td><td>5</td><td>75</td><td>73</td></tr><tr class="transform"><td></td><td colspan="3">73 s = 1 min 13 s</td></tr><tr class="borrow-step"><td></td><td>5</td><td>76</td><td>13</td></tr><tr class="transform"><td></td><td colspan="3">76 min = 1 h 16 min</td></tr><tr class="borrow-step"><td></td><td>6</td><td>16</td><td>13</td></tr><tr class="final-result"><td></td><td>6</td><td>16</td><td>13</td></tr></table></div>
+<p>Donc :</p><p class="mathline"><span class="math">3 h 47 min 38 s + 2 h 28 min 35 s = 6 h 16 min 13 s</span></p>
+</span><span class="i18n ar" data-lang="ar"><h4>الحل</h4>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>3</td><td>47</td><td>38</td></tr><tr><td class="sign">+</td><td>2</td><td>28</td><td>35</td></tr><tr class="raw-result"><td></td><td>5</td><td>75</td><td>73</td></tr><tr class="transform"><td></td><td colspan="3">73 s = 1 min 13 s</td></tr><tr class="borrow-step"><td></td><td>5</td><td>76</td><td>13</td></tr><tr class="transform"><td></td><td colspan="3">76 min = 1 h 16 min</td></tr><tr class="borrow-step"><td></td><td>6</td><td>16</td><td>13</td></tr><tr class="final-result"><td></td><td>6</td><td>16</td><td>13</td></tr></table></div>
+<p>إذن:</p><p class="mathline"><span class="math">3 h 47 min 38 s + 2 h 28 min 35 s = 6 h 16 min 13 s</span></p>
+</span></div>
+</div>
+<div class="card" data-card-lang="es">
+<div class="question-controls">
+<label class="item-check-control"><input class="item-help-check" type="checkbox"/> 💡 <span class="i18n es">Mostrar ayuda</span><span class="i18n fr" data-lang="fr">Afficher l’aide</span><span class="i18n ar" data-lang="ar">إظهار المساعدة</span></label>
+<label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label>
+</div>
+<div class="level">ACTIVIDAD 10 · NIVEL 4 · INTEGRO · AMPLIACIÓN</div>
+<div class="i18n es" data-lang="es"><p><strong>Calcula:</strong> <span class="math">9° 14′ 25″ − 3° 37′ 48″</span></p></div><div class="i18n fr" data-lang="fr"><p><strong>Calcule :</strong> <span class="math">9° 14′ 25″ − 3° 37′ 48″</span></p></div><div class="i18n ar" data-lang="ar"><p><strong>احسب:</strong> <span class="math">9° 14′ 25″ − 3° 37′ 48″</span></p></div>
+<div class="toggle help" hidden=""><span class="i18n es" data-lang="es"><h4>NECESITO AYUDA</h4>
+<p>Si los segundos son insuficientes, toma <span class="math">1′ = 60″</span>. Si después los minutos son insuficientes, toma <span class="math">1° = 60′</span>.</p>
+<p><strong>Ejemplo análogo. Calcula:</strong></p>
+<p class="mathline"><span class="math">8° 12′ 20″ − 2° 25′ 35″</span></p>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>8</td><td>12</td><td>20</td></tr><tr><td class="sign">−</td><td>2</td><td>25</td><td>35</td></tr><tr class="transform"><td></td><td colspan="3">Tomamos 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>8</td><td>11</td><td>80</td></tr><tr class="transform"><td></td><td colspan="3">Tomamos 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>7</td><td>71</td><td>80</td></tr><tr class="final-result"><td></td><td>5</td><td>46</td><td>45</td></tr></table></div>
+<p>Por tanto:</p><p class="mathline"><span class="math">8° 12′ 20″ − 2° 25′ 35″ = 5° 46′ 45″</span></p>
+</span><span class="i18n fr" data-lang="fr"><h4>J’AI BESOIN D’AIDE</h4>
+<p>Si les secondes sont insuffisantes, emprunte <span class="math">1′ = 60″</span>. Si ensuite les minutes sont insuffisantes, emprunte <span class="math">1° = 60′</span>.</p>
+<p><strong>Exemple analogue. Calcule :</strong></p>
+<p class="mathline"><span class="math">8° 12′ 20″ − 2° 25′ 35″</span></p>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>8</td><td>12</td><td>20</td></tr><tr><td class="sign">−</td><td>2</td><td>25</td><td>35</td></tr><tr class="transform"><td></td><td colspan="3">Nous empruntons 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>8</td><td>11</td><td>80</td></tr><tr class="transform"><td></td><td colspan="3">Nous empruntons 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>7</td><td>71</td><td>80</td></tr><tr class="final-result"><td></td><td>5</td><td>46</td><td>45</td></tr></table></div>
+<p>Donc :</p><p class="mathline"><span class="math">8° 12′ 20″ − 2° 25′ 35″ = 5° 46′ 45″</span></p>
+</span><span class="i18n ar" data-lang="ar"><h4>أحتاج إلى مساعدة</h4>
+<p>إذا لم تكفِ الثواني، استلف <span class="math">1′ = 60″</span>. وإذا لم تكفِ الدقائق بعد ذلك، استلف <span class="math">1° = 60′</span>.</p>
+<p><strong>مثال مشابه. احسب:</strong></p>
+<p class="mathline"><span class="math">8° 12′ 20″ − 2° 25′ 35″</span></p>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>8</td><td>12</td><td>20</td></tr><tr><td class="sign">−</td><td>2</td><td>25</td><td>35</td></tr><tr class="transform"><td></td><td colspan="3">نستلف 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>8</td><td>11</td><td>80</td></tr><tr class="transform"><td></td><td colspan="3">نستلف 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>7</td><td>71</td><td>80</td></tr><tr class="final-result"><td></td><td>5</td><td>46</td><td>45</td></tr></table></div>
+<p>إذن:</p><p class="mathline"><span class="math">8° 12′ 20″ − 2° 25′ 35″ = 5° 46′ 45″</span></p>
+</span></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>9</td><td>14</td><td>25</td></tr><tr><td class="sign">−</td><td>3</td><td>37</td><td>48</td></tr><tr class="transform"><td></td><td colspan="3">Tomamos 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>9</td><td>13</td><td>85</td></tr><tr class="transform"><td></td><td colspan="3">Tomamos 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>8</td><td>73</td><td>85</td></tr><tr class="final-result"><td></td><td>5</td><td>36</td><td>37</td></tr></table></div>
+<p>Por tanto:</p><p class="mathline"><span class="math">9° 14′ 25″ − 3° 37′ 48″ = 5° 36′ 37″</span></p>
+</span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>9</td><td>14</td><td>25</td></tr><tr><td class="sign">−</td><td>3</td><td>37</td><td>48</td></tr><tr class="transform"><td></td><td colspan="3">Nous empruntons 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>9</td><td>13</td><td>85</td></tr><tr class="transform"><td></td><td colspan="3">Nous empruntons 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>8</td><td>73</td><td>85</td></tr><tr class="final-result"><td></td><td>5</td><td>36</td><td>37</td></tr></table></div>
+<p>Donc :</p><p class="mathline"><span class="math">9° 14′ 25″ − 3° 37′ 48″ = 5° 36′ 37″</span></p>
+</span><span class="i18n ar" data-lang="ar"><h4>الحل</h4>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>9</td><td>14</td><td>25</td></tr><tr><td class="sign">−</td><td>3</td><td>37</td><td>48</td></tr><tr class="transform"><td></td><td colspan="3">نستلف 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>9</td><td>13</td><td>85</td></tr><tr class="transform"><td></td><td colspan="3">نستلف 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>8</td><td>73</td><td>85</td></tr><tr class="final-result"><td></td><td>5</td><td>36</td><td>37</td></tr></table></div>
+<p>إذن:</p><p class="mathline"><span class="math">9° 14′ 25″ − 3° 37′ 48″ = 5° 36′ 37″</span></p>
+</span></div>
+</div>
+</div>
+<!-- CONTENT_PRACTICA_END -->
+</section>
+<section class="major-section collapsed"><h2 aria-expanded="false" class="section-title collapsible-title" role="button" tabindex="0"><span class="major-num">3 ·</span> 🎯 <span class="i18n es" data-lang="es">RETO SIN AYUDA</span><span class="i18n fr" data-lang="fr">DÉFI SANS AIDE</span><span class="i18n ar" data-lang="ar">تحدٍّ بدون مساعدة</span><span aria-hidden="true" class="collapse-indicator">▶</span></h2>
+<!-- CONTENT_RETO_START -->
+<div class="content-slot" data-content-slot="reto">
+<div class="learnbox"><span class="i18n es" data-lang="es"><p>En esta parte no hay ayuda. Intenta resolver cada reto de forma autónoma. Después puedes consultar la <strong>SOLUCIÓN</strong>.</p></span><span class="i18n fr" data-lang="fr"><p>Dans cette partie, il n’y a pas d’aide. Essaie de résoudre chaque défi de façon autonome. Ensuite, tu peux consulter la <strong>SOLUTION</strong>.</p></span><span class="i18n ar" data-lang="ar"><p>لا توجد مساعدة في هذا الجزء. حاول حل كل تحدٍّ بنفسك. بعد ذلك يمكنك مراجعة <strong>الحل</strong>.</p></span></div>
+<div class="card challenge" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label></div>
+<div class="level">RETO 1</div>
+<div class="i18n es" data-lang="es"><p>Realiza las dos conversiones:</p>
+<p>a) Expresa <span class="math">2 h 30 min 15 s</span> en minutos.</p>
+<p>b) Pasa <span class="math">45 548 s</span> a horas, minutos y segundos.</p>
+<p>c) <strong>AMPLIACIÓN:</strong> Calcula: <span class="math">4 h 36 min 45 s + 2 h 48 min 30 s</span></p></div><div class="i18n fr" data-lang="fr"><p>Effectue les deux conversions :</p>
+<p>a) Exprime <span class="math">2 h 30 min 15 s</span> en minutes.</p>
+<p>b) Convertis <span class="math">45 548 s</span> en heures, minutes et secondes.</p>
+<p>c) <strong>APPROFONDISSEMENT :</strong> Calcule : <span class="math">4 h 36 min 45 s + 2 h 48 min 30 s</span></p></div><div class="i18n ar" data-lang="ar"><p>أنجز التحويلين:</p>
+<p>أ) عبّر عن <span class="math">2 h 30 min 15 s</span> بالدقائق.</p>
+<p>ب) حوّل <span class="math">45 548 s</span> إلى ساعات ودقائق وثوانٍ.</p>
+<p>c) <strong>التوسّع:</strong> احسب: <span class="math">4 h 36 min 45 s + 2 h 48 min 30 s</span></p></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4><p>a)</p>
+<p class="mathline"><span class="math">2 h = 2·60 = 120 min</span></p>
+<p class="mathline"><span class="math">30 min = 30 min</span></p>
+<p class="mathline"><span class="math">15 s = 15:60 = 0,25 min</span></p>
+<p class="mathline"><span class="math">2 h 30 min 15 s = 120 + 30 + 0,25</span></p>
+<p class="mathline"><span class="math">= 150,25 min</span></p>
+<p>b)</p>
+<p class="mathline"><span class="math">45 548 : 3600 = 12 h</span>, resto <span class="math">2348 s</span></p>
+<p class="mathline"><span class="math">2348 : 60 = 39 min</span>, resto <span class="math">8 s</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">45 548 s = 12 h 39 min 8 s</span></p>
+<p>c) AMPLIACIÓN</p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>4</td><td>36</td><td>45</td></tr><tr><td class="sign">+</td><td>2</td><td>48</td><td>30</td></tr><tr class="raw-result"><td></td><td>6</td><td>84</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75 s = 1 min 15 s</td></tr><tr class="borrow-step"><td></td><td>6</td><td>85</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">85 min = 1 h 25 min</td></tr><tr class="borrow-step"><td></td><td>7</td><td>25</td><td>15</td></tr><tr class="final-result"><td></td><td>7</td><td>25</td><td>15</td></tr></table></div><p>Por tanto:</p><p class="mathline"><span class="math">4 h 36 min 45 s + 2 h 48 min 30 s = 7 h 25 min 15 s</span></p></span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4><p>a)</p>
+<p class="mathline"><span class="math">2 h = 2·60 = 120 min</span></p>
+<p class="mathline"><span class="math">30 min = 30 min</span></p>
+<p class="mathline"><span class="math">15 s = 15:60 = 0,25 min</span></p>
+<p class="mathline"><span class="math">2 h 30 min 15 s = 120 + 30 + 0,25</span></p>
+<p class="mathline"><span class="math">= 150,25 min</span></p>
+<p>b)</p>
+<p class="mathline"><span class="math">45 548 : 3600 = 12 h</span>, reste <span class="math">2348 s</span></p>
+<p class="mathline"><span class="math">2348 : 60 = 39 min</span>, reste <span class="math">8 s</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">45 548 s = 12 h 39 min 8 s</span></p>
+<p>c) APPROFONDISSEMENT</p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>4</td><td>36</td><td>45</td></tr><tr><td class="sign">+</td><td>2</td><td>48</td><td>30</td></tr><tr class="raw-result"><td></td><td>6</td><td>84</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75 s = 1 min 15 s</td></tr><tr class="borrow-step"><td></td><td>6</td><td>85</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">85 min = 1 h 25 min</td></tr><tr class="borrow-step"><td></td><td>7</td><td>25</td><td>15</td></tr><tr class="final-result"><td></td><td>7</td><td>25</td><td>15</td></tr></table></div><p>Donc :</p><p class="mathline"><span class="math">4 h 36 min 45 s + 2 h 48 min 30 s = 7 h 25 min 15 s</span></p></span><span class="i18n ar" data-lang="ar"><h4>الحل</h4><p>a)</p>
+<p class="mathline"><span class="math">2 h = 2·60 = 120 min</span></p>
+<p class="mathline"><span class="math">30 min = 30 min</span></p>
+<p class="mathline"><span class="math">15 s = 15:60 = 0,25 min</span></p>
+<p class="mathline"><span class="math">2 h 30 min 15 s = 120 + 30 + 0,25</span></p>
+<p class="mathline"><span class="math">= 150,25 min</span></p>
+<p>b)</p>
+<p class="mathline"><span class="math">45 548 : 3600 = 12 h</span>، الباقي <span class="math">2348 s</span></p>
+<p class="mathline"><span class="math">2348 : 60 = 39 min</span>، الباقي <span class="math">8 s</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">45 548 s = 12 h 39 min 8 s</span></p>
+<p>ج) التوسّع</p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>4</td><td>36</td><td>45</td></tr><tr><td class="sign">+</td><td>2</td><td>48</td><td>30</td></tr><tr class="raw-result"><td></td><td>6</td><td>84</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75 s = 1 min 15 s</td></tr><tr class="borrow-step"><td></td><td>6</td><td>85</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">85 min = 1 h 25 min</td></tr><tr class="borrow-step"><td></td><td>7</td><td>25</td><td>15</td></tr><tr class="final-result"><td></td><td>7</td><td>25</td><td>15</td></tr></table></div><p>إذن:</p><p class="mathline"><span class="math">4 h 36 min 45 s + 2 h 48 min 30 s = 7 h 25 min 15 s</span></p></span></div>
+</div>
+<div class="card challenge" data-card-lang="es">
+<div class="question-controls"><label class="item-check-control"><input class="item-sol-check" type="checkbox"/> ✓ <span class="i18n es">Solución</span><span class="i18n fr" data-lang="fr">Solution</span><span class="i18n ar" data-lang="ar">الحل</span></label></div>
+<div class="level">RETO 2</div>
+<div class="i18n es" data-lang="es"><p>Realiza las dos conversiones:</p>
+<p>a) Expresa <span class="math">8° 15′ 27″</span> en minutos angulares.</p>
+<p>b) Pasa <span class="math">5,32°</span> a grados, minutos y segundos.</p>
+<p>c) <strong>AMPLIACIÓN:</strong> Calcula: <span class="math">14° 12′ 18″ − 6° 35′ 42″</span></p></div><div class="i18n fr" data-lang="fr"><p>Effectue les deux conversions :</p>
+<p>a) Exprime <span class="math">8° 15′ 27″</span> en minutes d’angle.</p>
+<p>b) Convertis <span class="math">5,32°</span> en degrés, minutes et secondes.</p>
+<p>c) <strong>APPROFONDISSEMENT :</strong> Calcule : <span class="math">14° 12′ 18″ − 6° 35′ 42″</span></p></div><div class="i18n ar" data-lang="ar"><p>أنجز التحويلين:</p>
+<p>أ) عبّر عن <span class="math">8° 15′ 27″</span> بالدقائق الزاوية.</p>
+<p>ب) حوّل <span class="math">5,32°</span> إلى درجات ودقائق وثوانٍ.</p>
+<p>c) <strong>التوسّع:</strong> احسب: <span class="math">14° 12′ 18″ − 6° 35′ 42″</span></p></div>
+<div class="toggle sol" hidden=""><span class="i18n es" data-lang="es"><h4>SOLUCIÓN</h4><p>a)</p>
+<p class="mathline"><span class="math">8° = 8·60 = 480′</span></p>
+<p class="mathline"><span class="math">15′ = 15′</span></p>
+<p class="mathline"><span class="math">27″ = 27:60 = 0,45′</span></p>
+<p class="mathline"><span class="math">8° 15′ 27″ = 480 + 15 + 0,45</span></p>
+<p class="mathline"><span class="math">= 495,45′</span></p>
+<p>b)</p>
+<p class="mathline"><span class="math">5,32° = 5° + 0,32°</span></p>
+<p class="mathline"><span class="math">0,32·60 = 19,2′</span></p>
+<p class="mathline"><span class="math">19,2′ = 19′ + 0,2′</span></p>
+<p class="mathline"><span class="math">0,2·60 = 12″</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">5,32° = 5° 19′ 12″</span></p>
+<p>c) AMPLIACIÓN</p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>14</td><td>12</td><td>18</td></tr><tr><td class="sign">−</td><td>6</td><td>35</td><td>42</td></tr><tr class="transform"><td></td><td colspan="3">Tomamos 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>14</td><td>11</td><td>78</td></tr><tr class="transform"><td></td><td colspan="3">Tomamos 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>13</td><td>71</td><td>78</td></tr><tr class="final-result"><td></td><td>7</td><td>36</td><td>36</td></tr></table></div><p>Por tanto:</p><p class="mathline"><span class="math">14° 12′ 18″ − 6° 35′ 42″ = 7° 36′ 36″</span></p></span><span class="i18n fr" data-lang="fr"><h4>SOLUTION</h4><p>a)</p>
+<p class="mathline"><span class="math">8° = 8·60 = 480′</span></p>
+<p class="mathline"><span class="math">15′ = 15′</span></p>
+<p class="mathline"><span class="math">27″ = 27:60 = 0,45′</span></p>
+<p class="mathline"><span class="math">8° 15′ 27″ = 480 + 15 + 0,45</span></p>
+<p class="mathline"><span class="math">= 495,45′</span></p>
+<p>b)</p>
+<p class="mathline"><span class="math">5,32° = 5° + 0,32°</span></p>
+<p class="mathline"><span class="math">0,32·60 = 19,2′</span></p>
+<p class="mathline"><span class="math">19,2′ = 19′ + 0,2′</span></p>
+<p class="mathline"><span class="math">0,2·60 = 12″</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">5,32° = 5° 19′ 12″</span></p>
+<p>c) APPROFONDISSEMENT</p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>14</td><td>12</td><td>18</td></tr><tr><td class="sign">−</td><td>6</td><td>35</td><td>42</td></tr><tr class="transform"><td></td><td colspan="3">Nous empruntons 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>14</td><td>11</td><td>78</td></tr><tr class="transform"><td></td><td colspan="3">Nous empruntons 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>13</td><td>71</td><td>78</td></tr><tr class="final-result"><td></td><td>7</td><td>36</td><td>36</td></tr></table></div><p>Donc :</p><p class="mathline"><span class="math">14° 12′ 18″ − 6° 35′ 42″ = 7° 36′ 36″</span></p></span><span class="i18n ar" data-lang="ar"><h4>الحل</h4><p>a)</p>
+<p class="mathline"><span class="math">8° = 8·60 = 480′</span></p>
+<p class="mathline"><span class="math">15′ = 15′</span></p>
+<p class="mathline"><span class="math">27″ = 27:60 = 0,45′</span></p>
+<p class="mathline"><span class="math">8° 15′ 27″ = 480 + 15 + 0,45</span></p>
+<p class="mathline"><span class="math">= 495,45′</span></p>
+<p>b)</p>
+<p class="mathline"><span class="math">5,32° = 5° + 0,32°</span></p>
+<p class="mathline"><span class="math">0,32·60 = 19,2′</span></p>
+<p class="mathline"><span class="math">19,2′ = 19′ + 0,2′</span></p>
+<p class="mathline"><span class="math">0,2·60 = 12″</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">5,32° = 5° 19′ 12″</span></p>
+<p>ج) التوسّع</p><div class="sexop-wrap"><table class="sexop"><tr><th></th><th>°</th><th>′</th><th>″</th></tr><tr><td class="sign"></td><td>14</td><td>12</td><td>18</td></tr><tr><td class="sign">−</td><td>6</td><td>35</td><td>42</td></tr><tr class="transform"><td></td><td colspan="3">نستلف 1′ = 60″</td></tr><tr class="borrow-step"><td></td><td>14</td><td>11</td><td>78</td></tr><tr class="transform"><td></td><td colspan="3">نستلف 1° = 60′</td></tr><tr class="borrow-step"><td></td><td>13</td><td>71</td><td>78</td></tr><tr class="final-result"><td></td><td>7</td><td>36</td><td>36</td></tr></table></div><p>إذن:</p><p class="mathline"><span class="math">14° 12′ 18″ − 6° 35′ 42″ = 7° 36′ 36″</span></p></span></div>
+</div>
+</div>
+<!-- CONTENT_RETO_END -->
+</section>
+<section class="major-section collapsed" id="check">
+<div class="check-head">
+<h2 aria-expanded="false" class="section-title collapsible-title" role="button" tabindex="0"><span class="major-num">4 ·</span> ✅ <span class="ci18n es">COMPRUEBA LO APRENDIDO</span><span class="ci18n fr" data-lang="fr">VÉRIFIE CE QUE TU AS APPRIS</span><span class="ci18n ar" data-lang="ar">تحقق مما تعلمته</span><span aria-hidden="true" class="collapse-indicator">▶</span></h2>
+<div class="check-controls">
+<button aria-label="Castellano" class="check-lang active" data-check-lang="es" type="button">🇪🇸</button>
+<button aria-label="Français" class="check-lang" data-check-lang="fr" type="button">🇫🇷</button>
+<button aria-label="العربية" class="check-lang" data-check-lang="ar" type="button">🇲🇦</button>
+<button class="mode-btn" id="testModeBtn" type="button">☐ <span class="ci18n es">Tipo test</span><span class="ci18n fr" data-lang="fr">QCM</span><span class="ci18n ar" data-lang="ar">اختيار من متعدد</span></button>
+<button aria-disabled="true" class="mode-btn" disabled="" id="solutionsBtn" type="button">☐ <span class="ci18n es">Solución</span><span class="ci18n fr" data-lang="fr">Solution</span><span class="ci18n ar" data-lang="ar">الحل</span></button>
+<button disabled="" id="evaluateBtn" type="button"><span class="ci18n es">Evaluar</span><span class="ci18n fr" data-lang="fr">Évaluer</span><span class="ci18n ar" data-lang="ar">قيّم</span></button>
+<div class="eval-result" id="evalResult"></div>
+</div></div>
+<!-- CONTENT_COMPRUEBA_START -->
+<div class="content-slot" data-content-slot="comprueba">
+<div class="learnbox"><span class="ci18n es"><p>En esta parte no hay ayuda. Resuelve cada cuestión en tu libreta, activa <strong>Tipo test</strong> y elige una alternativa. Por último, evalúa tus respuestas.</p></span><span class="ci18n fr" data-lang="fr"><p>Dans cette partie, il n’y a pas d’aide. Résous chaque question dans ton cahier, active le <strong>QCM</strong> et choisis une réponse. Enfin, évalue tes réponses.</p></span><span class="ci18n ar" data-lang="ar"><p>لا توجد مساعدة في هذا الجزء. حلّ كل سؤال في دفترك، فعّل <strong>اختيار من متعدد</strong> واختر إجابة. وأخيرًا قيّم إجاباتك.</p></span></div>
+<div class="check-card" data-correct="b">
+<h3><span class="qnum">1.</span><span class="ci18n es"><p>¿Cuál es la equivalencia correcta de <span class="math">2 h 30 min</span> expresada únicamente en minutos?</p></span><span class="ci18n fr" data-lang="fr"><p>Quelle est l’équivalence correcte de <span class="math">2 h 30 min</span> exprimée uniquement en minutes ?</p></span><span class="ci18n ar" data-lang="ar"><p>ما التكافؤ الصحيح لـ <span class="math">2 h 30 min</span> إذا عُبّر عنها بالدقائق فقط؟</p></span></h3>
+<div class="test-options"><label class="test-option"><input name="q1" type="radio" value="a"/><span class="ci18n es">a) <span class="math">120 min</span></span><span class="ci18n fr" data-lang="fr">a) <span class="math">120 min</span></span><span class="ci18n ar" data-lang="ar">a) <span class="math">120 min</span></span></label><label class="test-option"><input name="q1" type="radio" value="b"/><span class="ci18n es">b) <span class="math">150 min</span></span><span class="ci18n fr" data-lang="fr">b) <span class="math">150 min</span></span><span class="ci18n ar" data-lang="ar">b) <span class="math">150 min</span></span></label><label class="test-option"><input name="q1" type="radio" value="c"/><span class="ci18n es">c) <span class="math">230 min</span></span><span class="ci18n fr" data-lang="fr">c) <span class="math">230 min</span></span><span class="ci18n ar" data-lang="ar">c) <span class="math">230 min</span></span></label><label class="test-option"><input name="q1" type="radio" value="d"/><span class="ci18n es">d) <span class="math">250 min</span></span><span class="ci18n fr" data-lang="fr">d) <span class="math">250 min</span></span><span class="ci18n ar" data-lang="ar">d) <span class="math">250 min</span></span></label></div>
+<div class="test-solution"><span class="ci18n es"><h4>SOLUCIÓN</h4><p class="mathline"><span class="math">2 h = 2·60 = 120 min</span></p>
+<p class="mathline"><span class="math">30 min = 30 min</span></p>
+<p class="mathline"><span class="math">120 + 30 = 150 min</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">2 h 30 min = 150 min</span></p></span><span class="ci18n fr" data-lang="fr"><h4>SOLUTION</h4><p class="mathline"><span class="math">2 h = 2·60 = 120 min</span></p>
+<p class="mathline"><span class="math">30 min = 30 min</span></p>
+<p class="mathline"><span class="math">120 + 30 = 150 min</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">2 h 30 min = 150 min</span></p></span><span class="ci18n ar" data-lang="ar"><h4>الحل</h4><p class="mathline"><span class="math">2 h = 2·60 = 120 min</span></p>
+<p class="mathline"><span class="math">30 min = 30 min</span></p>
+<p class="mathline"><span class="math">120 + 30 = 150 min</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">2 h 30 min = 150 min</span></p></span></div>
+</div>
+<div class="check-card" data-correct="a">
+<h3><span class="qnum">2.</span><span class="ci18n es"><p>¿Cuántos minutos angulares son <span class="math">3° 12′ 30″</span>?</p></span><span class="ci18n fr" data-lang="fr"><p>Combien de minutes d’angle représentent <span class="math">3° 12′ 30″</span>?</p></span><span class="ci18n ar" data-lang="ar"><p>كم دقيقة زاوية تساوي <span class="math">3° 12′ 30″</span>?</p></span></h3>
+<div class="test-options"><label class="test-option"><input name="q2" type="radio" value="a"/><span class="ci18n es">a) <span class="math">192,5′</span></span><span class="ci18n fr" data-lang="fr">a) <span class="math">192,5′</span></span><span class="ci18n ar" data-lang="ar">a) <span class="math">192,5′</span></span></label><label class="test-option"><input name="q2" type="radio" value="b"/><span class="ci18n es">b) <span class="math">192,3′</span></span><span class="ci18n fr" data-lang="fr">b) <span class="math">192,3′</span></span><span class="ci18n ar" data-lang="ar">b) <span class="math">192,3′</span></span></label><label class="test-option"><input name="q2" type="radio" value="c"/><span class="ci18n es">c) <span class="math">222′</span></span><span class="ci18n fr" data-lang="fr">c) <span class="math">222′</span></span><span class="ci18n ar" data-lang="ar">c) <span class="math">222′</span></span></label><label class="test-option"><input name="q2" type="radio" value="d"/><span class="ci18n es">d) <span class="math">390′</span></span><span class="ci18n fr" data-lang="fr">d) <span class="math">390′</span></span><span class="ci18n ar" data-lang="ar">d) <span class="math">390′</span></span></label></div>
+<div class="test-solution"><span class="ci18n es"><h4>SOLUCIÓN</h4><p class="mathline"><span class="math">3° = 3·60 = 180′</span></p>
+<p class="mathline"><span class="math">12′ = 12′</span></p>
+<p class="mathline"><span class="math">30″ = 30:60 = 0,5′</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">3° 12′ 30″ = 180 + 12 + 0,5</span></p>
+<p class="mathline"><span class="math">= 192,5′</span></p></span><span class="ci18n fr" data-lang="fr"><h4>SOLUTION</h4><p class="mathline"><span class="math">3° = 3·60 = 180′</span></p>
+<p class="mathline"><span class="math">12′ = 12′</span></p>
+<p class="mathline"><span class="math">30″ = 30:60 = 0,5′</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">3° 12′ 30″ = 180 + 12 + 0,5</span></p>
+<p class="mathline"><span class="math">= 192,5′</span></p></span><span class="ci18n ar" data-lang="ar"><h4>الحل</h4><p class="mathline"><span class="math">3° = 3·60 = 180′</span></p>
+<p class="mathline"><span class="math">12′ = 12′</span></p>
+<p class="mathline"><span class="math">30″ = 30:60 = 0,5′</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">3° 12′ 30″ = 180 + 12 + 0,5</span></p>
+<p class="mathline"><span class="math">= 192,5′</span></p></span></div>
+</div>
+<div class="check-card" data-correct="a">
+<h3><span class="qnum">3.</span><span class="ci18n es"><p>¿Cuál es la forma compleja correcta de <span class="math">19 765 s</span>?</p></span><span class="ci18n fr" data-lang="fr"><p>Quelle est la forme complexe correcte de <span class="math">19 765 s</span>?</p></span><span class="ci18n ar" data-lang="ar"><p>ما الصيغة المركبة الصحيحة لـ <span class="math">19 765 s</span>?</p></span></h3>
+<div class="test-options"><label class="test-option"><input name="q3" type="radio" value="a"/><span class="ci18n es">a) <span class="math">5 h 29 min 25 s</span></span><span class="ci18n fr" data-lang="fr">a) <span class="math">5 h 29 min 25 s</span></span><span class="ci18n ar" data-lang="ar">a) <span class="math">5 h 29 min 25 s</span></span></label><label class="test-option"><input name="q3" type="radio" value="b"/><span class="ci18n es">b) <span class="math">5 h 19 min 45 s</span></span><span class="ci18n fr" data-lang="fr">b) <span class="math">5 h 19 min 45 s</span></span><span class="ci18n ar" data-lang="ar">b) <span class="math">5 h 19 min 45 s</span></span></label><label class="test-option"><input name="q3" type="radio" value="c"/><span class="ci18n es">c) <span class="math">5 h 49 min 25 s</span></span><span class="ci18n fr" data-lang="fr">c) <span class="math">5 h 49 min 25 s</span></span><span class="ci18n ar" data-lang="ar">c) <span class="math">5 h 49 min 25 s</span></span></label><label class="test-option"><input name="q3" type="radio" value="d"/><span class="ci18n es">d) <span class="math">5 h 29 min 5 s</span></span><span class="ci18n fr" data-lang="fr">d) <span class="math">5 h 29 min 5 s</span></span><span class="ci18n ar" data-lang="ar">d) <span class="math">5 h 29 min 5 s</span></span></label></div>
+<div class="test-solution"><span class="ci18n es"><h4>SOLUCIÓN</h4><p>Buscamos primero las horas completas:</p>
+<p class="mathline"><span class="math">19 765 : 3600 = 5 h</span>, resto <span class="math">1765 s</span></p>
+<p>Después:</p>
+<p class="mathline"><span class="math">1765 : 60 = 29 min</span>, resto <span class="math">25 s</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">19 765 s = 5 h 29 min 25 s</span></p></span><span class="ci18n fr" data-lang="fr"><h4>SOLUTION</h4><p>Nous cherchons d’abord les heures entières :</p>
+<p class="mathline"><span class="math">19 765 : 3600 = 5 h</span>, reste <span class="math">1765 s</span></p>
+<p>Ensuite :</p>
+<p class="mathline"><span class="math">1765 : 60 = 29 min</span>, reste <span class="math">25 s</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">19 765 s = 5 h 29 min 25 s</span></p></span><span class="ci18n ar" data-lang="ar"><h4>الحل</h4><p>نبحث أولًا عن الساعات الكاملة:</p>
+<p class="mathline"><span class="math">19 765 : 3600 = 5 h</span>، الباقي <span class="math">1765 s</span></p>
+<p>بعد ذلك:</p>
+<p class="mathline"><span class="math">1765 : 60 = 29 min</span>، الباقي <span class="math">25 s</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">19 765 s = 5 h 29 min 25 s</span></p></span></div>
+</div>
+<div class="check-card" data-correct="b">
+<h3><span class="qnum">4.</span><span class="ci18n es"><p>¿Cuál es la forma compleja correcta de <span class="math">5,32°</span>?</p></span><span class="ci18n fr" data-lang="fr"><p>Quelle est la forme complexe correcte de <span class="math">5,32°</span>?</p></span><span class="ci18n ar" data-lang="ar"><p>ما الصيغة المركبة الصحيحة لـ <span class="math">5,32°</span>?</p></span></h3>
+<div class="test-options"><label class="test-option"><input name="q4" type="radio" value="a"/><span class="ci18n es">a) <span class="math">5° 32′ 0″</span></span><span class="ci18n fr" data-lang="fr">a) <span class="math">5° 32′ 0″</span></span><span class="ci18n ar" data-lang="ar">a) <span class="math">5° 32′ 0″</span></span></label><label class="test-option"><input name="q4" type="radio" value="b"/><span class="ci18n es">b) <span class="math">5° 19′ 12″</span></span><span class="ci18n fr" data-lang="fr">b) <span class="math">5° 19′ 12″</span></span><span class="ci18n ar" data-lang="ar">b) <span class="math">5° 19′ 12″</span></span></label><label class="test-option"><input name="q4" type="radio" value="c"/><span class="ci18n es">c) <span class="math">5° 19′ 20″</span></span><span class="ci18n fr" data-lang="fr">c) <span class="math">5° 19′ 20″</span></span><span class="ci18n ar" data-lang="ar">c) <span class="math">5° 19′ 20″</span></span></label><label class="test-option"><input name="q4" type="radio" value="d"/><span class="ci18n es">d) <span class="math">5° 32′ 12″</span></span><span class="ci18n fr" data-lang="fr">d) <span class="math">5° 32′ 12″</span></span><span class="ci18n ar" data-lang="ar">d) <span class="math">5° 32′ 12″</span></span></label></div>
+<div class="test-solution"><span class="ci18n es"><h4>SOLUCIÓN</h4><p>Conservamos los grados enteros:</p>
+<p class="mathline"><span class="math">5,32° = 5° + 0,32°</span></p>
+<p>Convertimos la parte decimal:</p>
+<p class="mathline"><span class="math">0,32·60 = 19,2′</span></p>
+<p>Conservamos <span class="math">19′</span> y convertimos la parte decimal restante:</p>
+<p class="mathline"><span class="math">0,2·60 = 12″</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">5,32° = 5° 19′ 12″</span></p></span><span class="ci18n fr" data-lang="fr"><h4>SOLUTION</h4><p>Nous gardons les degrés entiers :</p>
+<p class="mathline"><span class="math">5,32° = 5° + 0,32°</span></p>
+<p>Nous convertissons la partie décimale :</p>
+<p class="mathline"><span class="math">0,32·60 = 19,2′</span></p>
+<p>Nous gardons <span class="math">19′</span> et nous convertissons la partie décimale restante :</p>
+<p class="mathline"><span class="math">0,2·60 = 12″</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">5,32° = 5° 19′ 12″</span></p></span><span class="ci18n ar" data-lang="ar"><h4>الحل</h4><p>نحتفظ بالدرجات الصحيحة:</p>
+<p class="mathline"><span class="math">5,32° = 5° + 0,32°</span></p>
+<p>نحوّل الجزء العشري:</p>
+<p class="mathline"><span class="math">0,32·60 = 19,2′</span></p>
+<p>نحتفظ بـ <span class="math">19′</span> ونحوّل الجزء العشري المتبقي:</p>
+<p class="mathline"><span class="math">0,2·60 = 12″</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">5,32° = 5° 19′ 12″</span></p></span></div>
+</div>
+<div class="check-card" data-correct="a">
+<h3><span class="qnum">5.</span><span class="ci18n es"><p>Un alumno afirma que <span class="math">236,25 min = 3 h 56 min 25 s</span>. ¿Cuál es la corrección adecuada?</p></span><span class="ci18n fr" data-lang="fr"><p>Un élève affirme que <span class="math">236,25 min = 3 h 56 min 25 s</span>. Quelle est la correction appropriée ?</p></span><span class="ci18n ar" data-lang="ar"><p>يقول تلميذ إن <span class="math">236,25 min = 3 h 56 min 25 s</span>. ما التصحيح المناسب؟</p></span></h3>
+<div class="test-options"><label class="test-option"><input name="q5" type="radio" value="a"/><span class="ci18n es">a) <span class="math">3 h 56 min 15 s</span></span><span class="ci18n fr" data-lang="fr">a) <span class="math">3 h 56 min 15 s</span></span><span class="ci18n ar" data-lang="ar">a) <span class="math">3 h 56 min 15 s</span></span></label><label class="test-option"><input name="q5" type="radio" value="b"/><span class="ci18n es">b) <span class="math">3 h 56 min 25 s</span></span><span class="ci18n fr" data-lang="fr">b) <span class="math">3 h 56 min 25 s</span></span><span class="ci18n ar" data-lang="ar">b) <span class="math">3 h 56 min 25 s</span></span></label><label class="test-option"><input name="q5" type="radio" value="c"/><span class="ci18n es">c) <span class="math">3 h 36 min 15 s</span></span><span class="ci18n fr" data-lang="fr">c) <span class="math">3 h 36 min 15 s</span></span><span class="ci18n ar" data-lang="ar">c) <span class="math">3 h 36 min 15 s</span></span></label><label class="test-option"><input name="q5" type="radio" value="d"/><span class="ci18n es">d) <span class="math">4 h 16 min 15 s</span></span><span class="ci18n fr" data-lang="fr">d) <span class="math">4 h 16 min 15 s</span></span><span class="ci18n ar" data-lang="ar">d) <span class="math">4 h 16 min 15 s</span></span></label></div>
+<div class="test-solution"><span class="ci18n es"><h4>SOLUCIÓN</h4><p>Separamos primero las horas completas:</p>
+<p class="mathline"><span class="math">236,25 min = 3 h + 56,25 min</span></p>
+<p>Separamos los minutos completos:</p>
+<p class="mathline"><span class="math">56,25 min = 56 min + 0,25 min</span></p>
+<p>La parte decimal de minuto debe convertirse a segundos:</p>
+<p class="mathline"><span class="math">0,25·60 = 15 s</span></p>
+<p>Por tanto:</p>
+<p class="mathline"><span class="math">236,25 min = 3 h 56 min 15 s</span></p>
+<p>El error consiste en interpretar <span class="math">0,25 min</span> como <span class="math">25 s</span>.</p></span><span class="ci18n fr" data-lang="fr"><h4>SOLUTION</h4><p>Nous séparons d’abord les heures entières :</p>
+<p class="mathline"><span class="math">236,25 min = 3 h + 56,25 min</span></p>
+<p>Nous séparons les minutes entières :</p>
+<p class="mathline"><span class="math">56,25 min = 56 min + 0,25 min</span></p>
+<p>La partie décimale de minute doit être convertie en secondes :</p>
+<p class="mathline"><span class="math">0,25·60 = 15 s</span></p>
+<p>Donc :</p>
+<p class="mathline"><span class="math">236,25 min = 3 h 56 min 15 s</span></p>
+<p>L’erreur consiste à interpréter <span class="math">0,25 min</span> comme <span class="math">25 s</span>.</p></span><span class="ci18n ar" data-lang="ar"><h4>الحل</h4><p>نستخرج أولًا الساعات الكاملة:</p>
+<p class="mathline"><span class="math">236,25 min = 3 h + 56,25 min</span></p>
+<p>نستخرج الدقائق الكاملة:</p>
+<p class="mathline"><span class="math">56,25 min = 56 min + 0,25 min</span></p>
+<p>يجب تحويل الجزء العشري من الدقيقة إلى ثوانٍ:</p>
+<p class="mathline"><span class="math">0,25·60 = 15 s</span></p>
+<p>إذن:</p>
+<p class="mathline"><span class="math">236,25 min = 3 h 56 min 15 s</span></p>
+<p>الخطأ هو تفسير <span class="math">0,25 min</span> على أنه <span class="math">25 s</span>.</p></span></div>
+</div>
+<div class="check-card" data-correct="b">
+<h3><span class="qnum">6.</span><span class="ci18n es"><p>¿Cuál es el resultado de <span class="math">2 h 48 min 35 s + 1 h 26 min 40 s</span>?</p></span><span class="ci18n fr" data-lang="fr"><p>Quel est le résultat de <span class="math">2 h 48 min 35 s + 1 h 26 min 40 s</span>?</p></span><span class="ci18n ar" data-lang="ar"><p>ما نتيجة <span class="math">2 h 48 min 35 s + 1 h 26 min 40 s</span>?</p></span></h3>
+<div class="test-options"><label class="test-option"><input name="q6" type="radio" value="a"/><span class="ci18n es">a) <span class="math">3 h 74 min 75 s</span></span><span class="ci18n fr" data-lang="fr">a) <span class="math">3 h 74 min 75 s</span></span><span class="ci18n ar" data-lang="ar">a) <span class="math">3 h 74 min 75 s</span></span></label><label class="test-option"><input name="q6" type="radio" value="b"/><span class="ci18n es">b) <span class="math">4 h 15 min 15 s</span></span><span class="ci18n fr" data-lang="fr">b) <span class="math">4 h 15 min 15 s</span></span><span class="ci18n ar" data-lang="ar">b) <span class="math">4 h 15 min 15 s</span></span></label><label class="test-option"><input name="q6" type="radio" value="c"/><span class="ci18n es">c) <span class="math">4 h 14 min 15 s</span></span><span class="ci18n fr" data-lang="fr">c) <span class="math">4 h 14 min 15 s</span></span><span class="ci18n ar" data-lang="ar">c) <span class="math">4 h 14 min 15 s</span></span></label><label class="test-option"><input name="q6" type="radio" value="d"/><span class="ci18n es">d) <span class="math">3 h 15 min 15 s</span></span><span class="ci18n fr" data-lang="fr">d) <span class="math">3 h 15 min 15 s</span></span><span class="ci18n ar" data-lang="ar">d) <span class="math">3 h 15 min 15 s</span></span></label></div>
+<div class="test-solution"><span class="ci18n es"><h4>SOLUCIÓN</h4>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>2</td><td>48</td><td>35</td></tr><tr><td class="sign">+</td><td>1</td><td>26</td><td>40</td></tr><tr class="raw-result"><td></td><td>3</td><td>74</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75 s = 1 min 15 s</td></tr><tr class="borrow-step"><td></td><td>3</td><td>75</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">75 min = 1 h 15 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>15</td><td>15</td></tr><tr class="final-result"><td></td><td>4</td><td>15</td><td>15</td></tr></table></div>
+<p>Por tanto:</p><p class="mathline"><span class="math">2 h 48 min 35 s + 1 h 26 min 40 s = 4 h 15 min 15 s</span></p>
+</span><span class="ci18n fr" data-lang="fr"><h4>SOLUTION</h4>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>2</td><td>48</td><td>35</td></tr><tr><td class="sign">+</td><td>1</td><td>26</td><td>40</td></tr><tr class="raw-result"><td></td><td>3</td><td>74</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75 s = 1 min 15 s</td></tr><tr class="borrow-step"><td></td><td>3</td><td>75</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">75 min = 1 h 15 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>15</td><td>15</td></tr><tr class="final-result"><td></td><td>4</td><td>15</td><td>15</td></tr></table></div>
+<p>Donc :</p><p class="mathline"><span class="math">2 h 48 min 35 s + 1 h 26 min 40 s = 4 h 15 min 15 s</span></p>
+</span><span class="ci18n ar" data-lang="ar"><h4>الحل</h4>
+<div class="sexop-wrap"><table class="sexop"><tr><th></th><th>h</th><th>min</th><th>s</th></tr><tr><td class="sign"></td><td>2</td><td>48</td><td>35</td></tr><tr><td class="sign">+</td><td>1</td><td>26</td><td>40</td></tr><tr class="raw-result"><td></td><td>3</td><td>74</td><td>75</td></tr><tr class="transform"><td></td><td colspan="3">75 s = 1 min 15 s</td></tr><tr class="borrow-step"><td></td><td>3</td><td>75</td><td>15</td></tr><tr class="transform"><td></td><td colspan="3">75 min = 1 h 15 min</td></tr><tr class="borrow-step"><td></td><td>4</td><td>15</td><td>15</td></tr><tr class="final-result"><td></td><td>4</td><td>15</td><td>15</td></tr></table></div>
+<p>إذن:</p><p class="mathline"><span class="math">2 h 48 min 35 s + 1 h 26 min 40 s = 4 h 15 min 15 s</span></p>
+</span></div>
+</div>
+</div>
+<!-- CONTENT_COMPRUEBA_END -->
+</section>
+<script>
+const body=document.body;
+/* Motor: selectores locales en PRACTICA y RETO */
+(function ensureLocalLanguageControls(){
+  const sections=[...document.querySelectorAll('.major-section')];
+  [sections[1],sections[2]].filter(Boolean).forEach(section=>{
+    section.querySelectorAll('.card').forEach(card=>{
+      card.dataset.cardLang=card.dataset.cardLang||body.dataset.lang||'es';
+      let controls=card.querySelector('.question-controls');
+      if(!controls){controls=document.createElement('div');controls.className='question-controls';card.prepend(controls);}
+      if(!controls.querySelector('.local-lang-buttons')){
+        const langs=document.createElement('div');langs.className='local-lang-buttons';
+        [['es','🇪🇸','Castellano'],['fr','🇫🇷','Français'],['ar','🇲🇦','العربية']].forEach(([lang,flag,label])=>{
+          const b=document.createElement('button');b.type='button';b.className='q-lang';b.dataset.qLang=lang;b.setAttribute('aria-label',label);b.textContent=flag;langs.appendChild(b);
+        });
+        controls.prepend(langs);
+      }
+    });
+  });
+})();
+function setCardLang(card,lang){
+  card.dataset.cardLang=lang;
+  card.querySelectorAll('.q-lang').forEach(b=>{const on=b.dataset.qLang===lang;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false');});
+}
+function syncMasterChecks(){
+  const helps=[...document.querySelectorAll('.item-help-check')];
+  const sols=[...document.querySelectorAll('.item-sol-check')];
+  const mh=document.getElementById('allHelpCheck'), ms=document.getElementById('allSolCheck');
+
+  /* En la plantilla vacía los controles maestros deben seguir siendo comprobables.
+     Por eso, si todavía no hay ayudas/soluciones insertadas, conservan el estado
+     elegido por el usuario en vez de ser forzados a desmarcarse. */
+  if(mh){
+    if(helps.length){
+      mh.checked=helps.every(x=>x.checked);
+      mh.indeterminate=helps.some(x=>x.checked)&&!mh.checked;
+    }else{
+      mh.indeterminate=false;
+    }
+  }
+
+  if(ms){
+    if(sols.length){
+      const regularAll=sols.every(x=>x.checked);
+      const regularSome=sols.some(x=>x.checked);
+      ms.checked=regularAll;
+      ms.indeterminate=!regularAll&&regularSome;
+    }else{
+      ms.checked=false;
+      ms.indeterminate=false;
+    }
+  }
+}
+function setItemBox(card,kind,show){
+  const box=card.querySelector('.toggle.'+kind); if(box) box.hidden=!show;
+  const ck=card.querySelector(kind==='help'?'.item-help-check':'.item-sol-check'); if(ck) ck.checked=show;
+}
+document.querySelectorAll('.langbar button').forEach(b=>b.addEventListener('click',()=>{
+  const lang=b.dataset.l; body.dataset.lang=lang; document.documentElement.lang=lang; document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.querySelectorAll('.langbar button').forEach(x=>x.classList.toggle('active',x===b));
+  document.querySelectorAll('.card[data-card-lang]').forEach(card=>setCardLang(card,lang));
+  const checkBlock=document.getElementById('check');
+  if(checkBlock){
+    checkBlock.dataset.checkLang=lang;
+    document.querySelectorAll('.check-lang').forEach(x=>x.classList.toggle('active',x.dataset.checkLang===lang));
+  }
+  if(typeof updateCheckControls==='function') updateCheckControls();
+  if(typeof refreshEval==='function') refreshEval();
+}));
+document.querySelectorAll('.q-lang').forEach(b=>b.addEventListener('click',()=>setCardLang(b.closest('.card'),b.dataset.qLang)));
+document.querySelectorAll('.card[data-card-lang]').forEach(card=>setCardLang(card,card.dataset.cardLang||body.dataset.lang||'es'));
+document.querySelectorAll('.item-help-check').forEach(c=>c.addEventListener('change',()=>{setItemBox(c.closest('.card'),'help',c.checked);syncMasterChecks();}));
+document.querySelectorAll('.item-sol-check').forEach(c=>c.addEventListener('change',()=>{setItemBox(c.closest('.card'),'sol',c.checked);syncMasterChecks();}));
+const allHelpCheck=document.getElementById('allHelpCheck');
+if(allHelpCheck) allHelpCheck.addEventListener('change',()=>{document.querySelectorAll('.card').forEach(card=>{if(card.querySelector('.toggle.help'))setItemBox(card,'help',allHelpCheck.checked)});syncMasterChecks();});
+const allSolCheck=document.getElementById('allSolCheck');
+if(allSolCheck) allSolCheck.addEventListener('change',()=>{
+  /* El control global actúa solo sobre las soluciones ordinarias.
+     COMPRUEBA LO APRENDIDO tiene su propia secuencia: responder → evaluar → solución. */
+  document.querySelectorAll('.card').forEach(card=>{
+    if(card.querySelector('.toggle.sol')) setItemBox(card,'sol',allSolCheck.checked);
+  });
+  syncMasterChecks();
+});
+document.getElementById('printBtn').addEventListener('click',()=>window.print());
+document.getElementById('closeBtn').addEventListener('click',()=>{if(window.history.length>1) window.history.back(); else window.close();});
+syncMasterChecks();
+
+const check=document.getElementById('check');
+if(check&&!check.dataset.checkLang) check.dataset.checkLang=body.dataset.lang||'es';
+const testModeBtn=document.getElementById('testModeBtn');
+const solutionsBtn=document.getElementById('solutionsBtn');
+const evaluateBtn=document.getElementById('evaluateBtn');
+const evalResult=document.getElementById('evalResult');
+
+function checkLang(){return (check&&check.dataset.checkLang)||body.dataset.lang||'es';}
+function updateCheckControls(){
+ const l=checkLang();
+ const tOn=testModeBtn.classList.contains('active');
+ const evaluated=evalResult.classList.contains('visible');
+ const sOn=solutionsBtn.classList.contains('active');
+ const txt={es:{test:'Tipo test',sol:'Solución',eval:'Evaluar',hide:'Ocultar evaluación'},fr:{test:'QCM',sol:'Solution',eval:'Évaluer',hide:'Masquer l’évaluation'},ar:{test:'اختيار من متعدد',sol:'الحل',eval:'قيّم',hide:'إخفاء التقييم'}}[l];
+ testModeBtn.childNodes[0].nodeValue=tOn?'☑ ':'☐ ';
+ solutionsBtn.childNodes[0].nodeValue=sOn?'☑ ':'☐ ';
+ solutionsBtn.disabled=!evaluated;
+ solutionsBtn.setAttribute('aria-disabled',evaluated?'false':'true');
+ evaluateBtn.querySelectorAll('.ci18n').forEach(x=>x.textContent=x.classList.contains(l)?(evaluated?txt.hide:txt.eval):x.textContent);
+}
+
+function clearEvaluationMarks(){
+ check.querySelectorAll('.test-option').forEach(x=>x.classList.remove('correcta-alumno','incorrecta-alumno'));
+}
+function paintEvaluationMarks(){
+ clearEvaluationMarks();
+ check.querySelectorAll('.check-card[data-correct]').forEach(card=>{
+   const chosen=card.querySelector('input[type="radio"]:checked');
+   if(!chosen)return;
+   const lab=chosen.closest('.test-option');
+   lab.classList.add(chosen.value===card.dataset.correct?'correcta-alumno':'incorrecta-alumno');
+ });
+}
+function closeCheckSolutions(){
+ solutionsBtn.classList.remove('active');
+ check.querySelectorAll('.test-solution').forEach(x=>x.classList.remove('visible'));
+}
+
+testModeBtn.addEventListener('click',()=>{
+ const on=!testModeBtn.classList.contains('active');
+ testModeBtn.classList.toggle('active',on);
+ check.querySelectorAll('.test-options').forEach(x=>x.classList.toggle('visible',on));
+ evaluateBtn.disabled=!on;
+ if(!on){
+   evalResult.classList.remove('visible');
+   closeCheckSolutions();
+   clearEvaluationMarks();
+   check.querySelectorAll('input[type="radio"]').forEach(r=>r.disabled=false);
+   check.querySelectorAll('.test-options').forEach(x=>x.classList.remove('locked'));
+ }
+ updateCheckControls();
+});
+
+solutionsBtn.addEventListener('click',()=>{
+ /* La solución solo puede consultarse después de evaluar. */
+ if(!evalResult.classList.contains('visible')) return;
+ const on=!solutionsBtn.classList.contains('active');
+ solutionsBtn.classList.toggle('active',on);
+ check.querySelectorAll('.test-solution').forEach(x=>x.classList.toggle('visible',on));
+ updateCheckControls();
+});
+
+function scoreCheck(){
+ let answered=0,correct=0;
+ const cards=[...check.querySelectorAll('.check-card[data-correct]')];
+ cards.forEach(card=>{
+   const r=card.querySelector('input[type="radio"]:checked');
+   if(r){answered++;if(r.value===card.dataset.correct)correct++;}
+ });
+ const total=cards.length;
+ const pct=total?Math.round((correct/total)*100):0;
+ return {answered,correct,total,pct};
+}
+function refreshEval(){
+ if(!evalResult.classList.contains('visible'))return;
+ const x=scoreCheck(),l=checkLang(),
+ tx={es:['Respondidas','de','Aciertos','Éxito'],fr:['Répondues','sur','Réussites','Réussite'],ar:['تمت الإجابة عن','من','الإجابات الصحيحة','نسبة النجاح']}[l];
+ evalResult.innerHTML=`${tx[0]}: ${x.answered} ${tx[1]} ${x.total}<br>${tx[2]}: ${x.correct}<br>${tx[3]}: ${x.pct} %`;
+}
+evaluateBtn.addEventListener('click',()=>{
+ const evaluated=evalResult.classList.contains('visible');
+ if(evaluated){
+   /* Ocultar evaluación también cierra las soluciones y las vuelve a bloquear. */
+   evalResult.classList.remove('visible');
+   closeCheckSolutions();
+   clearEvaluationMarks();
+   check.querySelectorAll('input[type="radio"]').forEach(r=>r.disabled=false);
+   check.querySelectorAll('.test-options').forEach(x=>x.classList.remove('locked'));
+   updateCheckControls();
+   return;
+ }
+ evalResult.classList.add('visible');
+ refreshEval();
+ /* Solo se colorea la alternativa elegida por el alumno:
+    verde si acertó, rosa si falló. Nunca se revela otra alternativa. */
+ paintEvaluationMarks();
+ check.querySelectorAll('input[type="radio"]').forEach(r=>r.disabled=true);
+ check.querySelectorAll('.test-options').forEach(x=>x.classList.add('locked'));
+ updateCheckControls();
+});
+check.querySelectorAll('input[type="radio"]').forEach(r=>r.addEventListener('change',refreshEval));
+document.querySelectorAll('.check-lang').forEach(b=>b.addEventListener('click',()=>{
+ const lang=b.dataset.checkLang; check.dataset.checkLang=lang;
+ document.querySelectorAll('.check-lang').forEach(x=>x.classList.toggle('active',x===b));
+ updateCheckControls(); refreshEval();
+}));
+updateCheckControls();
+
+
+
+// V5 · Motor general: totales del test dinámicos y controles maestros verificables incluso sin contenido.
+// V23 · Revisión integral ES/FR/AR; los cuatro bloques se inician contraídos y conservan su estado interno al expandir/contraer.
+function toggleMajorSection(title){
+ const section=title.closest('.major-section'); if(!section)return;
+ const collapsed=section.classList.toggle('collapsed');
+ title.setAttribute('aria-expanded',collapsed?'false':'true');
+ const indicator=title.querySelector('.collapse-indicator'); if(indicator)indicator.textContent=collapsed?'▶':'▼';
+}
+document.querySelectorAll('.major-section .collapsible-title').forEach(title=>{
+ title.addEventListener('click',()=>toggleMajorSection(title));
+ title.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleMajorSection(title);}});
+});
+// Criterio visual general: agrupación de miles/millones/milésimas con espacio fino no separable.
+(function normalizeDigitGrouping(){
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(n){
+   const p=n.parentElement; if(!p||['SCRIPT','STYLE','TEXTAREA'].includes(p.tagName))return NodeFilter.FILTER_REJECT;
+   return NodeFilter.FILTER_ACCEPT;
+ }});
+ const nodes=[]; while(walker.nextNode())nodes.push(walker.currentNode);
+ nodes.forEach(n=>{n.nodeValue=n.nodeValue.replace(/(\d) (?=\d{3}(?:\D|$))/g,'$1\u202F');});
+})();
+
+</script>
+</body></html>
